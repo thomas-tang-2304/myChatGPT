@@ -8,12 +8,19 @@ module.exports = {
     './src/**/*.{js,ts,jsx,tsx}',
 
     //flowbite
-    "./node_modules/flowbite/**/*.js"
+    './node_modules/flowbite/**/*.js',
   ],
   theme: {
     extend: {},
   },
-  plugins: [
-    require('flowbite/plugin')
-  ],
+
+  theme: {
+    colors: {
+      primary: '#007AFF',
+      secondary: '#FFF',
+      third: '#aaa',
+    },
+  },
+
+  plugins: [require('flowbite/plugin')],
 };
