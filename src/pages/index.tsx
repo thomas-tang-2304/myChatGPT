@@ -27,6 +27,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={`container p-3 h-[100vh] w-[800px] mx-auto`}>
+
         <ChatSpace info={info}/>
       </div>
     </>
