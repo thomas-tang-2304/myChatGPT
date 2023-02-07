@@ -26,17 +26,17 @@ export default function ChatSpace({ info }: ChatProps) {
 
     return (
 
-        <div className={`h-full flex p-8 bg-gray-200 rounded-lg shadow-2xl`}>
+        <div className={`h-full flex p-8 bg-white rounded-lg shadow-2xl`}>
 
-            <div className={`w-[27%] z-10`}>
-                <Sidebar />      
+            <div className={`w-80`}>
+                <Sidebar />
             </div>
-            <div className={`h-full w-[73%] bg-secondary relative -left-4 rounded-r-xl`}>
-                <ChatBody/>
+            <div className={`h-full w-full bg-secondary rounded-r-xl`}>
+                <ChatBody />
                 {/* <p className='justify-center shadow-lg h-full flex items-center'>Chat Space</p> */}
 
             </div>
-            
+
         </div>
     )
 }
