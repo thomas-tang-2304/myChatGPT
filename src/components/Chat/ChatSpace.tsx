@@ -33,8 +33,6 @@ export default function ChatSpace({ info }: ChatProps) {
             </div>
             <div className={`h-full w-full bg-secondary rounded-r-xl`}>
                 <ChatBody />
-                {/* <p className='justify-center shadow-lg h-full flex items-center'>Chat Space</p> */}
-
             </div>
 
         </div>

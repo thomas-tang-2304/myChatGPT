@@ -27,7 +27,7 @@ export default function Sidebar() {
   `
   return (
     <>
-      <div className='content-between grid p-3 bg-primary font-white h-full text-white-900 rounded-l-xl rounded-r-lg'>
+      <div className='content-between grid p-3 bg-primary font-white h-full text-white-900 rounded-l-lg'>
         <div>
           <button type="button" className={`${buttonClassNames} dark:border-gray-700 justify-center`}>+ New Chat</button>
         </div>
