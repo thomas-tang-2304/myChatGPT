@@ -6,11 +6,13 @@ module.exports = {
 
     // Or if using `src` directory:
     './src/**/*.{js,ts,jsx,tsx}',
+
+    //flowbite
+    './node_modules/flowbite/**/*.js',
   ],
   theme: {
     extend: {},
   },
-  plugins: [],
 
   theme: {
     colors: {
@@ -19,4 +21,6 @@ module.exports = {
       third: '#aaa',
     },
   },
+
+  plugins: [require('flowbite/plugin')],
 };
