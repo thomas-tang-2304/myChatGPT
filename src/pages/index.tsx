@@ -1,7 +1,19 @@
 
 import Head from 'next/head';
+import ChatSpace, { ChatProps, UserInfo } from '@/components/Chat/ChatSpace';
+import MyImg from '@/public/images/myImg.jpg'
+
 
 export default function Home() {
+  const info: UserInfo = {
+    image: {
+      width: 30,
+      height: 30,
+      url: MyImg
+    },
+    fullName: "Hong Tang",
+    id: "1"
+  }
   return (
     <>
       <Head>
@@ -13,9 +25,10 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1 className="text-3xl font-bold underline text-red-200">
-        Hello world!
-      </h1>
+      <div className={`container p-3 h-[100vh] w-[800px] mx-auto`}>
+
+        <ChatSpace info={info} />
+      </div>
     </>
   );
 }
