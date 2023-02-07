@@ -4,7 +4,7 @@ type Props = {}
 
 const ChatContent = (props: Props) => {
     return (
-        <div className='flex-3 w-full border-2 h-full justify-center items-center'>chatContent</div>
+        <div className='flex-3 w-full h-full justify-center items-center text-center'>chatContent</div>
     )
 }
 
