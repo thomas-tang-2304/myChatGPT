@@ -26,9 +26,11 @@
     ]
   },
   "dependencies": {
+    "flowbite": "^1.6.3",
     "next": "^12.3.4",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-icons": "^4.7.1"
   },
   "devDependencies": {
     "@commitlint/cli": "17.4.2",
