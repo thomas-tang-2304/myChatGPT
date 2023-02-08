@@ -104,6 +104,7 @@ export default function Sidebar({theme, setTheme}: any) {
               (<><span className={`mx-3 back-secondary`}><BsFillLightbulbFill /></span><span>Light Mode</span></>) 
               : 
               (<><span className={`mx-3 back-secondary`}><BsFillLightbulbOffFill /></span><span>Dark Mode</span></>) 
+
             }
           </button>
 

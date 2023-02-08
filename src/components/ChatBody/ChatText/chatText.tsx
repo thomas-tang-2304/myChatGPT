@@ -7,13 +7,13 @@ const ChatText = () => {
   const [newMessage, setNewMessage] = useState('');
   const [messages, setMessages] = useState([]);
 
-  const handleSendMessage = async(evt:any)=>{
+  const handleSendMessage = async (evt: any) => {
 
-    if(evt.key ==='Enter' && newMessage){
+    if (evt.key === 'Enter' && newMessage) {
       setNewMessage("");
       setMessages([...messages]);
       console.log(newMessage);
-      
+
       //xu ly api, tao axios export sendMessage
       // sendMessage({ content: newMessage, chatId: selectedChat?._id })
       // .then((res) => {

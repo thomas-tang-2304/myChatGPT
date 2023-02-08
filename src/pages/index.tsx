@@ -6,7 +6,7 @@ import ChatSpace, { ChatProps, UserInfo } from '@/components/Chat/ChatSpace';
 import React from 'react';
 import { create } from 'domain';
 
- export const MessageStore = React.createContext(null);
+export const MessageStore = React.createContext(null);
 
 export default function Home({theme, setTheme}: any) {
   const info: UserInfo = {
@@ -18,11 +18,11 @@ export default function Home({theme, setTheme}: any) {
     fullName: "Hong Tang",
     id: "1"
   }
-  const useStore:any ={
-    chats:[],
+  const useStore: any = {
+    chats: [],
   }
   return (
-   
+
     <MessageStore.Provider value={useStore}>
       <Head>
         <title>Chat GPT</title>
