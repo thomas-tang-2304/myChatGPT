@@ -1,11 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
 import clsx from 'clsx';
-
-// interface ButtonProps {
-//     onChange?(): void
-//     color?: string
-// }
 
 type Message = {
   variant?: 'bot' | 'user';
@@ -32,7 +26,7 @@ export const Message: React.FC<Message> = ({
     >
       <div
         className={clsx(
-          'flex flex-row items-center',
+          'flex flex-row items-start',
           variant === 'bot' ? null : 'flex-row-reverse',
           className,
         )}
@@ -49,8 +43,10 @@ export const Message: React.FC<Message> = ({
         >
           <div
             className={clsx(
-              'relative text-sm bg-white py-2 px-4 shadow rounded-xl',
-              variant === 'bot' ? 'bg-white' : 'bg-indigo-100',
+              'relative text-sm bg-white py-2 px-4 shadow',
+              variant === 'bot'
+                ? 'bg-white rounded-r-lg rounded-bl-lg'
+                : 'bg-indigo-100 rounded-l-lg rounded-br-lg',
             )}
           >
             {contentMessage}
