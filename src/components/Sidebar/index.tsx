@@ -7,7 +7,9 @@ export default function Sidebar() {
 
   const buttonClassNames = `
     text-white 
-    text-xs
+    text-lg
+    flex
+    items-center
 
     w-full
     
@@ -28,9 +30,8 @@ export default function Sidebar() {
   return (
     <>
       <div className='content-between grid p-3 bg-primary font-white h-full text-white-900 rounded-l-xl rounded-r-lg'>
-        
         <div>
-          <button type="button" className={`${buttonClassNames} dark:border-gray-700`}>+ New Chat</button>
+          <button type="button" className={`${buttonClassNames} dark:border-gray-700 justify-center`}>+ New Chat</button>
         </div>
 
         <div className='flex flex-col gap-2 border-t-2 border-indigo-500 pt-2'>
