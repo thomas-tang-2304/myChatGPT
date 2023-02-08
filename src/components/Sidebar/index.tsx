@@ -97,7 +97,7 @@ export default function Sidebar() {
 
   return (
     <>
-      <div className={`${theme === APP_THEMES.DARK ? styles.dark : styles.light} bg-primary flex flex-col justify-between font-white h-full text-white-900 rounded-l-xl rounded-r-lg`}>
+      <div className={`${theme === APP_THEMES.DARK ? styles.dark : styles.light} bg-primary flex flex-col justify-between font-white h-full text-white-900 rounded-l-xl `}>
         <div>
           <div className='p-2'><button onClick={addNewChat} type="button" className={`${buttonClassNames} mb-2 dark:border-gray-700`}>+ New Chat</button></div>
           {chat.map((item: any) => 

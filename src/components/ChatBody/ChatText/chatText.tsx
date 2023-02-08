@@ -6,7 +6,6 @@ const ChatText = () => {
   const [messages, setMessages] = useState([]);
 
   const handleSendMessage = async(evt:any)=>{
-
     if(evt.key ==='Enter' && newMessage){
       setNewMessage("");
       setMessages([...messages]);
