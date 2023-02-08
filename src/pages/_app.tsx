@@ -8,5 +8,4 @@ export default function App({ Component, pageProps }: AppProps) {
   return <div className={theme=="dark" ? "dark" : "light"}>
     <Component {...pageProps} theme={theme} setTheme={setTheme}/>;
     </div>
-    
 }

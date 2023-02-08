@@ -6,8 +6,6 @@ import {BsFillLightbulbFill} from 'react-icons/bs';
 import {BsFillChatRightFill} from 'react-icons/bs';
 import {TiDeleteOutline} from 'react-icons/ti';
 import ChatSpace from '../Chat/ChatSpace';
-import styles from '@/styles/Home.module.css';
-
 
 const newChatClassNames = `
   text-white 
@@ -37,7 +35,9 @@ const newChatClassNames = `
 
   const buttonClassNames = `
     text-white 
-    text-xs
+    text-lg
+    flex
+    items-center
 
     w-full
     
@@ -75,13 +75,13 @@ export default function Sidebar({theme, setTheme}: any) {
   };
 
   const toggleTheme = () => {
-    setTheme((prev: any) => prev === "dark" ? "light" : "dark")
+    setTheme((prev: any) => prev === "dark" ? 'light' : 'dark')
   }
  
 
   return (
     <>
-      <div className={`bg-primary flex flex-col justify-between font-white h-full text-white-900 rounded-l-xl rounded-r-lg`}>
+      <div className={`bg-primary flex flex-col justify-between font-white h-full text-white-900 rounded-l-xl`}>
         <div>
           <div className='p-2'><button onClick={addNewChat} type="button" className={`${buttonClassNames} mb-2 dark:border-gray-700`}>+ New Chat</button></div>
           {chat.map((item: any) => 

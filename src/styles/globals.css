@@ -20,15 +20,21 @@ body {
 }
 
 .light {
+  --background: white;
   --primary: #007AFF;
   --secondary: #FFF;
   --third: #aaa;
 }
 
 .dark {
+  --background: black;
   --primary: #171717;
   --secondary: #ecec5e;
   --third: #aaa;
+}
+
+.back-frame {
+  background-color: var(--background);
 }
 
 .back-primary {
