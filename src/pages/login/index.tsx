@@ -19,7 +19,7 @@ const login = () => {
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={""} />
                 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&family=Orbitron:wght@500&family=Saira:ital,wght@1,500&display=swap" rel="stylesheet" />
             </Head>
-            <div className={`py-3 w-full mx-auto h-[92vh] mt-3 container`}>
+            <div className={`h-screen bg-black flex justify-center items-center`}>
                 <Login />
             </div>
         </>

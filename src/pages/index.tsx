@@ -6,10 +6,10 @@ import ChatSpace, { ChatProps, UserInfo } from '@/components/Chat/ChatSpace';
 import React from 'react';
 import { create } from 'domain';
 
- export const MessageStore = React.createContext(null);
+export const MessageStore = React.createContext(null);
 
 export default function Home() {
- 
+
   const info: UserInfo = {
     image: {
       width: 30,
@@ -19,11 +19,11 @@ export default function Home() {
     fullName: "Hong Tang",
     id: "1"
   }
-  const useStore:any ={
-    chats:[],
+  const useStore: any = {
+    chats: [],
   }
   return (
-   
+
     <MessageStore.Provider value={useStore}>
       <Head>
         <title>Chat GPT</title>
@@ -40,6 +40,6 @@ export default function Home() {
       <div className={`py-3 w-full mx-auto h-[92vh] mt-3 container`}>
         <ChatSpace info={info} />
       </div>
-    </>
+    </MessageStore.Provider>
   );
 }

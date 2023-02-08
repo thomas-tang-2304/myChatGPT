@@ -9,7 +9,6 @@ body {
   overflow-x: hidden !important;
   padding: 0;
   margin: 0;
-  background-image: url('../../public/images/background.png');
 }
 
 body {
@@ -22,4 +21,3 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
-
