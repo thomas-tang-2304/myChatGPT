@@ -6,7 +6,6 @@ import ChatText from './ChatText/chatText'
 const ChatBody = () => {
 
   return (
-
     <div className='flex flex-col justify-between items-center h-full w-full'>
       <TitleHeader />
       <ChatContent />
