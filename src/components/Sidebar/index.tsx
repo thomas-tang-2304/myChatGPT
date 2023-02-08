@@ -39,6 +39,8 @@ const newChatClassNames = `
   hover:bg-gray-900 
 `
 
+export default function Sidebar() {
+
   const buttonClassNames = `
     text-white 
     text-lg
@@ -60,6 +62,7 @@ const newChatClassNames = `
     dark:focus:ring-gray-700
     hover:bg-gray-900 
   `
+
 
   const dark =` 
   text-white-900
@@ -108,6 +111,7 @@ export default function Sidebar() {
             </a>
           )}
         </div>
+
         <div className='flex p-3 flex-col gap-2 border-t-2 border-indigo-500 mt-2 pt-2'>
           <button type="button" className={`${buttonClassNames} dark:border-gray-700 flex leading-3`} onClick={() => setChat([])}>
             <span className={`mx-3`}>
