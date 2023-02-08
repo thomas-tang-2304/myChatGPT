@@ -41,7 +41,9 @@ const newChatClassNames = `
 
   const buttonClassNames = `
     text-white 
-    text-xs
+    text-lg
+    flex
+    items-center
 
     w-full
     
