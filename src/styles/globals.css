@@ -20,4 +20,42 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+    
 }
+
+.light {
+  --text-color: black;
+  --background: white;
+  --primary: #007AFF;
+  --secondary: #FFF;
+  --third: #aaa;
+}
+
+.dark {
+  --text-color: white;
+  --background: rgb(55 65 81);
+  --primary: rgb(17 24 39);
+  --secondary: #ecec5e;
+  --third: #aaa;
+}
+
+.text-color {
+  color: var(--text-color);
+}
+
+.back-frame {
+  background-color: var(--background);
+}
+
+.back-primary {
+  background-color: var(--primary);
+}
+
+.back-secondary {
+  color: var(--secondary);
+}
+
+.back-third {
+  background: var(--third);
+}
+
