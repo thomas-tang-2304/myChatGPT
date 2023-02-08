@@ -6,7 +6,8 @@ import Sidebar from '../Sidebar';
 
 export interface ChatProps {
     info: UserInfo
-
+    theme: any;
+    setTheme: any;
 }
 
 export interface UserInfo {
@@ -20,7 +21,7 @@ export interface UserInfo {
 }
 
 
-export default function ChatSpace({ info }: ChatProps) {
+export default function ChatSpace({ info, theme, setTheme }: ChatProps) {
 
     ;
 
@@ -30,7 +31,7 @@ export default function ChatSpace({ info }: ChatProps) {
 
             <div className={`w-[27%] z-10`}>
 
-                <Sidebar />
+                <Sidebar theme={theme} setTheme={setTheme} />
             </div>
             <div className={`h-full w-[73%] bg-secondary relative -left-4 rounded-r-xl`}>
                 <p className='justify-center shadow-lg h-full flex items-center'>Chat Space</p>

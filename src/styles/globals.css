@@ -16,4 +16,29 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+    
+}
+
+.light {
+  --primary: #007AFF;
+  --secondary: #FFF;
+  --third: #aaa;
+}
+
+.dark {
+  --primary: #171717;
+  --secondary: #ecec5e;
+  --third: #aaa;
+}
+
+.back-primary {
+  color: var(--primary);
+}
+
+.back-secondary {
+  color: var(--secondary);
+}
+
+.back-third {
+  background: var(--third);
 }

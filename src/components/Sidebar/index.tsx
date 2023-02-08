@@ -8,10 +8,6 @@ import {TiDeleteOutline} from 'react-icons/ti';
 import ChatSpace from '../Chat/ChatSpace';
 import styles from '@/styles/Home.module.css';
 
-const APP_THEMES = {
-  DARK: 'DARK',
-  LIGHT: 'LIGHT',
-}
 
 const newChatClassNames = `
   text-white 
@@ -59,19 +55,11 @@ const newChatClassNames = `
     hover:bg-gray-900 
   `
 
-  const dark =` 
-  text-white-900
-  bg-black
-  `
-  const light =` 
-    text-white-900
-    bg-primary
-  `
 
-export default function Sidebar() {
+export default function Sidebar({theme, setTheme}: any) {
 
   const [chat, setChat] = useState<any>([]);
-  const [theme, setTheme] = useState(APP_THEMES.DARK);
+  
 
   const handleRemoveChat = (id:any) => {
     const newList = chat.filter((item: any) => item.id !== id);
@@ -87,15 +75,13 @@ export default function Sidebar() {
   };
 
   const toggleTheme = () => {
-    setTheme((curr) => curr === APP_THEMES.LIGHT ? APP_THEMES.DARK : APP_THEMES.LIGHT);
-
-    console.log(theme)
-  };
-  console.log(theme)
+    setTheme((prev: any) => prev === "dark" ? "light" : "dark")
+  }
+ 
 
   return (
     <>
-      <div className={`${theme === APP_THEMES.DARK ? styles.dark : styles.light} bg-primary flex flex-col justify-between font-white h-full text-white-900 rounded-l-xl rounded-r-lg`}>
+      <div className={`bg-primary flex flex-col justify-between font-white h-full text-white-900 rounded-l-xl rounded-r-lg`}>
         <div>
           <div className='p-2'><button onClick={addNewChat} type="button" className={`${buttonClassNames} mb-2 dark:border-gray-700`}>+ New Chat</button></div>
           {chat.map((item: any) => 
@@ -115,11 +101,11 @@ export default function Sidebar() {
           </button>
 
           <button type="button" className={`${buttonClassNames} dark:border-gray-700 flex leading-3`} onClick={toggleTheme} >
-            {theme === APP_THEMES.LIGHT 
+            {theme === "dark"
               ? 
-              (<><span className={`mx-3`}><BsFillLightbulbFill /></span><span>Light Mode</span></>) 
+              (<><span className={`mx-3 back-secondary`}><BsFillLightbulbFill /></span><span>Light Mode</span></>) 
               : 
-              (<><span className={`mx-3`}><BsFillLightbulbOffFill /></span><span>Dark Mode</span></>) 
+              (<><span className={`mx-3 back-secondary`}><BsFillLightbulbOffFill /></span><span>Dark Mode</span></>) 
             }
           </button>
 

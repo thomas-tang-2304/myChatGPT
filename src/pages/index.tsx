@@ -5,7 +5,7 @@ import MyImg from '@/public/images/myImg.jpg'
 import ChatSpace, { ChatProps, UserInfo } from '@/components/Chat/ChatSpace';
 
 
-export default function Home() {
+export default function Home({theme, setTheme}: any) {
   const info: UserInfo = {
     image: {
       width: 30,
@@ -28,7 +28,7 @@ export default function Home() {
       </Head>
       <div className={`container p-3 h-[100vh] w-[800px] mx-auto`}>
 
-        <ChatSpace info={info}/>
+        <ChatSpace info={info} theme={theme} setTheme={setTheme}/>
       </div>
     </>
     
