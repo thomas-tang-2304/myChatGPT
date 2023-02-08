@@ -4,8 +4,28 @@ import { FiSend } from "react-icons/fi";
 
 
 const ChatText = () => {
-  return (
+  const [newMessage, setNewMessage] = useState('');
+  const [messages, setMessages] = useState([]);
 
+  const handleSendMessage = async(evt:any)=>{
+
+    if(evt.key ==='Enter' && newMessage){
+      setNewMessage("");
+      setMessages([...messages]);
+      console.log(newMessage);
+      
+      //xu ly api, tao axios export sendMessage
+      // sendMessage({ content: newMessage, chatId: selectedChat?._id })
+      // .then((res) => {
+      //   setNewMessage("");
+      //   setMessages([...messages, res?.data]);
+      // })
+      // .catch((error) =>{
+      //   console.error(error);
+      // })
+    }
+  }
+  return (
 
     <Input
       background="bg-[#EBEBEB]"
@@ -22,6 +42,7 @@ const ChatText = () => {
       type="text"
       placeholderText="Type your message here.."
     />
+
   )
 }
 

@@ -26,6 +26,8 @@
     ]
   },
   "dependencies": {
+    "@types/styled-components": "^5.1.26",
+    "clsx": "^1.2.1",
     "flowbite": "^1.6.3",
     "next": "^12.3.4",
     "react": "17.0.2",
