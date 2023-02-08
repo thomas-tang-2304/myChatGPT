@@ -12,7 +12,7 @@ export default function index() {
         setDisplayPassword((prev) => !prev);
     };
 
-    const eyeButtonClassNames = `bg-primary py-2 px-3 rounded-lg`;
+    const eyeButtonClassNames = `bg-primary p-2 rounded`;
     return (
         <div className="flex flex-col justify-center h-full gap-3 mx-auto border max-w-[400px] bg-secondary">
             <div className={`text-center flex flex-col gap-3`}>
@@ -91,6 +91,6 @@ export default function index() {
                     <GoogleLoginButton />
                 </div>
             </div>
-        </div>
+        </ div>
     );
 }

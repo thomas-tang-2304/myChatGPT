@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
-import {FiLogOut} from 'react-icons/fi';
-import {BsTrash} from 'react-icons/bs';
-import {BsFillLightbulbOffFill} from 'react-icons/bs';
-import {BsFillLightbulbFill} from 'react-icons/bs';
-import {BsFillChatRightFill} from 'react-icons/bs';
-import {TiDeleteOutline} from 'react-icons/ti';
+import React, { useState } from 'react';
+import { FiLogOut } from 'react-icons/fi';
+import { BsTrash } from 'react-icons/bs';
+import { BsFillLightbulbOffFill } from 'react-icons/bs';
+import { BsFillLightbulbFill } from 'react-icons/bs';
+import { BsFillChatRightFill } from 'react-icons/bs';
+import { TiDeleteOutline } from 'react-icons/ti';
 import ChatSpace from '../Chat/ChatSpace';
 import styles from '@/styles/Home.module.css';
 
@@ -39,7 +39,13 @@ const newChatClassNames = `
   hover:bg-gray-900 
 `
 
-export default function Sidebar() {
+interface SidebarProps {
+  containerClass?: string
+}
+
+export default function Sidebar({ containerClass }: SidebarProps) {
+
+  const containerClassNames = containerClass ? containerClass : `content-between grid p-3 bg-primary font-white h-full text-white-900 rounded-l-xl rounded-r-lg`
 
   const buttonClassNames = `
     text-white 
@@ -64,21 +70,20 @@ export default function Sidebar() {
   `
 
 
-  const dark =` 
+  const dark = ` 
   text-white-900
   bg-black
   `
-  const light =` 
+  const light = ` 
     text-white-900
     bg-primary
   `
 
-export default function Sidebar() {
 
   const [chat, setChat] = useState<any>([]);
   const [theme, setTheme] = useState(APP_THEMES.DARK);
 
-  const handleRemoveChat = (id:any) => {
+  const handleRemoveChat = (id: any) => {
     const newList = chat.filter((item: any) => item.id !== id);
 
     setChat(newList);
@@ -86,7 +91,7 @@ export default function Sidebar() {
 
 
   const addNewChat = () => {
-    const newChat = chat.concat({name: `Bạn tên gì? ${chat.length}`  , id: chat.length});
+    const newChat = chat.concat({ name: `Bạn tên gì? ${chat.length}`, id: chat.length });
 
     setChat(newChat);
   };
@@ -100,12 +105,13 @@ export default function Sidebar() {
 
   return (
     <>
-      <div className={`${theme === APP_THEMES.DARK ? styles.dark : styles.light} bg-primary flex flex-col justify-between font-white h-full text-white-900 rounded-l-xl rounded-r-lg`}>
+      <div className={`${theme === APP_THEMES.DARK ? styles.dark : styles.light} bg-primary flex flex-col justify-between font-white h-full text-white-900 rounded-l-xl`}>
+        {/* <div className={`${containerClassNames}`}> */}
         <div>
           <div className='p-2'><button onClick={addNewChat} type="button" className={`${buttonClassNames} mb-2 dark:border-gray-700`}>+ New Chat</button></div>
-          {chat.map((item: any) => 
-            <a href='#' key={item.id} className={`${newChatClassNames}`}> 
-              <span><BsFillChatRightFill /></span> 
+          {chat.map((item: any) =>
+            <a href='#' key={item.id} className={`${newChatClassNames}`}>
+              <span><BsFillChatRightFill /></span>
               {item.name}
               <button onClick={() => handleRemoveChat(item.id)}><TiDeleteOutline /></button>
             </a>
@@ -121,11 +127,11 @@ export default function Sidebar() {
           </button>
 
           <button type="button" className={`${buttonClassNames} dark:border-gray-700 flex leading-3`} onClick={toggleTheme} >
-            {theme === APP_THEMES.LIGHT 
-              ? 
-              (<><span className={`mx-3`}><BsFillLightbulbFill /></span><span>Light Mode</span></>) 
-              : 
-              (<><span className={`mx-3`}><BsFillLightbulbOffFill /></span><span>Dark Mode</span></>) 
+            {theme === APP_THEMES.LIGHT
+              ?
+              (<><span className={`mx-3`}><BsFillLightbulbFill /></span><span>Light Mode</span></>)
+              :
+              (<><span className={`mx-3`}><BsFillLightbulbOffFill /></span><span>Dark Mode</span></>)
             }
           </button>
 
