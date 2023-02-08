@@ -5,7 +5,7 @@ type Props = {};
 
 const ChatContent = (props: Props) => {
   return (
-    <div className="w-full h-full overflow-y-scroll">
+    <div className=" border-y-[1px] border-indigo-500 w-full h-full overflow-y-scroll">
       <Message
         variant="user"
         urlAvatar="https://images.unsplash.com/photo-1675710512122-435d73e05dad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=770&q=80"

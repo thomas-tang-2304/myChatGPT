@@ -5,10 +5,15 @@
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
+  height: 100vh;
+  overflow-x: hidden !important;
+  padding: 0;
+  margin: 0;
+  background-image: url('../../public/images/background.png');
 }
 
 body {
+  font-family: 'Kanit', sans-serif;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -20,6 +25,7 @@ body {
 }
 
 .light {
+  --text-color: black;
   --background: white;
   --primary: #007AFF;
   --secondary: #FFF;
@@ -27,10 +33,15 @@ body {
 }
 
 .dark {
-  --background: black;
-  --primary: #171717;
+  --text-color: white;
+  --background: rgb(55 65 81);
+  --primary: rgb(17 24 39);
   --secondary: #ecec5e;
   --third: #aaa;
+}
+
+.text-color {
+  color: var(--text-color);
 }
 
 .back-frame {
@@ -38,7 +49,7 @@ body {
 }
 
 .back-primary {
-  color: var(--primary);
+  background-color: var(--primary);
 }
 
 .back-secondary {

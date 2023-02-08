@@ -46,7 +46,7 @@ export const Message: React.FC<Message> = ({
               'relative text-sm bg-white py-2 px-4 shadow',
               variant === 'bot'
                 ? 'bg-white rounded-r-lg rounded-bl-lg'
-                : 'bg-indigo-100 rounded-l-lg rounded-br-lg',
+                : 'bg-indigo-200 rounded-l-lg rounded-br-lg',
             )}
           >
             {contentMessage}
