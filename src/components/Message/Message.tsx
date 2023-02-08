@@ -19,7 +19,7 @@ export const Message: React.FC<Message> = ({
   return (
     <div
       className={clsx(
-        'message p-3 rounded-lg',
+        'p-3 rounded-lg',
         variant === 'bot' ? 'col-start-1 col-end-8' : 'col-start-6 col-end-13',
         className,
       )}
