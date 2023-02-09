@@ -9,9 +9,9 @@ export interface InputProps {
         background: string | undefined;
     }
     type: string,
-    value:string,
-    onKeyDown: any,
-    handleChange:any,
+    value?:string,
+    onKeyDown?: any,
+    handleChange?:any,
     placeholderText: string;
 }
 

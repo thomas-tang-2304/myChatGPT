@@ -7,6 +7,7 @@ import ChatBody from '../ChatBody/ChatBody';
 import useWindowSize from '@/customHooks/useWindowSize';
 
 
+import { MessageProvider } from '@/contexts/MessageContext';
 export interface ChatProps {
 
     info: UserInfo
@@ -38,7 +39,9 @@ export default function ChatSpace({ info }: ChatProps) {
             </div>) : ''}
 
             <div className={`h-full w-full bg-secondary rounded-r-xl`}>
-                <ChatBody />
+                <MessageProvider>
+                    <ChatBody />
+                </MessageProvider>
             </div>
         </div >
     )

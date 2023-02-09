@@ -68,23 +68,33 @@ const Sidebar = ({ containerClass }: SidebarProps) => {
     dark:hover:bg-gray-700 
     dark:focus:ring-gray-700
     hover:bg-gray-900 
-`
+  `
 
-  const [listIntent, setListIntent] = useState<any>([]);
-  const [hoverListIntent, setHoverListIntent] = useState(false);
+
+  const dark = ` 
+  text-white-900
+  bg-black
+  `
+  const light = ` 
+    text-white-900
+    bg-primary
+  `
+
+
+  const [chat, setChat] = useState<any>([]);
   const [theme, setTheme] = useState(APP_THEMES.DARK);
 
   const handleRemoveChat = (id: any) => {
-    const newList = listIntent.filter((item: any) => item.id !== id);
+    const newList = chat.filter((item: any) => item.id !== id);
 
-    setListIntent(newList);
+    setChat(newList);
   };
 
 
   const addNewChat = () => {
-    const newChat = listIntent.concat({ name: `Bạn tên gì? ${listIntent.length}`, id: listIntent.length });
+    const newChat = chat.concat({ name: `Bạn tên gì? ${chat.length}`, id: chat.length });
 
-    setListIntent(newChat);
+    setChat(newChat);
   };
 
   const toggleTheme = () => {
@@ -99,19 +109,17 @@ const Sidebar = ({ containerClass }: SidebarProps) => {
         {/* <div className={`${containerClassNames}`}> */}
         <div>
           <div className='p-2'><button onClick={addNewChat} type="button" className={`${buttonClassNames} mb-2 dark:border-gray-700`}>+ New Chat</button></div>
-          <div className={`${hoverListIntent ? 'overflow-y-scroll' : 'overflow-hidden'} h-[300px]`} onMouseEnter={() => setHoverListIntent(true)} onMouseLeave={() => setHoverListIntent(false)}>
-            {listIntent.map((item: any) =>
-              <a href='#' key={item.id} className={`${newChatClassNames}`}>
-                <span><BsFillChatRightFill /></span>
-                {item.name}
-                <button onClick={() => handleRemoveChat(item.id)}><TiDeleteOutline /></button>
-              </a>
-            )}
-          </div>
+          {chat.map((item: any) =>
+            <a href='#' key={item.id} className={`${newChatClassNames}`}>
+              <span><BsFillChatRightFill /></span>
+              {item.name}
+              <button onClick={() => handleRemoveChat(item.id)}><TiDeleteOutline /></button>
+            </a>
+          )}
         </div>
 
         <div className='flex p-3 flex-col gap-2 border-t-2 border-indigo-500 mt-2 pt-2'>
-          <button type="button" className={`${buttonClassNames} dark:border-gray-700 flex leading-3`} onClick={() => setListIntent([])}>
+          <button type="button" className={`${buttonClassNames} dark:border-gray-700 flex leading-3`} onClick={() => setChat([])}>
             <span className={`mx-3`}>
               <BsTrash />
             </span>
