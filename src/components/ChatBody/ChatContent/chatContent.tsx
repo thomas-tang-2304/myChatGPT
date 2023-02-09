@@ -1,9 +1,7 @@
 import { Message } from '@/components/Message/Message';
 import React from 'react';
 
-type Props = {
-  
-};
+type Props = {};
 
 const ChatContent = (props: Props) => {
   return (

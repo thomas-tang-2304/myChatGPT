@@ -14,7 +14,7 @@ export default function index() {
 
     const eyeButtonClassNames = `bg-primary p-2 rounded`;
     return (
-        <div className="flex flex-col justify-center h-full gap-3 mx-auto border max-w-[400px] bg-secondary">
+        <div className="flex flex-col justify-center h-[90%] gap-3 mx-auto border max-w-[400px] bg-secondary rounded-md">
             <div className={`text-center flex flex-col gap-3`}>
                 <h1
                     className={`font-bold text-2xl flex items-center justify-center gap-2`}
@@ -78,7 +78,7 @@ export default function index() {
                 </div>
                 <div className={`mb-3 w-3/4 `}>
                     <button
-                        className={`h-[42px] bg-primary w-full text-secondary font-extrabold hover:bg-blue-400 hover:shadow-md rounded-sm`}
+                        className={`h-10 bg-primary w-full text-secondary font-extrabold hover:bg-blue-400 hover:shadow-md rounded-sm`}
                         onClick={handleChangeDisplayPassword}
                     >
                         Sign in

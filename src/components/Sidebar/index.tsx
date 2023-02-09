@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FiLogOut } from 'react-icons/fi';
 import { BsTrash } from 'react-icons/bs';
 import { BsFillLightbulbOffFill } from 'react-icons/bs';
@@ -43,7 +43,7 @@ interface SidebarProps {
   containerClass?: string
 }
 
-export default function Sidebar({ containerClass }: SidebarProps) {
+const Sidebar = ({ containerClass }: SidebarProps) => {
 
   const containerClassNames = containerClass ? containerClass : `content-between grid p-3 bg-primary font-white h-full text-white-900 rounded-l-xl rounded-r-lg`
 
@@ -52,6 +52,7 @@ export default function Sidebar({ containerClass }: SidebarProps) {
     text-lg
     flex
     items-center
+    justify-center
 
     w-full
     
@@ -67,58 +68,50 @@ export default function Sidebar({ containerClass }: SidebarProps) {
     dark:hover:bg-gray-700 
     dark:focus:ring-gray-700
     hover:bg-gray-900 
-  `
+`
 
-
-  const dark = ` 
-  text-white-900
-  bg-black
-  `
-  const light = ` 
-    text-white-900
-    bg-primary
-  `
-
-  const [chat, setChat] = useState<any>([]);
+  const [listIntent, setListIntent] = useState<any>([]);
+  const [hoverListIntent, setHoverListIntent] = useState(false);
   const [theme, setTheme] = useState(APP_THEMES.DARK);
 
   const handleRemoveChat = (id: any) => {
-    const newList = chat.filter((item: any) => item.id !== id);
+    const newList = listIntent.filter((item: any) => item.id !== id);
 
-    setChat(newList);
+    setListIntent(newList);
   };
 
 
   const addNewChat = () => {
-    const newChat = chat.concat({ name: `Bạn tên gì? ${chat.length}`, id: chat.length });
+    const newChat = listIntent.concat({ name: `Bạn tên gì? ${listIntent.length}`, id: listIntent.length });
 
-    setChat(newChat);
+    setListIntent(newChat);
   };
 
   const toggleTheme = () => {
     setTheme((curr) => curr === APP_THEMES.LIGHT ? APP_THEMES.DARK : APP_THEMES.LIGHT);
 
-    console.log(theme)
   };
-  console.log(theme)
 
   return (
     <>
+   
       <div className={`${theme === APP_THEMES.DARK ? styles.dark : styles.light} bg-primary flex flex-col justify-between font-white h-full text-white-900 rounded-l-xl`}>
         {/* <div className={`${containerClassNames}`}> */}
         <div>
           <div className='p-2'><button onClick={addNewChat} type="button" className={`${buttonClassNames} mb-2 dark:border-gray-700`}>+ New Chat</button></div>
-          {chat.map((item: any) =>
-            <a href='#' key={item.id} className={`${newChatClassNames}`}>
-              <span><BsFillChatRightFill /></span>
-              {item.name}
-              <button onClick={() => handleRemoveChat(item.id)}><TiDeleteOutline /></button>
-            </a>
-          )}
+          <div className={`${hoverListIntent ? 'overflow-y-scroll' : 'overflow-hidden'} h-[300px]`} onMouseEnter={() => setHoverListIntent(true)} onMouseLeave={() => setHoverListIntent(false)}>
+            {listIntent.map((item: any) =>
+              <a href='#' key={item.id} className={`${newChatClassNames}`}>
+                <span><BsFillChatRightFill /></span>
+                {item.name}
+                <button onClick={() => handleRemoveChat(item.id)}><TiDeleteOutline /></button>
+              </a>
+            )}
+          </div>
         </div>
 
         <div className='flex p-3 flex-col gap-2 border-t-2 border-indigo-500 mt-2 pt-2'>
-          <button type="button" className={`${buttonClassNames} dark:border-gray-700 flex leading-3`} onClick={() => setChat([])}>
+          <button type="button" className={`${buttonClassNames} dark:border-gray-700 flex leading-3`} onClick={() => setListIntent([])}>
             <span className={`mx-3`}>
               <BsTrash />
             </span>
@@ -147,4 +140,4 @@ export default function Sidebar({ containerClass }: SidebarProps) {
 }
 
 
-
+export default Sidebar;
