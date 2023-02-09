@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FiLogOut } from 'react-icons/fi';
 import { BsTrash } from 'react-icons/bs';
 import { BsFillLightbulbOffFill } from 'react-icons/bs';
@@ -43,7 +43,7 @@ interface SidebarProps {
   containerClass?: string
 }
 
-export default function Sidebar({ containerClass }: SidebarProps) {
+const Sidebar = ({ containerClass }: SidebarProps) => {
 
   const containerClassNames = containerClass ? containerClass : `content-between grid p-3 bg-primary font-white h-full text-white-900 rounded-l-xl rounded-r-lg`
 
@@ -104,6 +104,7 @@ export default function Sidebar({ containerClass }: SidebarProps) {
 
   return (
     <>
+   
       <div className={`${theme === APP_THEMES.DARK ? styles.dark : styles.light} bg-primary flex flex-col justify-between font-white h-full text-white-900 rounded-l-xl`}>
         {/* <div className={`${containerClassNames}`}> */}
         <div>
@@ -145,3 +146,6 @@ export default function Sidebar({ containerClass }: SidebarProps) {
     </>
   )
 }
+
+
+export default Sidebar;

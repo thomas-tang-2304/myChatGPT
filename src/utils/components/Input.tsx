@@ -1,6 +1,5 @@
-import { type } from 'os';
-import React from 'react'
-import { FiSend } from "react-icons/fi";
+import React, { useState } from 'react'
+
 
 export interface InputProps {
     background: string
@@ -10,15 +9,19 @@ export interface InputProps {
         background: string | undefined;
     }
     type: string,
-
+    value?:string,
+    onKeyDown?: any,
+    handleChange?:any,
     placeholderText: string;
 }
 
-const Input = ({ background, button, placeholderText, type }: InputProps) => {
+const Input = ({ background, button, placeholderText,type,handleChange,value,onKeyDown}: InputProps) => {
     return (
         <div className={`${background} text-white flex w-full justify-between p-3 rounded-br-lg items-center`}>
-            <input type={type} className={`focus:ring-0 border-none w-full ${background} text-[#C1C1C1]`} placeholder={placeholderText} />
-
+            <input type={type} value={value} className={`focus:ring-0 border-none w-full ${background} text-[#C1C1C1]`} placeholder={placeholderText} 
+            onChange={handleChange}
+            onKeyDown ={onKeyDown}
+            />
             {button.isContained ?
                 button?.element
                 :
@@ -28,5 +31,4 @@ const Input = ({ background, button, placeholderText, type }: InputProps) => {
         </div>
     )
 }
-
-export default Input
+export default Input;

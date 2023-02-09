@@ -30,12 +30,11 @@ export default function ChatSpace({ info }: ChatProps) {
     const size = useWindowSize();
     const width = size.width
 
-
     return (
         < div className={`h-full flex p-8 bg-white rounded-lg shadow-2xl`
         }>
 
-            {width && width >= 640 ? (<div className={`w-80`}>
+              {width && width >= 640 ? (<div className={`w-80`}>
                 <Sidebar />
             </div>) : ''}
 
