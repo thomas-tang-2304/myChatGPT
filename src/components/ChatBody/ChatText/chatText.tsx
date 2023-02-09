@@ -1,20 +1,32 @@
 import Input from '@/utils/components/Input';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FiSend } from "react-icons/fi";
 
-
+const chatData:any = [
+ {  id:1,
+    content:'',
+  }
+]
 const ChatText = () => {
   const [newMessage, setNewMessages] = useState('');
-  const [messages, setMessages]= useState([])
-  const hanldeKeyDown =(evt:any)=>{
-    if(evt.key ==='Enter' && newMessage){
-      setNewMessages('')
-      setMessages([...messages]);
+  const [messages, setMessages]= useState(chatData)
+
+    const hanldeKeyDown =(evt:any)=>{
+      if(evt.key ==='Enter' && newMessage){
+        if(newMessage !==''){
+         setMessages([...messages,{id:messages.length+1,content:newMessage}])
+        }
+        setNewMessages('')
+      }
     }
-  }
-  const hanldeClick =(evt:any)=>{
-    setNewMessages('')
-    setMessages([...messages]);
+  console.log(messages)
+
+
+  const hanldeClick =()=>{
+    if(newMessage !==''){
+      setMessages([...messages,{id:messages.length+1,content:newMessage}])
+     }
+     setNewMessages('')
   }  
   console.log(newMessage)
   return (
