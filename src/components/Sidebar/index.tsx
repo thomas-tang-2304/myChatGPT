@@ -39,21 +39,27 @@ const newChatClassNames = `
   hover:bg-gray-900 
 `
 
+interface SidebarProps {
+  containerClass?: string
+}
+
+
 const buttonClassNames = `
     text-white 
     text-lg
     flex
     items-center
     justify-center
+
     w-full
-  
+    
     focus:outline-none 
     focus:ring-4 
     focus:ring-gray-300 
     font-medium rounded-lg 
-  
+    
     py-2
-  
+    
     bg-gray-800 
     ark:bg-gray-800 
     dark:hover:bg-gray-700 
@@ -68,11 +74,8 @@ export default function Sidebar({ theme, setTheme }: any) {
   const handleRemoveChat = (id: any) => {
     const newList = listIntent.filter((item: any) => item.id !== id);
 
-    const [chat, setChat] = useState<any>([]);
-    const [theme, setTheme] = useState(APP_THEMES.DARK);
 
-
-    setChat(newList);
+    setListIntent(newList);
   };
 
 
@@ -133,4 +136,3 @@ export default function Sidebar({ theme, setTheme }: any) {
     </>
   )
 }
-
