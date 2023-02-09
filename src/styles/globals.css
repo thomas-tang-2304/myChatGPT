@@ -11,7 +11,6 @@ body {
 }
 
 body {
-
   overflow-y: hidden;
   font-family: 'Kanit', sans-serif;
   color: rgb(var(--foreground-rgb));
@@ -23,7 +22,6 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
-
 
 .loginBackground {
   background-image: url('../../public/images/background.png');
@@ -56,8 +54,12 @@ body {
   background-color: var(--primary);
 }
 
-.back-secondary {
-  color: var(--secondary);
+.fade-in {
+  opacity: 0.6;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 0.5s;
 }
 
 .back-third {
@@ -99,3 +101,11 @@ body {
   background: transparent;
 }
 
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 0.6;
+  }
+}

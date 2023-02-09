@@ -1,13 +1,21 @@
-import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { FiLogOut } from 'react-icons/fi';
-import { BsTrash, BsFillLightbulbOffFill, BsFillLightbulbFill, BsFillChatRightFill } from 'react-icons/bs';
+import { BsTrash } from 'react-icons/bs';
+import { BsFillLightbulbOffFill } from 'react-icons/bs';
+import { BsFillLightbulbFill } from 'react-icons/bs';
+import { BsFillChatRightFill } from 'react-icons/bs';
 import { TiDeleteOutline } from 'react-icons/ti';
+import ChatSpace from '../Chat/ChatSpace';
+import styles from '@/styles/Home.module.css';
 
-
+const APP_THEMES = {
+  DARK: 'DARK',
+  LIGHT: 'LIGHT',
+}
 
 const newChatClassNames = `
   text-white 
-  text-base
+  text-xs
 
   w-full
   
@@ -32,90 +40,71 @@ const newChatClassNames = `
 `
 
 const buttonClassNames = `
-  text-white 
-  text-lg
-  flex
-  items-center
-
-  w-full
+    text-white 
+    text-lg
+    flex
+    items-center
+    justify-center
+    w-full
   
-  focus:outline-none 
-  focus:ring-4 
-  focus:ring-gray-300 
-  font-medium rounded-lg 
+    focus:outline-none 
+    focus:ring-4 
+    focus:ring-gray-300 
+    font-medium rounded-lg 
   
-  py-2
+    py-2
   
-  bg-gray-800 
-  ark:bg-gray-800 
-  dark:hover:bg-gray-700 
-  dark:focus:ring-gray-700
-  hover:bg-gray-900 
+    bg-gray-800 
+    ark:bg-gray-800 
+    dark:hover:bg-gray-700 
+    dark:focus:ring-gray-700
+    hover:bg-gray-900 
 `
 
 export default function Sidebar({ theme, setTheme }: any) {
-  const ChatTitles: any = useRef<HTMLElement>()
-
-  // hooks declaration
   const [listIntent, setListIntent] = useState<any>([]);
-  const [currentChatScrollHeight, setCurrentChatScrollHeight] = useState(ChatTitles?.current?.scrollHeight)
-
-
-
+  const [hoverListIntent, setHoverListIntent] = useState(false);
 
   const handleRemoveChat = (id: any) => {
     const newList = listIntent.filter((item: any) => item.id !== id);
 
-    setListIntent(newList);
+    const [chat, setChat] = useState<any>([]);
+    const [theme, setTheme] = useState(APP_THEMES.DARK);
+
+
+    setChat(newList);
   };
+
 
   const addNewChat = () => {
     const newChat = listIntent.concat({ name: `Bạn tên gì? ${listIntent.length}`, id: listIntent.length });
-    setCurrentChatScrollHeight(ChatTitles?.current?.scrollHeight);
+
     setListIntent(newChat);
-    
   };
-  
+
   const toggleTheme = () => {
-    setTheme((prev: any) => prev === "dark" ? 'light' : 'dark');
+    setTheme((curr: any) => curr === 'dark' ? 'light' : 'dark');
+
   };
-  
-  useEffect(() => {
-    let a = ChatTitles.current?.scrollHeight;
-    ChatTitles.current.scrollTop = ChatTitles?.current?.scrollHeight;
-
-    console.log(a)
-
-    return () => {
-      console.log("end")
-    };
-  }, [currentChatScrollHeight]);
 
   return (
     <>
-      <div className={`back-primary flex flex-col justify-between font-white h-full text-white-900 rounded-l-xl items-stretch`}>
-        <div className={`h-auto`}>
-          <div className='p-2'>
-            <button onClick={addNewChat} type="button" className={`${buttonClassNames} mb-2 dark:border-gray-700 pl-2`}>
-              + New Chat</button>
+      <div className={`${theme === APP_THEMES.DARK ? styles.dark : styles.light} bg-primary flex flex-col justify-between font-white h-full text-white-900 rounded-l-xl`}>
+        {/* <div className={`${containerClassNames}`}> */}
+        <div>
+          <div className='p-2'><button onClick={addNewChat} type="button" className={`${buttonClassNames} mb-2 dark:border-gray-700`}>+ New Chat</button></div>
+          <div className={`${hoverListIntent ? 'overflow-y-scroll' : 'overflow-hidden'} h-[300px]`} onMouseEnter={() => setHoverListIntent(true)} onMouseLeave={() => setHoverListIntent(false)}>
+            {listIntent.map((item: any) =>
+              <a href='#' key={item.id} className={`${newChatClassNames}`}>
+                <span><BsFillChatRightFill /></span>
+                {item.name}
+                <button onClick={() => handleRemoveChat(item.id)}><TiDeleteOutline /></button>
+              </a>
+            )}
           </div>
-
-        </div>
-        <div
-          className={`overflow-y-scroll grow .scrollbar .scrollbar-style-2 h-max`}
-          id={"chat-title-scroller"}
-          ref={ChatTitles}
-        >
-          {listIntent.map((item: any) =>
-            <a href='#' key={item.id} className={`${newChatClassNames}`}>
-              <span><BsFillChatRightFill /></span>
-              {item.name}
-              <button onClick={() => handleRemoveChat(item.id)}><TiDeleteOutline /></button>
-            </a>
-          )}
         </div>
 
-        <div className='flex  p-3 flex-col gap-2 border-t-[1px] border-indigo-500 mt-2 pt-2'>
+        <div className='flex p-3 flex-col gap-2 border-t-2 border-indigo-500 mt-2 pt-2'>
           <button type="button" className={`${buttonClassNames} dark:border-gray-700 flex leading-3`} onClick={() => setListIntent([])}>
             <span className={`mx-3`}>
               <BsTrash />
@@ -124,12 +113,13 @@ export default function Sidebar({ theme, setTheme }: any) {
           </button>
 
           <button type="button" className={`${buttonClassNames} dark:border-gray-700 flex leading-3`} onClick={toggleTheme} >
-            <span className={`mx-3 back-secondary`}>
-              {theme === "light" ? <BsFillLightbulbOffFill /> : <BsFillLightbulbFill />}
-            </span>
-            <span>
-              {theme === "light" ? "Light Mode" : "Dark Mode"}
-            </span>
+            {theme === "dark"
+              ?
+              (<><span className={`mx-3 back-secondary`}><BsFillLightbulbFill /></span><span>Light Mode</span></>)
+              :
+              (<><span className={`mx-3 back-secondary`}><BsFillLightbulbOffFill /></span><span>Dark Mode</span></>)
+
+            }
           </button>
 
           <button type="button" className={`${buttonClassNames} dark:border-gray-700 flex leading-3`}>
@@ -143,3 +133,4 @@ export default function Sidebar({ theme, setTheme }: any) {
     </>
   )
 }
+
