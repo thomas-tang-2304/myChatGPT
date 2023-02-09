@@ -11,9 +11,11 @@ body {
 }
 
 body {
-  scrollbar-gutter: stable both-edges;
+
+  overflow-y: hidden;
   font-family: 'Kanit', sans-serif;
   color: rgb(var(--foreground-rgb));
+  overflow-y: hidden;
   background: linear-gradient(
       to bottom,
       transparent,
@@ -22,6 +24,10 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+
+.loginBackground {
+  background-image: url('../../public/images/background.png');
+}
 .light {
   --text-color: black;
   --background: white;
@@ -92,3 +98,4 @@ body {
 ::-webkit-scrollbar-corner {
   background: transparent;
 }
+

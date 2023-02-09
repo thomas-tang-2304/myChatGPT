@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState } from 'react';
+import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { FiLogOut } from 'react-icons/fi';
 import { BsTrash, BsFillLightbulbOffFill, BsFillLightbulbFill, BsFillChatRightFill } from 'react-icons/bs';
 import { TiDeleteOutline } from 'react-icons/ti';
@@ -61,6 +61,8 @@ export default function Sidebar({ theme, setTheme }: any) {
   const [currentChatScrollHeight, setCurrentChatScrollHeight] = useState(ChatTitles?.current?.scrollHeight)
 
 
+
+
   const handleRemoveChat = (id: any) => {
     const newList = listIntent.filter((item: any) => item.id !== id);
 
@@ -71,19 +73,21 @@ export default function Sidebar({ theme, setTheme }: any) {
     const newChat = listIntent.concat({ name: `Bạn tên gì? ${listIntent.length}`, id: listIntent.length });
     setCurrentChatScrollHeight(ChatTitles?.current?.scrollHeight);
     setListIntent(newChat);
-
+    
   };
-
+  
   const toggleTheme = () => {
     setTheme((prev: any) => prev === "dark" ? 'light' : 'dark');
   };
+  
+  useEffect(() => {
+    let a = ChatTitles.current?.scrollHeight;
+    ChatTitles.current.scrollTop = ChatTitles?.current?.scrollHeight;
 
+    console.log(a)
 
-  // check mounted effects
-  useLayoutEffect(() => {
-    ChatTitles.current.scrollTop = currentChatScrollHeight;
     return () => {
-      console.log("scroll to bottom")
+      console.log("end")
     };
   }, [currentChatScrollHeight]);
 
