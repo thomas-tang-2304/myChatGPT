@@ -39,6 +39,8 @@ const newChatClassNames = `
   hover:bg-gray-900 
 `
 
+export default function Sidebar() {
+
   const buttonClassNames = `
     text-white 
     text-lg
@@ -61,6 +63,7 @@ const newChatClassNames = `
     hover:bg-gray-900 
   `
 
+
   const dark =` 
   text-white-900
   bg-black
@@ -69,8 +72,6 @@ const newChatClassNames = `
     text-white-900
     bg-primary
   `
-
-export default function Sidebar() {
 
   const [chat, setChat] = useState<any>([]);
   const [theme, setTheme] = useState(APP_THEMES.DARK);
@@ -108,6 +109,7 @@ export default function Sidebar() {
             </a>
           )}
         </div>
+
         <div className='flex p-3 flex-col gap-2 border-t-2 border-indigo-500 mt-2 pt-2'>
           <button type="button" className={`${buttonClassNames} dark:border-gray-700 flex leading-3`} onClick={() => setChat([])}>
             <span className={`mx-3`}>
@@ -136,3 +138,6 @@ export default function Sidebar() {
     </>
   )
 }
+
+
+
