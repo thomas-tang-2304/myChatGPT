@@ -16,9 +16,13 @@ module.exports = {
 
   theme: {
     colors: {
-      primary: '#4da3ff',
+      // light mode colors
+      primary: '#007AFF',
       secondary: '#FFF',
       third: '#aaa',
+
+      // dark mode colors
+      "dark-primary": '#111',
     },
   },
 
