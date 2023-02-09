@@ -2,15 +2,14 @@ import React from 'react';
 import clsx from 'clsx';
 
 type Message = {
+  id?: number
   variant?: 'bot' | 'user';
-  className?: string;
-  urlAvatar: string;
+  urlAvatar?: string;
   contentMessage: string;
   time?: any;
 };
 
 export const Message: React.FC<Message> = ({
-  className,
   variant,
   urlAvatar,
   contentMessage,
@@ -19,16 +18,14 @@ export const Message: React.FC<Message> = ({
   return (
     <div
       className={clsx(
-        'message p-3 rounded-lg',
+        'p-3 rounded-lg',
         variant === 'bot' ? 'col-start-1 col-end-8' : 'col-start-6 col-end-13',
-        className,
       )}
     >
       <div
         className={clsx(
           'flex flex-row items-start',
           variant === 'bot' ? null : 'flex-row-reverse',
-          className,
         )}
       >
         <div className="flex items-center justify-center h-10 w-10 rounded-ful">
@@ -38,7 +35,6 @@ export const Message: React.FC<Message> = ({
           className={clsx(
             'max-w-[50%]',
             variant === 'bot' ? 'ml-3' : 'mr-3',
-            className,
           )}
         >
           <div
@@ -51,7 +47,12 @@ export const Message: React.FC<Message> = ({
           >
             {contentMessage}
           </div>
-          <span className="ml-2 text-xs text-gray-500">{time}</span>
+          <span className={clsx(
+              'flex text-xs text-gray-500 mt-1',
+              variant === 'bot'
+                ? 'justify-start ml-2'
+                : 'justify-end mr-2',
+            )}>{time}</span>
         </div>
       </div>
     </div>

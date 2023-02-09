@@ -1,9 +1,12 @@
 import { Message } from '@/components/Message/Message';
-import React from 'react';
+import { MessageContext } from '@/contexts/MessageContext';
+import React, { useContext, useState } from 'react';
 
 type Props = {};
 
 const ChatContent = (props: Props) => {
+  const [messageArray, setMessageArray] = useContext<any>(MessageContext);
+
   return (
     <div className="w-full h-full overflow-y-scroll">
       <Message
@@ -37,6 +40,7 @@ const ChatContent = (props: Props) => {
         time={'3:04'}
       />
     </div>
+    
   );
 };
 
