@@ -14,6 +14,7 @@ body {
   overflow-y: hidden;
   font-family: 'Kanit', sans-serif;
   color: rgb(var(--foreground-rgb));
+  overflow-y: hidden;
   background: linear-gradient(
       to bottom,
       transparent,
@@ -22,6 +23,48 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+<<<<<<< Updated upstream
 .loginBackground {
   background-image: url('../../public/images/background.png');
 }
+=======
+.light {
+  --text-color: black;
+  --background: white;
+  --primary: #007aff;
+  --secondary: #fff;
+  --third: #aaa;
+}
+
+.dark {
+  --text-color: white;
+  --background: rgb(55 65 81);
+  --primary: rgb(17 24 39);
+  --secondary: #ecec5e;
+  --third: #aaa;
+}
+
+.text-color {
+  color: var(--text-color);
+}
+
+.back-frame {
+  background-color: var(--background);
+}
+
+.back-primary {
+  background-color: var(--primary);
+}
+
+.back-secondary {
+  color: var(--secondary);
+}
+
+.back-third {
+  background: var(--third);
+}
+
+.background-url {
+  background-image: url('../../public/images/background.png');
+}
+>>>>>>> Stashed changes

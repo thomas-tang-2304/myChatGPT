@@ -1,10 +1,13 @@
 import Login from "@/components/Login";
-import BackgroundImg from '@/public/images/background.png'
+// import BackgroundImg from '@/public/images/background.png'
 
 import Head from "next/head";
 import React from "react";
 
 const login = () => {
+
+
+
     return (
         <>
             <Head>
@@ -19,7 +22,11 @@ const login = () => {
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={""} />
                 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&family=Orbitron:wght@500&family=Saira:ital,wght@1,500&display=swap" rel="stylesheet" />
             </Head>
+<<<<<<< Updated upstream
             <div className={`h-screen flex justify-center items-center loginBackground`}>
+=======
+            <div className={`h-screen bg-black flex justify-center items-center background-url`}>
+>>>>>>> Stashed changes
                 <Login />
             </div>
         </>
