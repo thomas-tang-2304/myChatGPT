@@ -6,14 +6,15 @@ html,
 body {
   max-width: 100vw;
   height: 100vh;
-  overflow-x: hidden !important;
   padding: 0;
   margin: 0;
 }
 
 body {
+  overflow-y: hidden;
   font-family: 'Kanit', sans-serif;
   color: rgb(var(--foreground-rgb));
+  overflow-y: hidden;
   background: linear-gradient(
       to bottom,
       transparent,
@@ -29,6 +30,10 @@ body {
   --primary: #007AFF;
   --secondary: #FFF;
   --third: #aaa;
+}
+
+.loginBackground {
+  background-image: url('../../public/images/background.png');
 }
 
 .dark {
@@ -59,3 +64,6 @@ body {
   background: var(--third);
 }
 
+.background-url {
+  background-image: url('../../public/images/background.png');
+}
