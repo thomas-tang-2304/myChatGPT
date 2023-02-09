@@ -1,14 +1,9 @@
+import { MessageContext, MessageProvider } from '@/contexts/MessageContext';
 import Input from '@/utils/components/Input';
 import React, { useEffect, useRef, useState } from 'react'
+import { useContext } from 'react';
 import { FiSend } from "react-icons/fi";
 
-const chatData:any = [
- {  id:1,
-    variant: '',
-    contentMessage:'',
-    urlAvatar: '',
-  }
-]
 // {messages.map((item, index) => {
 //   return (
 //     <ChatContent
@@ -23,25 +18,24 @@ const chatData:any = [
 
 const ChatText = () => {
   const [newMessage, setNewMessages] = useState('');
-  const [messages, setMessages]= useState(chatData)
+  const [messageArray, setMessageArray] = useContext<any>(MessageContext)
     const hanldeKeyDown =(evt:any)=>{
       if(evt.key ==='Enter' && newMessage){
         if(newMessage !==''){
-         setMessages([...messages,{id:messages.length+1,contentMessage:newMessage,variant:'me'}])
+          setMessageArray([...messageArray,{id:messageArray.length+1,contentMessage:newMessage,variant:'me'}])
         }
         setNewMessages('')
       }
     }
-  console.log(messages)
-
+  console.log(messageArray)
 
     const hanldeClick =()=>{
       if(newMessage !==''){
-        setMessages([...messages,{id:messages.length+1,content:newMessage,variant:'me'}])
+        setMessageArray([...messageArray,{id:messageArray.length+1,content:newMessage,variant:'me'}])
       }
       setNewMessages('')
     }  
-  console.log(newMessage)
+  console.log(messageArray)
   return (
 
     <Input

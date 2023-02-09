@@ -6,6 +6,7 @@ type Props = {};
 
 const ChatContent = (props: Props) => {
   const [messageArray, setMessageArray] = useContext<any>(MessageContext);
+  console.log(messageArray)
 
   return (
     <div className="w-full h-full overflow-y-scroll">
