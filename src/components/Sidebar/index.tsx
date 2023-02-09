@@ -52,6 +52,7 @@ export default function Sidebar({ containerClass }: SidebarProps) {
     text-lg
     flex
     items-center
+    justify-center
 
     w-full
     
@@ -99,9 +100,7 @@ export default function Sidebar({ containerClass }: SidebarProps) {
   const toggleTheme = () => {
     setTheme((curr) => curr === APP_THEMES.LIGHT ? APP_THEMES.DARK : APP_THEMES.LIGHT);
 
-    console.log(theme)
   };
-  console.log(theme)
 
   return (
     <>
