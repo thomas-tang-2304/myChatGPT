@@ -3,9 +3,13 @@ import Head from 'next/head';
 import MyImg from '@/public/images/myImg.jpg'
 
 import ChatSpace, { ChatProps, UserInfo } from '@/components/Chat/ChatSpace';
+import React from 'react';
+import { create } from 'domain';
 
+export const MessageStore = React.createContext(null);
 
 export default function Home() {
+
   const info: UserInfo = {
     image: {
       width: 30,
@@ -15,8 +19,12 @@ export default function Home() {
     fullName: "Hong Tang",
     id: "1"
   }
+  const useStore: any = {
+    chats: [],
+  }
   return (
-    <>
+
+    <MessageStore.Provider value={useStore}>
       <Head>
         <title>Chat GPT</title>
         <meta
@@ -25,11 +33,13 @@ export default function Home() {
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={""} />
+        <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&family=Orbitron:wght@500&family=Saira:ital,wght@1,500&display=swap" rel="stylesheet" />
       </Head>
-      <div className={`container p-3 h-[100vh] w-full mx-auto`}>
+      <div className={`py-3 w-full mx-auto h-[92vh] mt-3 container`}>
         <ChatSpace info={info} />
       </div>
-    </>
-
+    </MessageStore.Provider>
   );
 }
