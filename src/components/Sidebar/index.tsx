@@ -1,10 +1,9 @@
-import React, {useState} from 'react';
-import {FiLogOut} from 'react-icons/fi';
-import {BsTrash} from 'react-icons/bs';
-import {BsFillLightbulbOffFill} from 'react-icons/bs';
-import {BsFillLightbulbFill} from 'react-icons/bs';
-import {BsFillChatRightFill} from 'react-icons/bs';
-import {TiDeleteOutline} from 'react-icons/ti';
+import React, { useLayoutEffect, useRef, useState } from 'react';
+import { FiLogOut } from 'react-icons/fi';
+import { BsTrash, BsFillLightbulbOffFill, BsFillLightbulbFill, BsFillChatRightFill } from 'react-icons/bs';
+import { TiDeleteOutline } from 'react-icons/ti';
+
+
 
 const newChatClassNames = `
   text-white 
@@ -54,43 +53,65 @@ const buttonClassNames = `
   hover:bg-gray-900 
 `
 
-export default function Sidebar({theme, setTheme}: any) {
+export default function Sidebar({ theme, setTheme }: any) {
+  const ChatTitles: any = useRef<HTMLElement>()
+
+  // hooks declaration
   const [listIntent, setListIntent] = useState<any>([]);
-  const [hoverListIntent, setHoverListIntent] = useState(false);
-  
-  const handleRemoveChat = (id:any) => {
+  const [currentChatScrollHeight, setCurrentChatScrollHeight] = useState(ChatTitles?.current?.scrollHeight)
+
+
+  const handleRemoveChat = (id: any) => {
     const newList = listIntent.filter((item: any) => item.id !== id);
 
     setListIntent(newList);
   };
 
   const addNewChat = () => {
-    const newChat = listIntent.concat({name: `Bạn tên gì? ${listIntent.length}`  , id: listIntent.length});
-
+    const newChat = listIntent.concat({ name: `Bạn tên gì? ${listIntent.length}`, id: listIntent.length });
+    setCurrentChatScrollHeight(ChatTitles?.current?.scrollHeight);
     setListIntent(newChat);
+
   };
 
   const toggleTheme = () => {
     setTheme((prev: any) => prev === "dark" ? 'light' : 'dark');
   };
 
+
+  // check mounted effects
+  useLayoutEffect(() => {
+    ChatTitles.current.scrollTop = currentChatScrollHeight;
+    return () => {
+      console.log("scroll to bottom")
+    };
+  }, [currentChatScrollHeight]);
+
   return (
     <>
-      <div className={`back-primary flex flex-col justify-between font-white h-full text-white-900 rounded-l-xl`}>
-        <div>
-          <div className='p-2'><button onClick={addNewChat} type="button" className={`${buttonClassNames} mb-2 dark:border-gray-700`}>+ New Chat</button></div>
-          <div className={`${hoverListIntent ? 'overflow-y-scroll' : 'overflow-hidden'} h-[300px]`} onMouseEnter={()=> setHoverListIntent(true)} onMouseLeave={()=> setHoverListIntent(false)}>
-            {listIntent.map((item: any) => 
-              <a href='#' key={item.id} className={`${newChatClassNames}`}> 
-                <span><BsFillChatRightFill /></span> 
-                {item.name}
-                <button onClick={() => handleRemoveChat(item.id)}><TiDeleteOutline /></button>
-              </a>
-            )}
+      <div className={`back-primary flex flex-col justify-between font-white h-full text-white-900 rounded-l-xl items-stretch`}>
+        <div className={`h-auto`}>
+          <div className='p-2'>
+            <button onClick={addNewChat} type="button" className={`${buttonClassNames} mb-2 dark:border-gray-700 pl-2`}>
+              + New Chat</button>
           </div>
+
+        </div>
+        <div
+          className={`overflow-y-scroll grow .scrollbar .scrollbar-style-2 h-max`}
+          id={"chat-title-scroller"}
+          ref={ChatTitles}
+        >
+          {listIntent.map((item: any) =>
+            <a href='#' key={item.id} className={`${newChatClassNames}`}>
+              <span><BsFillChatRightFill /></span>
+              {item.name}
+              <button onClick={() => handleRemoveChat(item.id)}><TiDeleteOutline /></button>
+            </a>
+          )}
         </div>
 
-        <div className='flex p-3 flex-col gap-2 border-t-[1px] border-indigo-500 mt-2 pt-2'>
+        <div className='flex  p-3 flex-col gap-2 border-t-[1px] border-indigo-500 mt-2 pt-2'>
           <button type="button" className={`${buttonClassNames} dark:border-gray-700 flex leading-3`} onClick={() => setListIntent([])}>
             <span className={`mx-3`}>
               <BsTrash />
@@ -99,13 +120,12 @@ export default function Sidebar({theme, setTheme}: any) {
           </button>
 
           <button type="button" className={`${buttonClassNames} dark:border-gray-700 flex leading-3`} onClick={toggleTheme} >
-            {theme === "dark"
-              ? 
-              (<><span className={`mx-3 back-secondary`}><BsFillLightbulbFill /></span><span>Light Mode</span></>) 
-              : 
-              (<><span className={`mx-3 back-secondary`}><BsFillLightbulbOffFill /></span><span>Dark Mode</span></>) 
-
-            }
+            <span className={`mx-3 back-secondary`}>
+              {theme === "light" ? <BsFillLightbulbOffFill /> : <BsFillLightbulbFill />}
+            </span>
+            <span>
+              {theme === "light" ? "Light Mode" : "Dark Mode"}
+            </span>
           </button>
 
           <button type="button" className={`${buttonClassNames} dark:border-gray-700 flex leading-3`}>
