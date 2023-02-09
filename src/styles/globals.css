@@ -70,8 +70,8 @@ body {
   height: 4px;
 }
 ::-webkit-scrollbar-button {
-  width: 67px;
-  height: 67px;
+  width: 0;
+  height: 0;
 }
 ::-webkit-scrollbar-thumb {
   background: #e1e1e1;
