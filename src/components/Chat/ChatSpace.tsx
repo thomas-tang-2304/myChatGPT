@@ -7,6 +7,8 @@ import ChatBody from '../ChatBody/ChatBody';
 import useWindowSize from '@/customHooks/useWindowSize';
 
 
+import { MessageProvider } from '@/contexts/MessageContext';
+
 export interface ChatProps {
 
     info: UserInfo
@@ -25,17 +27,23 @@ export interface UserInfo {
 }
 
 
-export default function ChatSpace({ info, theme, setTheme }: ChatProps) {
+export default function ChatSpace({ info, theme, setTheme}: ChatProps) {
+
+    const size = useWindowSize();
+    const width = size.width
 
     return (
         < div className={`h-full flex p-8 bg-white rounded-lg shadow-2xl`
         }>
 
-            <div className={`w-80`}>
+              {width && width >= 640 ? (<div className={`w-80`}>
                 <Sidebar theme={theme} setTheme={setTheme}/>
-            </div>
+            </div>) : ''}
+
             <div className={`h-full w-full bg-secondary rounded-r-xl`}>
-                <ChatBody />
+                <MessageProvider>
+                    <ChatBody />
+                </MessageProvider>
             </div>
         </div >
     )

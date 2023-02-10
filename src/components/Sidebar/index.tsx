@@ -94,7 +94,7 @@ export default function Sidebar({ theme, setTheme }: any) {
       <div className={`back-primary flex flex-col justify-between font-white h-full text-white-900 rounded-l-xl items-stretch`}>
         <div className={`h-auto`}>
           <div className='p-2'>
-            <button onClick={() => {setIsShowing(true)}} type="button" className={`${stylesButton} mb-2 dark:border-gray-700 pl-2`}>
+            <button onClick={() => {setIsShowing(true)}} type="button" className={`${stylesButton} justify-center mb-2 dark:border-gray-700 pl-2`}>
               + New Chat</button>
             {isShowing && <Modal setIsShowing={setIsShowing} styles={stylesButton} addNewChat={addNewChat} setListIntent={setListIntent}/>}
           </div>

@@ -6,6 +6,7 @@ export default function Button({theme, setTheme, setListIntent, styles}: any) {
 
   const toggleTheme = () => {
     setTheme((prev: any) => prev === "dark" ? 'light' : 'dark');
+    console.log(theme)
   };
 
     return (
