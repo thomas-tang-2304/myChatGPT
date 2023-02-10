@@ -15,6 +15,7 @@ const ChatText = () => {
         }
         setNewMessages('')
       }
+      console.log(messageArray)
     }
 
     const hanldeClick =()=>{
