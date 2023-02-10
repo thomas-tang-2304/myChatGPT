@@ -8,7 +8,7 @@ const ChatBody = () => {
   // const data =useContext(MessageStore)
   // console.log(data)
   return (
-    <div className="back-frame flex flex-col justify-between items-center h-full w-full">
+    <div className="back-frame rounded-r-lg flex flex-col justify-between items-center h-full w-full">
       <TitleHeader />
       <ChatContent />
       <ChatText />

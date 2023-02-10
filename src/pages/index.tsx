@@ -36,7 +36,7 @@ export default function Home({theme, setTheme}: any) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={""} />
         <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&family=Orbitron:wght@500&family=Saira:ital,wght@1,500&display=swap" rel="stylesheet" />
       </Head>
-      <div className={` container p-3 h-[100vh] w-[800px] mx-auto`}>
+      <div className={` container p-3 h-[100vh] w-full mx-auto`}>
 
         <ChatSpace info={info} theme={theme} setTheme={setTheme}/>
       </div>

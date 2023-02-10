@@ -16,10 +16,11 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@/public/*": ["./public/*"]
+      "@/public/*": ["./public/*"],
+      "react": [ "./node_modules/@types/react" ],
     },
     "target": "es5"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/Rightbar"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/Rightbar", "src/contexts/MessageContext.js"],
   "exclude": ["node_modules"]
 }
