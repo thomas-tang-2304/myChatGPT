@@ -7,22 +7,20 @@ import { FiSend } from "react-icons/fi";
 const ChatText = () => {
   const [newMessage, setNewMessages] = useState('');
   const [messageArray, setMessageArray] = useContext<any>(MessageContext)
+  
     const hanldeKeyDown =(evt:any)=>{
       if(evt.key ==='Enter' && newMessage){
         if(newMessage !==''){
-          let currMessageArray = [...messageArray]
-          currMessageArray.push({id:messageArray.length+1,contentMessage:newMessage,variant:'user'})
-          setMessageArray(currMessageArray)
+          setMessageArray([...messageArray,{id:messageArray.length+1,contentMessage:newMessage,variant:'user'}])
         }
         setNewMessages('')
       }
+     
     }
 
     const hanldeClick =()=>{
       if(newMessage !==''){
-        let currMessageArray = [...messageArray]
-        currMessageArray.push({id:messageArray.length+1,contentMessage:newMessage,variant:'user'})
-        setMessageArray(currMessageArray)
+        setMessageArray([...messageArray,{id:messageArray.length+1,contentMessage:newMessage,variant:'user'}])
       }
       setNewMessages('')
     }  
