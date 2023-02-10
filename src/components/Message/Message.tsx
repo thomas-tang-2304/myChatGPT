@@ -11,7 +11,7 @@ type Message = {
 
 export const Message: React.FC<Message> = ({
   variant,
-  urlAvatar,
+  urlAvatar = (variant === 'bot') ? 'https://chromeunboxed.com/wp-content/uploads/2022/12/ChatGPT-Feature-1200x900.png' : 'https://sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png',
   contentMessage,
   time,
 }) => {
@@ -29,7 +29,7 @@ export const Message: React.FC<Message> = ({
         )}
       >
         <div className="flex items-center justify-center h-10 w-10 rounded-ful">
-          <img className="rounded-full w-full h-full" src={urlAvatar} alt="" />
+          <img className="rounded-full w-full h-full object-cover" src={urlAvatar} alt="" />
         </div>
         <div
           className={clsx(
