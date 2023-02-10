@@ -1,9 +1,8 @@
-import { MessageContext, MessageProvider } from '@/contexts/MessageContext';
+import { MessageContext } from '@/contexts/MessageContext';
 import Input from '@/utils/components/Input';
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { useContext } from 'react';
 import { FiSend } from "react-icons/fi";
-
 
 const ChatText = () => {
   const [newMessage, setNewMessages] = useState('');
@@ -12,7 +11,7 @@ const ChatText = () => {
     const hanldeKeyDown =(evt:any)=>{
       if(evt.key ==='Enter' && newMessage){
         if(newMessage !==''){
-          setMessageArray([...messageArray,{id:messageArray.length+1,contentMessage:newMessage,variant:'user'}])
+          setMessageArray([...messageArray,{id:messageArray.length+1,contentMessage:newMessage,variant:'user'}]) 
         }
         setNewMessages('')
       }
@@ -23,12 +22,7 @@ const ChatText = () => {
         setMessageArray([...messageArray,{id:messageArray.length+1,contentMessage:newMessage,variant:'user'}])
       }
       setNewMessages('')
-    }
-
-    const getMessage =()=>{
-
-    }
-
+    }  
   return (
 
     <Input
