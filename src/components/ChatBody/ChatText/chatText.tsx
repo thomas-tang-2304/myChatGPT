@@ -11,11 +11,11 @@ const ChatText = () => {
     const hanldeKeyDown =(evt:any)=>{
       if(evt.key ==='Enter' && newMessage){
         if(newMessage !==''){
-          setMessageArray([...messageArray,{id:messageArray.length+1,contentMessage:newMessage,variant:'user'}]) 
+          setMessageArray([...messageArray,{id:messageArray.length+1,contentMessage:newMessage,variant:'user'}])
         }
         setNewMessages('')
       }
-      console.log(messageArray)
+     
     }
 
     const hanldeClick =()=>{
