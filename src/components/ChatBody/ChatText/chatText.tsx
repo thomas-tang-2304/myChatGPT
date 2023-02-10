@@ -29,7 +29,7 @@ const ChatText = () => {
   return (
 
     <Input
-      background="bg-[#EBEBEB]"
+      background="back-frame"
       button={{
         isContained: true,
         element: (
