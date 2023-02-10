@@ -1,12 +1,26 @@
 import { Message } from '@/components/Message/Message';
 import { MessageContext } from '@/contexts/MessageContext';
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 
 type Props = {};
 
 const ChatContent = (props: Props) => {
-  const [messageArray, setMessageArray] = useContext<any>(MessageContext);
-  console.log(messageArray)
+  const [messageArray, _] = useContext<any>(MessageContext);
+  
+  let today = new Date()
+  let time = today.getHours() + ':' + today.getMinutes()
+
+  const renderMessage = () => {
+    return messageArray?.map((message: any) => {
+      return (  <Message key={message.id}
+        variant="user"
+        urlAvatar="https://images.unsplash.com/photo-1675710512122-435d73e05dad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=770&q=80"
+        contentMessage={message.contentMessage}
+        time={time}
+  
+      />)
+    })
+  }
 
   return (
     <div className="w-full h-full overflow-y-scroll">
@@ -22,24 +36,7 @@ const ChatContent = (props: Props) => {
         contentMessage="There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc."
         time={'3:01'}
       />
-      <Message
-        variant="user"
-        urlAvatar="https://images.unsplash.com/photo-1675710512122-435d73e05dad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=770&q=80"
-        contentMessage="How are you ?"
-        time={'3:02'}
-      />
-      <Message
-        variant="bot"
-        urlAvatar="https://images.unsplash.com/photo-1675753240590-c2da0e94509b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80"
-        contentMessage="Lorem ipsum dolor sit amet consectetur adipisicing elitLorem ipsum dolor sit amet consectetur adipisicing elitLorem ipsum dolor sit amet consectetur adipisicing elitLorem ipsum dolor sit amet consectetur adipisicing elitLorem ipsum dolor sit amet consectetur adipisicing elitLorem ipsum dolor sit amet consectetur adipisicing elit"
-        time={'3:03'}
-      />
-      <Message
-        variant="user"
-        urlAvatar="https://images.unsplash.com/photo-1675710512122-435d73e05dad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=770&q=80"
-        contentMessage="Ok"
-        time={'3:04'}
-      />
+      {renderMessage()}
     </div>
     
   );
