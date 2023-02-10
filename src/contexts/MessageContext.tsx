@@ -5,7 +5,6 @@ type MessageProps ={
 }
 
 const DEFAULT_VALUE : []  = []
-;
 
 const MessageContext = createContext(DEFAULT_VALUE);
 

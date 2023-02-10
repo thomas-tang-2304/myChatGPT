@@ -10,7 +10,9 @@ const ChatText = () => {
     const hanldeKeyDown =(evt:any)=>{
       if(evt.key ==='Enter' && newMessage){
         if(newMessage !==''){
-          setMessageArray([...messageArray,{id:messageArray.length+1,contentMessage:newMessage,variant:'user'}]) 
+          let currMessageArray = [...messageArray]
+          currMessageArray.push({id:messageArray.length+1,contentMessage:newMessage,variant:'user'})
+          setMessageArray(currMessageArray)
         }
         setNewMessages('')
       }
@@ -18,7 +20,9 @@ const ChatText = () => {
 
     const hanldeClick =()=>{
       if(newMessage !==''){
-        setMessageArray([...messageArray,{id:messageArray.length+1,contentMessage:newMessage,variant:'user'}])
+        let currMessageArray = [...messageArray]
+        currMessageArray.push({id:messageArray.length+1,contentMessage:newMessage,variant:'user'})
+        setMessageArray(currMessageArray)
       }
       setNewMessages('')
     }  
