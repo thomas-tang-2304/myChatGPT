@@ -1,23 +1,28 @@
 import { MessageContext } from '@/contexts/MessageContext';
 import Input from '@/utils/components/Input';
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useContext } from 'react';
 import { FiSend } from "react-icons/fi";
 
 const ChatText = () => {
   const [newMessage, setNewMessages] = useState('');
-  const [messageArray, setMessageArray] = useContext<any>(MessageContext)
-  
+  const [messageArray, setMessageArray] = useContext<any>(MessageContext);
     const hanldeKeyDown =(evt:any)=>{
       if(evt.key ==='Enter' && newMessage){
         if(newMessage !==''){
           setMessageArray([...messageArray,{id:messageArray.length+1,contentMessage:newMessage,variant:'user'}])
+          localStorage.setItem('newMessage',JSON.stringify(messageArray));
         }
         setNewMessages('')
       }
-     
     }
-
+    useEffect(()=>{
+      const messData = localStorage.getItem('newMessage')
+      if(messData !== null){
+        setMessageArray(JSON.parse(messData))
+      }
+    },[])
+    
     const hanldeClick =()=>{
       if(newMessage !==''){
         setMessageArray([...messageArray,{id:messageArray.length+1,contentMessage:newMessage,variant:'user'}])
