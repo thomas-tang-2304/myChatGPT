@@ -5,11 +5,11 @@ import MyImg from '@/public/images/myImg.jpg'
 import ChatSpace, { ChatProps, UserInfo } from '@/components/Chat/ChatSpace';
 import React from 'react';
 import { create } from 'domain';
+import ModalProvider from '@/contexts/ModalContext';
 
 export const MessageStore = React.createContext(null);
 
-export default function Home() {
-
+export default function Home({ theme, setTheme }: any) {
   const info: UserInfo = {
     image: {
       width: 30,
@@ -25,21 +25,24 @@ export default function Home() {
   return (
 
     <MessageStore.Provider value={useStore}>
-      <Head>
-        <title>Chat GPT</title>
-        <meta
-          name="description"
-          content="Chat GPT"
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={""} />
-        <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&family=Orbitron:wght@500&family=Saira:ital,wght@1,500&display=swap" rel="stylesheet" />
-      </Head>
-      <div className={`py-3 w-full mx-auto h-[92vh] mt-3 container`}>
-        <ChatSpace info={info} />
-      </div>
+      <ModalProvider>
+        <Head>
+          <title>Chat GPT</title>
+          <meta
+            name="description"
+            content="Chat GPT"
+          />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link rel="icon" href="/favicon.ico" />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={""} />
+          <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&family=Orbitron:wght@500&family=Saira:ital,wght@1,500&display=swap" rel="stylesheet" />
+        </Head>
+        <div className={` container p-3 h-[100vh] w-full mx-auto`}>
+
+          <ChatSpace info={info} theme={theme} setTheme={setTheme} />
+        </div>
+      </ModalProvider>
     </MessageStore.Provider>
   );
 }

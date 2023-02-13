@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { InputHTMLAttributes, useState } from 'react'
 
 
-export interface InputProps {
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     background: string
     button: {
         isContained: boolean;
