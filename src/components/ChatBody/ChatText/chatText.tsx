@@ -11,7 +11,6 @@ const ChatText = () => {
 
   const messageRender = async()=>{
     await setMessageArray([...messageArray,{id:messageArray.length+1,contentMessage:newMessage,variant:'user'}])
-
     const response = await getMessageReponse(newMessage);
 
     await setMessageArray([...messageArray,{id:messageArray.length+1,contentMessage:response?.data?.choices[0]?.text,variant:'bot'}])
