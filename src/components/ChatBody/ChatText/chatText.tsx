@@ -1,4 +1,5 @@
 import { MessageContext } from '@/contexts/MessageContext';
+import { getMessageReponse } from '@/pages/api/apiRequest';
 import Input from '@/utils/components/Input';
 import React, { useEffect, useRef, useState } from 'react'
 import { useContext } from 'react';
@@ -7,11 +8,21 @@ import { FiSend } from "react-icons/fi";
 const ChatText = () => {
   const [newMessage, setNewMessages] = useState('');
   const [messageArray, setMessageArray] = useContext<any>(MessageContext);
-    const hanldeKeyDown =(evt:any)=>{
+
+  const messageRender = async()=>{
+    await setMessageArray([...messageArray,{id:messageArray.length+1,contentMessage:newMessage,variant:'user'}])
+
+    const response = await getMessageReponse(newMessage);
+
+    await setMessageArray([...messageArray,{id:messageArray.length+1,contentMessage:response?.data?.choices[0]?.text,variant:'bot'}])
+
+    localStorage.setItem('newMessage',JSON.stringify(messageArray));
+  }
+
+    const hanldeKeyDown = async(evt:any)=>{
       if(evt.key ==='Enter' && newMessage){
         if(newMessage !==''){
-          setMessageArray([...messageArray,{id:messageArray.length+1,contentMessage:newMessage,variant:'user'}])
-          localStorage.setItem('newMessage',JSON.stringify(messageArray));
+          messageRender();
         }
         setNewMessages('')
       }
@@ -23,9 +34,9 @@ const ChatText = () => {
       }
     },[])
     
-    const hanldeClick =()=>{
+    const hanldeClick = async()=>{
       if(newMessage !==''){
-        setMessageArray([...messageArray,{id:messageArray.length+1,contentMessage:newMessage,variant:'user'}])
+        messageRender();
       }
       setNewMessages('')
     }  
