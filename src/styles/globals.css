@@ -64,7 +64,7 @@ body {
 }
 
 /* scroll bar custom */
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 4px;
   height: 4px;
 }
@@ -96,7 +96,7 @@ body {
 }
 ::-webkit-scrollbar-corner {
   background: transparent;
-}
+} */
 
 .fade-in {
   opacity: 0.6;

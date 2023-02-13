@@ -1,16 +1,21 @@
-const { Configuration, OpenAIApi } = require("openai");
+import { Configuration, OpenAIApi } from "openai";
 
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+export const getMessageReponse = async (messagecontent:any): Promise<any> => {
+  const configuration = new Configuration({
+    apiKey: "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",
+    
+  });
 const openai = new OpenAIApi(configuration);
 
-export const response = openai.createCompletion({
+const response = await openai.createCompletion({
   model: "text-davinci-003",
-  prompt: "Decide whether a Tweet's sentiment is positive, neutral, or negative.\n\nTweet: \"I loved the new Batman movie!\"\nSentiment:",
-  temperature: 0,
-  max_tokens: 60,
+  prompt: `${messagecontent}`,
+  temperature: 0.7,
+  max_tokens: 256,
   top_p: 1,
-  frequency_penalty: 0.5,
+  frequency_penalty: 0,
   presence_penalty: 0,
-});
+})
+return response;
+};
+
