@@ -6,9 +6,8 @@ import React, { useContext, useEffect, useRef } from 'react';
 type Props = {};
 
 const ChatContent = (props: Props) => {
-  const [messageArray, _] = useContext<any>(MessageContext);
+  const [messageArray, _] = useContext<any>(MessageContext || "");
   const messageEndRef = useRef<any>(null)
-
   const renderMessage = () => {
     return messageArray?.map((message: any, index: number) => {
       return ( <Message key={index}
