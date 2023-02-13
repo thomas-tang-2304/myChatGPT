@@ -17,12 +17,12 @@ module.exports = {
   theme: {
     colors: {
       // light mode colors
-      primary: '#007AFF',
+      primary: '#4da3ff',
       secondary: '#FFF',
       third: '#aaa',
 
       // dark mode colors
-      "dark-primary": '#111',
+      'dark-primary': '#111',
     },
   },
 

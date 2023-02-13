@@ -20,7 +20,7 @@ const ChatContent = (props: Props) => {
   }
 
   useEffect(()=> {
-    messageEndRef.current?.scrollIntoView()
+    messageEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   },[messageArray])
 
   return (

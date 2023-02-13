@@ -5,7 +5,7 @@ import Modal from './Modal/modal';
 
 const stylesNewChat = `
   text-white 
-  text-base
+  text-xs
 
   w-full
   
@@ -67,40 +67,25 @@ export default function Sidebar({ theme, setTheme }: any) {
     console.log('oki')
   };
 
-  
+
 
   const addNewChat = (value: string) => {
-    
-    const newChat = { name: value, id: Math.floor((Math.random())*100000000).toString() };
-    setListIntent([...listIntent, newChat])
-    setCurrentChatScrollHeight(ChatTitles?.current?.scrollHeight);
-    console.log(newChat);
+
     setIsShowing(false)
   };
-  
-  useEffect(() => {
-    let a = ChatTitles.current?.scrollHeight;
-    ChatTitles.current.scrollTop = ChatTitles?.current?.scrollHeight;
-
-    console.log(a)
-
-    return () => {
-      console.log("end")
-    };
-  }, [currentChatScrollHeight]);
 
   return (
     <>
       <div className={`back-primary flex flex-col justify-between font-white h-full text-white-900 rounded-l-xl items-stretch`}>
         <div className={`h-auto`}>
           <div className='p-2'>
-            <button onClick={() => {setIsShowing(true)}} type="button" className={`${stylesButton} justify-center mb-2 dark:border-gray-700 pl-2`}>
+            <button onClick={() => { setIsShowing(true) }} type="button" className={`${stylesButton} justify-center mb-2 pl-2`}>
               + New Chat</button>
-            {isShowing && <Modal setIsShowing={setIsShowing} styles={stylesButton} addNewChat={addNewChat} setListIntent={setListIntent}/>}
+            {isShowing && <Modal setIsShowing={setIsShowing} styles={stylesButton} addNewChat={addNewChat} setListIntent={setListIntent} />}
           </div>
         </div>
         <div
-          className={`overflow-y-scroll grow .scrollbar .scrollbar-style-2 h-max`}
+          className={`grow .scrollbar .scrollbar-style-2 h-max`}
           id={"chat-title-scroller"}
           ref={ChatTitles}
         >
@@ -111,7 +96,7 @@ export default function Sidebar({ theme, setTheme }: any) {
         </div>
 
         <div className='flex  p-3 flex-col gap-2 border-t-[1px] border-indigo-500 mt-2 pt-2'>
-          <Button styles={stylesButton} theme={theme} setTheme={setTheme} setListIntent={setListIntent}/>
+          <Button styles={stylesButton} theme={theme} setTheme={setTheme} setListIntent={setListIntent} />
         </div>
       </div>
     </>
