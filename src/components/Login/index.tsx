@@ -2,13 +2,13 @@ import Input from '@/utils/components/Input';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
-import GoogleLoginButton from '@/utils/components/GoogleButton';
+import GoogleLoginButton from '@/utils/apiRequests/googleSignin';
 
 import ChatGPTLogo from '@/public/images/ChatGPTLogo.png';
 
 export default function index() {
     const [isDisplayPassword, setDisplayPassword] = useState(false);
-    const handleChangeDisplayPassword = () => {
+    const handleChangeDisplayPassword = (): void => {
         setDisplayPassword((prev) => !prev);
     };
 
