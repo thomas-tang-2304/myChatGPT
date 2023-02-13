@@ -11,6 +11,7 @@ body {
 }
 
 body {
+
   overflow-y: hidden;
   font-family: 'Kanit', sans-serif;
   color: rgb(var(--foreground-rgb));
@@ -23,6 +24,81 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+.light {
+  --text-color: black;
+  --background: white;
+  --primary: #007AFF;
+  --secondary: #FFF;
+  --third: #aaa;
+}
+
 .loginBackground {
   background-image: url('../../public/images/background.png');
 }
+
+.dark {
+  --text-color: white;
+  --background: rgb(55 65 81);
+  --primary: rgb(17 24 39);
+  --secondary: #ecec5e;
+  --third: #aaa;
+}
+
+.text-color {
+  color: var(--text-color);
+}
+
+.back-frame {
+  background-color: var(--background);
+}
+
+.back-primary {
+  background-color: var(--primary);
+}
+
+.back-secondary {
+  color: var(--secondary);
+}
+
+.back-third {
+  background: var(--third);
+}
+
+.background-url {
+  background-image: url('../../public/images/background.png');
+}
+/* scroll bar custom */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+}
+::-webkit-scrollbar-thumb {
+  background: #e1e1e1;
+  border: 59px none #ffffff;
+  border-radius: 65px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #000000;
+}
+::-webkit-scrollbar-track {
+  background: #666666;
+  border: 0px none #ffffff;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #666666;
+}
+::-webkit-scrollbar-track:active {
+  background: #333333;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+

@@ -12,6 +12,7 @@ import Circle from '@/utils/components/LoadingCircle/Circle';
 const ChatText = () => {
   const [newMessage, setNewMessages] = useState('');
   const [messageArray, setMessageArray] = useContext<any>(MessageContext)
+<<<<<<< HEAD
   const [isSending, setIsSending] = useState(false)
 
 
@@ -32,6 +33,24 @@ const ChatText = () => {
           ...prev,
           { id: messageArray.length + 1, contentMessage: finishedText, variant: 'bot', time }
         ])
+=======
+    const hanldeKeyDown =(evt:any)=>{
+      if(evt.key ==='Enter' && newMessage){
+        if(newMessage !==''){
+          let currMessageArray = [...messageArray]
+          currMessageArray.push({id:messageArray.length+1,contentMessage:newMessage,variant:'user'})
+          setMessageArray(currMessageArray)
+        }
+        setNewMessages('')
+      }
+    }
+
+    const hanldeClick =()=>{
+      if(newMessage !==''){
+        let currMessageArray = [...messageArray]
+        currMessageArray.push({id:messageArray.length+1,contentMessage:newMessage,variant:'user'})
+        setMessageArray(currMessageArray)
+>>>>>>> 647716400f08e9245b76abcdd5e7500b8e48a856
       }
       setNewMessages('')
     }
