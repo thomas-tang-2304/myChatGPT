@@ -28,8 +28,8 @@ export const Message: React.FC<Message> = ({
           variant === 'bot' ? null : 'flex-row-reverse',
         )}
       >
-        <div className="flex items-center justify-center h-10 w-10 rounded-ful">
-          <img className="rounded-full w-full h-full" src={urlAvatar} alt="" />
+        <div className="flex items-center justify-center w-10 h-10 rounded-ful">
+          <img className="w-full h-full rounded-full" src={urlAvatar} alt="" />
         </div>
         <div
           className={clsx(
@@ -45,14 +45,19 @@ export const Message: React.FC<Message> = ({
                 : 'bg-indigo-100 rounded-l-lg rounded-br-lg',
             )}
           >
-            {contentMessage}
+            {/* {`${contentMessage}`} */}
+            {
+              contentMessage.split("\n").map((message, index) =>
+                <div style={{ minHeight: 16 }} key={index}>{message}</div>)
+
+            }
           </div>
           <span className={clsx(
-              'flex text-xs text-gray-500 mt-1',
-              variant === 'bot'
-                ? 'justify-start ml-2'
-                : 'justify-end mr-2',
-            )}>{time}</span>
+            'flex text-xs text-gray-500 mt-1',
+            variant === 'bot'
+              ? 'justify-start ml-2'
+              : 'justify-end mr-2',
+          )}>{time}</span>
         </div>
       </div>
     </div>
