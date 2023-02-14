@@ -1,4 +1,5 @@
 import { Message } from '@/components/Message/Message';
+import MessageSkeleton from '@/components/MessageSkeleton/MessageSkeleton';
 import { MessageContext } from '@/contexts/MessageContext';
 import moment from 'moment';
 import React, { useContext, useEffect, useRef } from 'react';
@@ -6,11 +7,11 @@ import React, { useContext, useEffect, useRef } from 'react';
 type Props = {};
 
 const ChatContent = (props: Props) => {
-  const [messageArray, _] = useContext<any>(MessageContext || "");
+  const { messageArray, isLoading } = useContext<any>(MessageContext || "");
   const messageEndRef = useRef<any>(null)
   const renderMessage = () => {
     return messageArray?.map((message: any, index: number) => {
-      return ( <Message key={index}
+      return (<Message key={index}
         variant={message.variant}
         contentMessage={message.contentMessage}
         time={moment().format('LT')}
@@ -18,16 +19,19 @@ const ChatContent = (props: Props) => {
     })
   }
 
-  useEffect(()=> {
+  // console.log(isLoading)
+
+  useEffect(() => {
     messageEndRef.current?.scrollIntoView({ behavior: 'smooth' })
-  },[messageArray])
+  }, [messageArray])
 
   return (
     <div className="w-full h-full overflow-y-scroll">
       {renderMessage()}
-      <div ref={messageEndRef}/>
+      {isLoading && <MessageSkeleton />}
+      <div ref={messageEndRef} />
     </div>
-    
+
   );
 };
 

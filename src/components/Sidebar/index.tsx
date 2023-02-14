@@ -69,12 +69,12 @@ export default function Sidebar({ theme, setTheme }: any) {
     setListIntent(newList);
     console.log('oki')
 
-
   };
 
 
 
   const addNewChat = (value: string) => {
+
     setIsReset(true)
 
     setIsShowing(false)
