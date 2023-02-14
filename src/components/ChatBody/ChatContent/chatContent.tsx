@@ -1,4 +1,5 @@
 import { Message } from '@/components/Message/Message';
+import MessageSkeleton from '@/components/MessageSkeleton/MessageSkeleton';
 import { MessageContext } from '@/contexts/MessageContext';
 import moment from 'moment';
 import React, { useContext, useEffect, useRef } from 'react';
@@ -6,7 +7,7 @@ import React, { useContext, useEffect, useRef } from 'react';
 type Props = {};
 
 const ChatContent = (props: Props) => {
-  const [messageArray, _] = useContext<any>(MessageContext || "");
+  const [messageArray, _, isLoading] = useContext<any>(MessageContext || "");
   const messageEndRef = useRef<any>(null)
   const renderMessage = () => {
     return messageArray?.map((message: any, index: number) => {
@@ -18,6 +19,8 @@ const ChatContent = (props: Props) => {
     })
   }
 
+  console.log(isLoading)
+
   useEffect(()=> {
     messageEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   },[messageArray])
@@ -25,6 +28,7 @@ const ChatContent = (props: Props) => {
   return (
     <div className="w-full h-full overflow-y-scroll">
       {renderMessage()}
+      {isLoading && <MessageSkeleton/>}
       <div ref={messageEndRef}/>
     </div>
     

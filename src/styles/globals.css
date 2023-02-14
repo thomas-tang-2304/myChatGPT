@@ -64,16 +64,16 @@ body {
 }
 
 /* scroll bar custom */
-/* ::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-button {
   width: 0;
   height: 0;
 }
 ::-webkit-scrollbar-thumb {
-  background: #e1e1e1;
+  background: var(--third);
   border: 59px none #ffffff;
   border-radius: 65px;
 }
@@ -84,7 +84,7 @@ body {
   background: #000000;
 }
 ::-webkit-scrollbar-track {
-  background: #666666;
+  background: #ccc;
   border: 0px none #ffffff;
   border-radius: 6px;
 }
@@ -96,9 +96,8 @@ body {
 }
 ::-webkit-scrollbar-corner {
   background: transparent;
-} */
-
-.fade-in {
+}
+*/ .fade-in {
   opacity: 0.6;
   animation: fadeIn ease-in 1;
   animation-fill-mode: forwards;
