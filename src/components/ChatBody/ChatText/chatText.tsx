@@ -64,7 +64,8 @@ const ChatText = () => {
       button={{
         isContained: true,
         element: (
-          <button className={`text-white bg-[#017AF9] w-16 h-9 hover:bg-black cursor-pointer flex justify-center items-center rounded-md leading-9`} onClick={hanldeClick}
+          <button className={`${isLoading === true ? 'bg-[#ccc]' : 'bg-[#017AF9] hover:bg-[#2474ca]'} text-white w-16 h-9 cursor-pointer flex justify-center items-center rounded-md leading-9`} onClick={hanldeClick}
+            disabled={isLoading === true ? true : false}
           >
             <FiSend />
           </button>
