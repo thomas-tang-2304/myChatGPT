@@ -48,11 +48,11 @@ export const Message: React.FC<Message> = ({
             {contentMessage}
           </div>
           <span className={clsx(
-              'flex text-xs text-gray-500 mt-1',
-              variant === 'bot'
-                ? 'justify-start ml-2'
-                : 'justify-end mr-2',
-            )}>{time}</span>
+            'flex text-xs text-gray-500 mt-1',
+            variant === 'bot'
+              ? 'justify-start ml-2'
+              : 'justify-end mr-2',
+          )}>{time}</span>
         </div>
       </div>
     </div>
