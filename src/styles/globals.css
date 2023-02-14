@@ -11,7 +11,6 @@ body {
 }
 
 body {
-
   overflow-y: hidden;
   font-family: 'Kanit', sans-serif;
   color: rgb(var(--foreground-rgb));
@@ -27,13 +26,13 @@ body {
 .light {
   --text-color: black;
   --background: white;
-  --primary: #007AFF;
-  --secondary: #FFF;
+  --primary: #4da3ff;
+  --secondary: #fff;
   --third: #aaa;
 }
 
 .loginBackground {
-  background-image: url('../../public/images/background.png');
+  background-image: url('/images/background.png');
 }
 
 .dark {
@@ -64,20 +63,17 @@ body {
   background: var(--third);
 }
 
-.background-url {
-  background-image: url('../../public/images/background.png');
-}
 /* scroll bar custom */
 ::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-button {
   width: 0;
   height: 0;
 }
 ::-webkit-scrollbar-thumb {
-  background: #e1e1e1;
+  background: var(--third);
   border: 59px none #ffffff;
   border-radius: 65px;
 }
@@ -88,7 +84,7 @@ body {
   background: #000000;
 }
 ::-webkit-scrollbar-track {
-  background: #666666;
+  background: #ccc;
   border: 0px none #ffffff;
   border-radius: 6px;
 }
@@ -101,4 +97,34 @@ body {
 ::-webkit-scrollbar-corner {
   background: transparent;
 }
+*/ .fade-in {
+  opacity: 0.6;
+  animation: fadeIn ease-in 1;
+  animation-fill-mode: forwards;
+  animation-duration: 0.3s;
+}
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.6;
+  }
+}
+
+.fade-in-full {
+  opacity: 1;
+  animation: fadeInFull ease-in 1;
+  animation-fill-mode: forwards;
+  animation-duration: 0.3s;
+}
+
+@keyframes fadeInFull {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

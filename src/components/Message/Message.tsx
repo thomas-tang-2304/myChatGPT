@@ -5,15 +5,16 @@ type Message = {
   id?: number
   variant?: 'bot' | 'user';
   urlAvatar?: string;
-  contentMessage: string;
+  contentMessage?: string;
   time?: any;
 };
 
 export const Message: React.FC<Message> = ({
   variant,
-  urlAvatar = (variant === 'bot') ? 'https://chromeunboxed.com/wp-content/uploads/2022/12/ChatGPT-Feature-1200x900.png' : 'https://sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png',
+  urlAvatar = (variant === 'bot') ? 'images/ChatGPTLogo.png' : 'images/default-avatar.png',
   contentMessage,
   time,
+  children
 }) => {
   return (
     <div
@@ -40,18 +41,14 @@ export const Message: React.FC<Message> = ({
         >
           <div
             className={clsx(
-              'relative text-sm bg-white py-2 px-4 shadow',
+              'relative text-sm bg-white py-2 px-4 shadow break-words',
               variant === 'bot'
                 ? 'bg-white rounded-r-lg rounded-bl-lg'
                 : 'bg-indigo-200 rounded-l-lg rounded-br-lg',
             )}
           >
-            {/* {`${contentMessage}`} */}
-            {
-              contentMessage.split("\n").map((message, index) =>
-                <div style={{ minHeight: 16 }} key={index}>{message}</div>)
-
-            }
+            {children}
+            {contentMessage}
           </div>
           <span className={clsx(
             'flex text-xs text-gray-500 mt-1',

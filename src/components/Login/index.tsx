@@ -87,7 +87,8 @@ export default function index() {
                 <hr className={`mb-3 w-3/4 text-center gap-3 flex flex-col`} />
 
                 <div className={`w-3/4`}>
-                    <GoogleLoginButton />
+
+                        <GoogleLoginButton />
                 </div>
             </div>
         </ div>

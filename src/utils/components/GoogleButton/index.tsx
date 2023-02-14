@@ -6,8 +6,11 @@ import jwt from 'jsonwebtoken';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import Cookies from 'universal-cookie';
 import { useRouter } from 'next/router';
+import { User } from '@/utils/interfaces';
 
 const cookies = new Cookies();
+
+
 
 export default function GoogleAuth() {
     const router = useRouter();
@@ -15,7 +18,7 @@ export default function GoogleAuth() {
     const [userCredentials, setUserCredentials] = useState<any>(null);
 
     const onSuccess = (credentialResponse: any) => {
-        const { email, email_verified, name, picture, given_name, family_name }: any = jwt_decode(credentialResponse.credential);
+        const { email, email_verified, name, picture, given_name, family_name }: User = jwt_decode(credentialResponse.credential);
 
 
         const newToken = jwt.sign({ email, email_verified, name, picture, given_name, family_name }, "chatGPT - digiex")
@@ -36,9 +39,9 @@ export default function GoogleAuth() {
     const CLI_ID: any = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
 
     return (
-        <div className='mx-auto'>
 
-            <GoogleOAuthProvider clientId={CLI_ID}>
+        <GoogleOAuthProvider clientId={CLI_ID}>
+            <div className='flex justify-center w-full mx-auto'>
 
 
                 <GoogleLogin
@@ -46,12 +49,13 @@ export default function GoogleAuth() {
                     onError={() => {
                         console.log('Login Failed');
                     }}
-                    width={'100%'}
+                    logo_alignment={'center'}
+                    shape={"circle"}
                     useOneTap
                 />
+            </div>
 
-            </GoogleOAuthProvider>
-        </div>
+        </GoogleOAuthProvider>
 
     );
 }
