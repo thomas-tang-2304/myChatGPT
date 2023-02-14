@@ -7,39 +7,52 @@ import { FiSend } from "react-icons/fi";
 
 const ChatText = () => {
   const [newMessage, setNewMessages] = useState('');
-  const [messageArray, setMessageArray] = useContext<any>(MessageContext);
+  const [messageArray, setMessageArray, _, setIsLoading] = useContext<any>(MessageContext);
 
-  const messageRender = async()=>{
-    await setMessageArray([...messageArray,{id:messageArray.length+1,contentMessage:newMessage,variant:'user'}])
+  const messageRender = async () => {
 
+    setMessageArray((prevState: any) => [...prevState, { id: Date.now(), contentMessage: newMessage, variant: 'user' }])
+
+    setIsLoading(true)
     const response = await getMessageReponse(newMessage);
 
-    await setMessageArray([...messageArray,{id:messageArray.length+1,contentMessage:response?.data?.choices[0]?.text,variant:'bot'}])
-
-    localStorage.setItem('newMessage',JSON.stringify(messageArray));
+    setMessageArray((prevState: any) => [...prevState, { id: Date.now(), contentMessage: response?.data?.choices[0]?.text, variant: 'bot' }])
+    setIsLoading(false)
   }
 
-    const hanldeKeyDown = async(evt:any)=>{
-      if(evt.key ==='Enter' && newMessage){
-        if(newMessage !==''){
-          messageRender();
-        }
-        setNewMessages('')
-      }
+  const saveMessage = () => {
+    if (messageArray.length !== 0) {
+      localStorage.setItem('newMessage', JSON.stringify(messageArray));
     }
-    useEffect(()=>{
-      const messData = localStorage.getItem('newMessage')
-      if(messData !== null){
-        setMessageArray(JSON.parse(messData))
-      }
-    },[])
-    
-    const hanldeClick = async()=>{
-      if(newMessage !==''){
+  }
+
+  const hanldeKeyDown = async (evt: any) => {
+    if (evt.key === 'Enter' && newMessage) {
+      if (newMessage !== '') {
         messageRender();
       }
       setNewMessages('')
-    }  
+    }
+  }
+
+  const hanldeClick = async () => {
+    if (newMessage !== '') {
+      messageRender();
+    }
+    setNewMessages('')
+  }
+
+  useEffect(() => {
+    saveMessage()
+  }, [messageArray])
+
+  useEffect(() => {
+    const messData = localStorage.getItem('newMessage')
+    if (messData !== null) {
+      setMessageArray(JSON.parse(messData))
+    }
+  }, [])
+
   return (
 
     <Input
@@ -57,9 +70,9 @@ const ChatText = () => {
       type="text"
       value={newMessage}
       onKeyDown={hanldeKeyDown}
-      handleChange={(evt:any)=>{setNewMessages(evt.target.value)}}
+      handleChange={(evt: any) => { setNewMessages(evt.target.value) }}
       placeholderText="Type your message here.."
     />
   )
-    }
+}
 export default ChatText;
