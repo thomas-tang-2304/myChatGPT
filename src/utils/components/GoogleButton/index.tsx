@@ -1,16 +1,61 @@
-import React from 'react'
-import styles from './googleButton.module.scss'
+import React, { useEffect, useState } from 'react'
+// import styles from './googleButton.module.scss'
+import jwt_decode from 'jwt-decode'
+import jwt from 'jsonwebtoken';
 
-export default function GoogleLoginButton() {
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+import Cookies from 'universal-cookie';
+import { useRouter } from 'next/router';
+import { User } from '@/utils/interfaces';
+
+const cookies = new Cookies();
+
+
+
+export default function GoogleAuth() {
+    const router = useRouter();
+
+    const [userCredentials, setUserCredentials] = useState<any>(null);
+
+    const onSuccess = (credentialResponse: any) => {
+        const { email, email_verified, name, picture, given_name, family_name }: User = jwt_decode(credentialResponse.credential);
+
+
+        const newToken = jwt.sign({ email, email_verified, name, picture, given_name, family_name }, "chatGPT - digiex")
+        cookies.set("cred-token", newToken)
+        setUserCredentials(newToken)
+    }
+
+    useEffect(() => {
+        const isCookieSet = cookies.get("cred-token");
+        console.log(isCookieSet);
+
+        if (isCookieSet)
+            router.push('/');
+    }, [userCredentials])
+
+
+
+    const CLI_ID: any = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+
     return (
-        <div className={`hover:bg-blue-400 ${styles["google-btn"]}`}>
-            <div className={styles["google-icon-wrapper"]}>
-                <img className={styles["google-icon"]} src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
-            </div>
-            <p className={styles["btn-text"]}><b>Sign in with google</b></p>
-            <div>
 
+        <GoogleOAuthProvider clientId={CLI_ID}>
+            <div className='flex justify-center w-full mx-auto'>
+
+
+                <GoogleLogin
+                    onSuccess={onSuccess}
+                    onError={() => {
+                        console.log('Login Failed');
+                    }}
+                    logo_alignment={'center'}
+                    shape={"circle"}
+                    useOneTap
+                />
             </div>
-        </div>
-    )
+
+        </GoogleOAuthProvider>
+
+    );
 }
