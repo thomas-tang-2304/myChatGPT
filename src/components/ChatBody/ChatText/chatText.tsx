@@ -8,7 +8,7 @@ import { FiSend } from "react-icons/fi";
 
 const ChatText = () => {
   const [newMessage, setNewMessages] = useState('');
-  const [messageArray, setMessageArray, _, setIsLoading] = useContext<any>(MessageContext);
+  const [messageArray, setMessageArray, isLoading, setIsLoading] = useContext<any>(MessageContext);
 
   const messageRender = async () => {
 
