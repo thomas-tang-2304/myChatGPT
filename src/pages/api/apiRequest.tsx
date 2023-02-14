@@ -9,7 +9,7 @@ export const getMessageReponse = async (messagecontent: any): Promise<any> => {
 
   const response = await openai.createCompletion({
     model: "text-davinci-003",
-    prompt: `Human ${messagecontent}`,
+    prompt: `Human: ${messagecontent}`,
     temperature: 0.9,
     max_tokens: 150,
     top_p: 1,
