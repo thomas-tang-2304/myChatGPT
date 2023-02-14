@@ -1,6 +1,4 @@
-import { CancelTokenSource } from 'axios';
 import { Configuration, OpenAIApi } from 'openai';
-import axios from 'axios';
 export let finishedText = '';
 
 export const refreshText = () => {

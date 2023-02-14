@@ -28,13 +28,9 @@ export const Message: React.FC<Message> = ({
           variant === 'bot' ? null : 'flex-row-reverse',
         )}
       >
-<<<<<<< HEAD
+
         <div className="flex items-center justify-center w-10 h-10 rounded-ful">
-          <img className="w-full h-full rounded-full" src={urlAvatar} alt="" />
-=======
-        <div className="flex items-center justify-center h-10 w-10 rounded-ful">
-          <img className="rounded-full w-full h-full object-cover" src={urlAvatar} alt="" />
->>>>>>> 647716400f08e9245b76abcdd5e7500b8e48a856
+          <img className="object-cover w-full h-full rounded-full" src={urlAvatar} alt="" />
         </div>
         <div
           className={clsx(
