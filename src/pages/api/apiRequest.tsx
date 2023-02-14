@@ -1,21 +1,21 @@
 import { Configuration, OpenAIApi } from "openai";
 
-export const getMessageReponse = async (messagecontent:any): Promise<any> => {
+export const getMessageReponse = async (messagecontent: any): Promise<any> => {
   const configuration = new Configuration({
-    apiKey: "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",
-    
-  });
-const openai = new OpenAIApi(configuration);
+    apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
 
-const response = await openai.createCompletion({
-  model: "text-davinci-003",
-  prompt: `${messagecontent}`,
-  temperature: 0.7,
-  max_tokens: 256,
-  top_p: 1,
-  frequency_penalty: 0,
-  presence_penalty: 0,
-})
-return response;
+  });
+  const openai = new OpenAIApi(configuration);
+
+  const response = await openai.createCompletion({
+    model: "text-davinci-003",
+    prompt: `${messagecontent}`,
+    temperature: 0.65,
+    max_tokens: 100,
+    top_p: 1,
+    frequency_penalty: 0,
+    presence_penalty: 0,
+  })
+  return response;
 };
 
