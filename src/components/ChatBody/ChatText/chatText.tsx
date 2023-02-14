@@ -10,12 +10,17 @@ const ChatText = () => {
   const [messageArray, setMessageArray] = useContext<any>(MessageContext);
 
   const messageRender = async()=>{
-    await setMessageArray([...messageArray,{id:messageArray.length+1,contentMessage:newMessage,variant:'user'}])
-    const response = await getMessageReponse(newMessage);
 
-    await setMessageArray([...messageArray,{id:messageArray.length+1,contentMessage:response?.data?.choices[0]?.text,variant:'bot'}])
+    await setMessageArray((messageArray:any)=>[...messageArray,{id:Date.now(),contentMessage:newMessage,variant:'user'}])
+   const response = await getMessageReponse(newMessage);
 
-    localStorage.setItem('newMessage',JSON.stringify(messageArray));
+    await setMessageArray((messageArray:any)=>[...messageArray,{id:Date.now(),contentMessage:response?.data?.choices[0]?.text,variant:'bot'}])
+  
+  }
+  const handleLocal =()=>{
+    if(messageArray.length !==0){
+      localStorage.setItem('newMessage',JSON.stringify(messageArray));
+    }
   }
 
     const hanldeKeyDown = async(evt:any)=>{
@@ -26,6 +31,11 @@ const ChatText = () => {
         setNewMessages('')
       }
     }
+
+    useEffect(()=>{
+      handleLocal()
+    },[messageArray])
+
     useEffect(()=>{
       const messData = localStorage.getItem('newMessage')
       if(messData !== null){

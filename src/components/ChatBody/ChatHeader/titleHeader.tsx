@@ -10,6 +10,7 @@ import { ModalContext } from '@/contexts/ModalContext';
 const TitleHeader = () => {
   const [onClickBar, setOnClickBar] = useState(false)
   const [theme, setTheme] = useContext(ModalContext)
+ 
 
   const size = useWindowSize();
   const width = size.width
@@ -46,7 +47,7 @@ const TitleHeader = () => {
       ) : ''}
 
 
-      <h1 className='w-full text-lg'>New Chat Box</h1>
+      <h1 onClick={barClicked}  className='w-full text-black text-lg'>New Chat Box</h1>
 
       {width && width < 640 ? (
         <div className='h-full flex justify-center items-center py-2 px-3 cursor-pointer hover:text-slate-200'>

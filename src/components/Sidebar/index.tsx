@@ -52,7 +52,7 @@ const stylesButton = `
   hover:bg-gray-900 
 `
 
-export default function Sidebar({ theme, setTheme }: any) {
+export default function Sidebar({ theme, setTheme, text, setText }: any) {
   const ChatTitles: any = useRef<HTMLElement>()
 
   // hooks declaration
