@@ -8,27 +8,29 @@ import { FiSend } from "react-icons/fi";
 
 const ChatText = () => {
   const [newMessage, setNewMessages] = useState('');
-  const [messageArray, setMessageArray, isLoading, setIsLoading] = useContext<any>(MessageContext);
+  const { messageArray, setMessageArray, setIsLoading, isLoading, isReset, setIsReset } = useContext<any>(MessageContext);
 
   const messageRender = async () => {
 
-    setMessageArray((prevState: any) => [...prevState, { id: Date.now(), contentMessage: newMessage, variant: 'user', time: moment().format('LT')}])
+    setMessageArray((prevState: any) => [...prevState, { id: Date.now(), contentMessage: newMessage, variant: 'user', time: moment().format('LT') }])
 
     setIsLoading(true)
     const response = await getMessageReponse(newMessage);
 
     setMessageArray((prevState: any) => [...prevState, { id: Date.now(), contentMessage: response?.data?.choices[0]?.text, variant: 'bot', time: moment().format('LT') }])
     setIsLoading(false)
+
   }
 
   const saveMessage = () => {
-    if (messageArray.length !== 0) {
+    if (messageArray?.length > 0) {
       localStorage.setItem('newMessage', JSON.stringify(messageArray));
     }
   }
 
   const hanldeKeyDown = async (evt: any) => {
     if (evt.key === 'Enter' && newMessage) {
+
       if (newMessage !== '') {
         messageRender();
       }
@@ -48,6 +50,7 @@ const ChatText = () => {
   }, [messageArray])
 
   useEffect(() => {
+
     const messData = localStorage.getItem('newMessage')
     if (messData !== null) {
       setMessageArray(JSON.parse(messData))
