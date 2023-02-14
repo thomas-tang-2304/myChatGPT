@@ -3,6 +3,7 @@ import ListIntent from './ListIntent/listIntent';
 import Button from './Button/button';
 import Modal from './Modal/modal';
 import { MessageContext } from '@/contexts/MessageContext';
+import { useRouter } from 'next/router';
 
 const stylesNewChat = `
   text-white 
@@ -55,13 +56,14 @@ const stylesButton = `
 
 export default function Sidebar({ theme, setTheme }: any) {
   const ChatTitles: any = useRef<HTMLElement>()
+  const router = useRouter()
 
   // hooks declaration
   const [isShowing, setIsShowing] = useState(false);
   const [listIntent, setListIntent] = useState<any>([]);
   const [currentChatScrollHeight, setCurrentChatScrollHeight] = useState(ChatTitles?.current?.scrollHeight)
 
-  const { setIsReset } = useContext<any>(MessageContext)
+  const { setIsLoading, setMessageArray } = useContext<any>(MessageContext)
 
   const handleRemoveChat = (id: any) => {
     const newList = listIntent.filter((item: any) => item.id !== id);
@@ -75,7 +77,10 @@ export default function Sidebar({ theme, setTheme }: any) {
 
   const addNewChat = (value: string) => {
 
-    setIsReset(true)
+    localStorage.clear()
+    setIsLoading(false)
+    setMessageArray([])
+    router.reload()
 
     setIsShowing(false)
   };

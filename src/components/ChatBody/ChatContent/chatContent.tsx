@@ -14,12 +14,10 @@ const ChatContent = (props: Props) => {
       return (<Message key={index}
         variant={message.variant}
         contentMessage={message.contentMessage}
-        time={moment().format('LT')}
+        time={message.time}
       />)
     })
   }
-
-  // console.log(isLoading)
 
   useEffect(() => {
     messageEndRef.current?.scrollIntoView({ behavior: 'smooth' })

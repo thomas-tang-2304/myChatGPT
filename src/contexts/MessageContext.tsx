@@ -13,10 +13,9 @@ const MessageProvider: React.FC<MessageProps> = ({ children }): any => {
 
   const [isLoading, setIsLoading] = useState(false)
   const [messageArray, setMessageArray] = useState([]);
-  const [isReset, setIsReset] = useState(false)
 
   return (
-    <MessageContext.Provider value={{ messageArray, setMessageArray, isLoading, setIsLoading, isReset, setIsReset } as any}>
+    <MessageContext.Provider value={{ messageArray, setMessageArray, isLoading, setIsLoading } as any}>
       {children}
     </MessageContext.Provider>
   );
