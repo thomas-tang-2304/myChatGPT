@@ -8,11 +8,11 @@ import { FiSend } from "react-icons/fi";
 
 const ChatText = () => {
   const [newMessage, setNewMessages] = useState('');
-  const [messageArray, setMessageArray, isLoading, setIsLoading] = useContext<any>(MessageContext);
+  const { messageArray, setMessageArray, setIsLoading, isLoading, isReset, setIsReset } = useContext<any>(MessageContext);
 
   const messageRender = async()=>{
 
-    setMessageArray((prevState: any) => [...prevState, { id: Date.now(), contentMessage: newMessage, variant: 'user', time: moment().format('LT')}])
+    setMessageArray((prevState: any) => [...prevState, { id: Date.now(), contentMessage: newMessage, variant: 'user', time: moment().format('LT') }])
 
     setIsLoading(true)
     const response = await getMessageReponse(newMessage);
@@ -40,6 +40,7 @@ const ChatText = () => {
     
   const hanldeKeyDown = async (evt: any) => {
     if (evt.key === 'Enter' && newMessage) {
+
       if (newMessage !== '') {
         messageRender();
       }
@@ -54,6 +55,7 @@ const ChatText = () => {
     setNewMessages('')
   }
   useEffect(() => {
+
     const messData = localStorage.getItem('newMessage')
     if (messData !== null) {
       setMessageArray(JSON.parse(messData))
@@ -67,7 +69,8 @@ const ChatText = () => {
       button={{
         isContained: true,
         element: (
-          <button className={`text-white bg-[#017AF9] w-16 h-9 hover:bg-black cursor-pointer flex justify-center items-center rounded-md leading-9`}  onClick={hanldeClick} disabled
+          <button className={`${isLoading === true ? 'bg-[#ccc]' : 'bg-[#017AF9] hover:bg-[#2474ca]'} text-white w-16 h-9 cursor-pointer flex justify-center items-center rounded-md leading-9`} onClick={hanldeClick}
+            disabled={isLoading === true ? true : false}
           >
             <FiSend />
           </button>

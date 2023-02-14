@@ -11,7 +11,7 @@ const ChatBody = () => {
       <TitleHeader />
       <ChatContent />
       <ChatText />
- 
+
     </div>
   );
 };

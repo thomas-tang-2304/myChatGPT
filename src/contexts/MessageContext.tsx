@@ -4,17 +4,18 @@ type MessageProps = {
   children: React.ReactNode
 }
 
+
 const DEFAULT_VALUE: [] = []
 
-const MessageContext = createContext(DEFAULT_VALUE);
+const MessageContext = createContext([]);
 
 const MessageProvider: React.FC<MessageProps> = ({ children }): any => {
-  
+
   const [isLoading, setIsLoading] = useState(false)
-  const [messageArray, setMessageArray] = useState(DEFAULT_VALUE);
+  const [messageArray, setMessageArray] = useState([]);
 
   return (
-    <MessageContext.Provider value={[messageArray, setMessageArray, isLoading, setIsLoading] as any}>
+    <MessageContext.Provider value={{ messageArray, setMessageArray, isLoading, setIsLoading } as any}>
       {children}
     </MessageContext.Provider>
   );
