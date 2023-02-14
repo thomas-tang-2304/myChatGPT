@@ -12,7 +12,7 @@ const response = await openai.createCompletion({
   model: "text-davinci-003",
   prompt: `${messagecontent}`,
   temperature: 0.6,
-  max_tokens: 256,
+  max_tokens: 1000,
   top_p: 1,
   frequency_penalty: 0,
   presence_penalty: 0,
