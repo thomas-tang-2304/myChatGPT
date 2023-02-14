@@ -1,13 +1,10 @@
-
 import Head from 'next/head';
 import MyImg from '@/public/images/myImg.jpg'
 
-import ChatSpace, { ChatProps, UserInfo } from '@/components/Chat/ChatSpace';
+import ChatSpace, { UserInfo } from '@/components/Chat/ChatSpace';
 import React from 'react';
-import { create } from 'domain';
 import ModalProvider from '@/contexts/ModalContext';
 
-export const MessageStore = React.createContext(null);
 
 export default function Home({ theme, setTheme }: any) {
   const info: UserInfo = {
@@ -19,12 +16,8 @@ export default function Home({ theme, setTheme }: any) {
     fullName: "Hong Tang",
     id: "1"
   }
-  const useStore: any = {
-    chats: [],
-  }
-  return (
 
-    <MessageStore.Provider value={useStore}>
+  return (
       <ModalProvider>
         <Head>
           <title>Chat GPT</title>
@@ -43,6 +36,5 @@ export default function Home({ theme, setTheme }: any) {
           <ChatSpace info={info} theme={theme} setTheme={setTheme} />
         </div>
       </ModalProvider>
-    </MessageStore.Provider>
   );
 }
