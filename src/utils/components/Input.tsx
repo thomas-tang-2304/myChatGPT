@@ -22,12 +22,7 @@ const Input = ({ background, button, placeholderText,type,handleChange,value,onK
             onChange={handleChange}
             onKeyDown ={onKeyDown}
             />
-            {button.isContained ?
-                button?.element
-                :
-                null
-            }
-
+            {button.isContained ? button?.element : null}
         </div>
     )
 }

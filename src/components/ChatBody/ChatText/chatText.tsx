@@ -1,22 +1,24 @@
 import { MessageContext } from '@/contexts/MessageContext';
 import { getMessageReponse } from '@/pages/api/apiRequest';
 import Input from '@/utils/components/Input';
+import moment from 'moment';
 import React, { useEffect, useRef, useState } from 'react'
 import { useContext } from 'react';
 import { FiSend } from "react-icons/fi";
 
 const ChatText = () => {
   const [newMessage, setNewMessages] = useState('');
-  const [messageArray, setMessageArray, _, setIsLoading] = useContext<any>(MessageContext);
+  const [messageArray, setMessageArray, isLoading, setIsLoading] = useContext<any>(MessageContext);
 
   const messageRender = async()=>{
 
-    await setMessageArray((messageArray:any)=>[...messageArray,{id:Date.now(),contentMessage:newMessage,variant:'user'}])
+    setMessageArray((prevState: any) => [...prevState, { id: Date.now(), contentMessage: newMessage, variant: 'user', time: moment().format('LT')}])
 
     setIsLoading(true)
     const response = await getMessageReponse(newMessage);
+
+    setMessageArray((prevState: any) => [...prevState, { id: Date.now(), contentMessage: response?.data?.choices[0]?.text, variant: 'bot', time: moment().format('LT') }])
     
-    await setMessageArray((messageArray:any)=>[...messageArray,{id:Date.now(),contentMessage:response?.data?.choices[0]?.text,variant:'bot'}])
     setIsLoading(false)
   
   }
@@ -65,7 +67,7 @@ const ChatText = () => {
       button={{
         isContained: true,
         element: (
-          <button className={`text-white bg-[#017AF9] w-16 h-9 hover:bg-black cursor-pointer flex justify-center items-center rounded-md leading-9`} onClick={hanldeClick}
+          <button className={`text-white bg-[#017AF9] w-16 h-9 hover:bg-black cursor-pointer flex justify-center items-center rounded-md leading-9`}  onClick={hanldeClick} disabled
           >
             <FiSend />
           </button>
