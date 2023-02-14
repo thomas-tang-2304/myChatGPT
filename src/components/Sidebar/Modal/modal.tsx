@@ -35,7 +35,7 @@ export default function modal({ setIsShowing, styles, addNewChat }: any) {
                     </div>
                     <div className='flex justify-end'>
                         <button onClick={() => { setIsShowing(false) }} type="button" className={`${stylesButton} bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-gray-300`}>No</button>
-                        <button onClick={() => addNewChat(value)} type="submit" className={`${stylesButton} bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 focus:outline-none `}>Yes</button>
+                        <button onClick={addNewChat} type="submit" className={`${stylesButton} bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 focus:outline-none `}>Yes</button>
                     </div>
                 </div>
             </div>

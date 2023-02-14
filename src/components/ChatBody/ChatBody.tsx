@@ -1,4 +1,3 @@
-import { MessageStore } from '@/pages';
 import React, { useContext } from 'react';
 import ChatContent from './ChatContent/chatContent';
 import TitleHeader from './ChatHeader/titleHeader';
@@ -12,7 +11,7 @@ const ChatBody = () => {
       <TitleHeader />
       <ChatContent />
       <ChatText />
- 
+
     </div>
   );
 };
