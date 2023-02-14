@@ -1,6 +1,7 @@
 import { MessageContext } from '@/contexts/MessageContext';
 import { getMessageReponse } from '@/pages/api/apiRequest';
 import Input from '@/utils/components/Input';
+import moment from 'moment';
 import React, { useEffect, useRef, useState } from 'react'
 import { useContext } from 'react';
 import { FiSend } from "react-icons/fi";
@@ -11,12 +12,12 @@ const ChatText = () => {
 
   const messageRender = async () => {
 
-    setMessageArray((prevState: any) => [...prevState, { id: Date.now(), contentMessage: newMessage, variant: 'user' }])
+    setMessageArray((prevState: any) => [...prevState, { id: Date.now(), contentMessage: newMessage, variant: 'user', time: moment().format('LT')}])
 
     setIsLoading(true)
     const response = await getMessageReponse(newMessage);
 
-    setMessageArray((prevState: any) => [...prevState, { id: Date.now(), contentMessage: response?.data?.choices[0]?.text, variant: 'bot' }])
+    setMessageArray((prevState: any) => [...prevState, { id: Date.now(), contentMessage: response?.data?.choices[0]?.text, variant: 'bot', time: moment().format('LT') }])
     setIsLoading(false)
   }
 
