@@ -20,7 +20,7 @@ const ChatText = () => {
   }
 
   const saveMessage = () => {
-    if (messageArray.length !== 0) {
+    if (messageArray.length > 0) {
       localStorage.setItem('newMessage', JSON.stringify(messageArray));
     }
   }
@@ -46,6 +46,7 @@ const ChatText = () => {
   }, [messageArray])
 
   useEffect(() => {
+
     const messData = localStorage.getItem('newMessage')
     if (messData !== null) {
       setMessageArray(JSON.parse(messData))

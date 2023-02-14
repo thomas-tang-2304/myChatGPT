@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import ListIntent from './ListIntent/listIntent';
 import Button from './Button/button';
 import Modal from './Modal/modal';
+import { MessageContext } from '@/contexts/MessageContext';
 
 const stylesNewChat = `
   text-white 
@@ -60,16 +61,21 @@ export default function Sidebar({ theme, setTheme }: any) {
   const [listIntent, setListIntent] = useState<any>([]);
   const [currentChatScrollHeight, setCurrentChatScrollHeight] = useState(ChatTitles?.current?.scrollHeight)
 
+  const { setIsReset } = useContext<any>(MessageContext)
+
   const handleRemoveChat = (id: any) => {
     const newList = listIntent.filter((item: any) => item.id !== id);
 
     setListIntent(newList);
     console.log('oki')
+
+
   };
 
 
 
   const addNewChat = (value: string) => {
+    setIsReset(true)
 
     setIsShowing(false)
   };

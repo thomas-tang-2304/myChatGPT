@@ -11,9 +11,10 @@ const MessageContext = createContext(DEFAULT_VALUE);
 const MessageProvider: React.FC<MessageProps> = ({ children }): any => {
 
   const [messageArray, setMessageArray] = useState(DEFAULT_VALUE);
+  const [isReset, setIsReset] = useState(false)
 
   return (
-    <MessageContext.Provider value={[messageArray, setMessageArray] as any}>
+    <MessageContext.Provider value={[messageArray, setMessageArray, isReset, setIsReset] as any}>
       {children}
     </MessageContext.Provider>
   );
