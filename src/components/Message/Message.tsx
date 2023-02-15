@@ -57,6 +57,14 @@ export const Message: React.FC<Message> = ({
             )}
           >
             {children}
+            {/* (isLastMessage ? (<TypeAnimation
+              sequence={[
+                contentMessage, 1000
+              ]}
+              wrapper="div"
+              repeat={Infinity}
+            />) : contentMessage) */}
+
             {contentMessage}
 
 
