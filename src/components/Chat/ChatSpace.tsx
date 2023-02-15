@@ -7,22 +7,9 @@ import ChatBody from '../ChatBody/ChatBody';
 import useWindowSize from '@/customHooks/useWindowSize';
 
 
-export interface ChatProps {
+import { MessageProvider } from '@/contexts/MessageContext';
+import { ChatProps,UserInfo } from '@/utils/interfaces';
 
-    info: UserInfo
-    theme: any;
-    setTheme: any;
-}
-
-export interface UserInfo {
-    image: {
-        width: number;
-        height: number;
-        url: StaticImageData;
-    },
-    fullName: string;
-    id: string
-}
 
 
 export default function ChatSpace({ info }: ChatProps) {

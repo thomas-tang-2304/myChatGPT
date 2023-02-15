@@ -1,10 +1,10 @@
 import Head from 'next/head';
 import MyImg from '@/public/images/myImg.jpg'
 
-import ChatSpace, { UserInfo } from '@/components/Chat/ChatSpace';
+import ChatSpace from '@/components/Chat/ChatSpace';
 import React, { useContext } from 'react';
 import { MessageContext, MessageProvider } from '@/contexts/MessageContext';
-
+import { UserInfo } from '@/utils/interfaces';
 
 export default function Home() {
   const info: UserInfo = {

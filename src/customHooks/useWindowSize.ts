@@ -1,9 +1,5 @@
 import { useState, useEffect } from 'react'
-
-interface WindowSize {
-    width?: number
-    height?: number
-}
+import { WindowSize } from '@/utils/interfaces';
 
 function useWindowSize(): WindowSize {
     const [windowSize, setWindowSize] = useState({

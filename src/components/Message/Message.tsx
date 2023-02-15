@@ -5,8 +5,8 @@ type Message = {
   id?: number
   variant?: 'bot' | 'user';
   urlAvatar?: string;
-  contentMessage?: string;
-  time?: any;
+  contentMessage?: any;
+  time?: string;
 };
 
 export const Message: React.FC<Message> = ({
@@ -31,7 +31,7 @@ export const Message: React.FC<Message> = ({
       >
 
         <div className="flex items-center justify-center w-10 h-10 rounded-ful">
-          <img className="object-cover w-full h-full rounded-full" src={urlAvatar} alt="" />
+          <img className="object-cover w-full h-full rounded-full" src={urlAvatar} alt="Avatar" />
         </div>
         <div
           className={clsx(
@@ -41,7 +41,7 @@ export const Message: React.FC<Message> = ({
         >
           <div
             className={clsx(
-              'relative text-sm bg-white py-2 px-4 shadow break-words',
+              'relative text-md back-frame py-2 px-4 shadow-lg text-color break-words',
               variant === 'bot'
                 ? 'bg-white rounded-r-lg rounded-bl-lg'
                 : 'bg-indigo-200 rounded-l-lg rounded-br-lg',

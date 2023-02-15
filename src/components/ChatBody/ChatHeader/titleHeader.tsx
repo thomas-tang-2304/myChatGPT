@@ -10,6 +10,7 @@ import { ModalContext } from '@/contexts/ModalContext';
 const TitleHeader = () => {
   const [onClickBar, setOnClickBar] = useState(false)
   const [theme, setTheme] = useContext(ModalContext)
+ 
 
   const size = useWindowSize();
   const width = size.width

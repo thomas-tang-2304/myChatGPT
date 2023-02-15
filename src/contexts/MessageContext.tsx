@@ -1,11 +1,8 @@
-import { createContext, useEffect, useRef, useState } from 'react';
+import { createContext, useState } from 'react';
 
 type MessageProps = {
   children: React.ReactNode
 }
-
-
-const DEFAULT_VALUE: [] = []
 
 const MessageContext = createContext([]);
 
