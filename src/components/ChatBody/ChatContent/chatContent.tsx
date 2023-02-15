@@ -8,19 +8,19 @@ import React, { useContext, useEffect, useRef } from 'react';
 type Props = {};
 
 const ChatContent = ({ lastMessage }: any) => {
-  const { messageArray, isLoading, setMessageArray } = useContext<any>(MessageContext || "");
+  const { messageArray, isLoading } = useContext<any>(MessageContext || "");
   const messageEndRef = useRef<any>(null)
   const renderMessage = () => {
     return (<>
       {messageArray?.map((message: any, index: number) => {
-        return (<Message
+        <Message
           key={index}
           variant={message.variant}
           contentMessage={message.contentMessage}
           time={message.time}
-        />)
+        />
       })}
-      
+
       {isLoading && <Message
         key={messageArray.length + 1}
         variant={"bot"}
