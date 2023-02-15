@@ -1,17 +1,15 @@
-import { Message } from '@/components/Message/Message';
-import MessageSkeleton from '@/components/MessageSkeleton/MessageSkeleton';
+import React, { useContext, useEffect, useRef } from 'react';
 import { MessageContext } from '@/contexts/MessageContext';
 
-import moment from 'moment';
-import React, { useContext, useEffect, useRef } from 'react';
+import { Message } from '@/components/Message/Message';
+import MessageSkeleton from '@/components/MessageSkeleton/MessageSkeleton';
+import { MessageType } from '@/utils/interfaces';
 
-type Props = {};
-
-const ChatContent = (props: Props) => {
+const ChatContent = () => {
   const { messageArray, isLoading } = useContext<any>(MessageContext || "");
-  const messageEndRef = useRef<any>(null)
+  const messageEndRef = useRef<HTMLDivElement>(null)
   const renderMessage = () => {
-    return messageArray?.map((message: any, index: number) => {
+    return messageArray?.map((message: MessageType, index: number) => {
       return (<Message key={index}
         variant={message.variant}
         contentMessage={message.contentMessage}
