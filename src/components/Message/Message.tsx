@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { TypeAnimation } from 'react-type-animation';
 import { MessageContext } from '@/contexts/MessageContext';
 
 type Message = {
+  isLastMessage?: boolean;
   id?: number
   variant?: 'bot' | 'user';
   urlAvatar?: string;
@@ -11,14 +12,18 @@ type Message = {
   time?: string;
 };
 
+
+
 export const Message: React.FC<Message> = ({
   variant,
   urlAvatar = (variant === 'bot') ? 'images/ChatGPTLogo.png' : 'images/default-avatar.png',
   contentMessage,
   time,
-  children
+  children,
+  isLastMessage = false
+
 }) => {
-  const { IsTyping } = useContext<any>(MessageContext);
+
 
   return (
     <div
@@ -52,16 +57,9 @@ export const Message: React.FC<Message> = ({
             )}
           >
             {children}
-            {(variant === 'bot' ? (
-              <TypeAnimation
-                sequence={[
-                  `${contentMessage ? contentMessage : ''}`
-                ]}
-                wrapper="div"
-                repeat={0}
-                cursor={false}
-              />
-            ) : contentMessage)}
+            {contentMessage}
+
+
 
           </div>
           <span className={clsx(

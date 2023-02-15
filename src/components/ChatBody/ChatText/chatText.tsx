@@ -1,5 +1,5 @@
 import { MessageContext } from '@/contexts/MessageContext';
-import { getMessageReponse } from '@/pages/api/apiRequest';
+import { finishedText, getMessageReponse, refreshText } from '@/pages/api/apiRequest';
 import Input from '@/utils/components/Input';
 import { MessageType } from '@/utils/interfaces';
 import moment from 'moment';
@@ -7,20 +7,32 @@ import React, { useEffect, useState } from 'react'
 import { useContext } from 'react';
 import { FiSend } from "react-icons/fi";
 
-const ChatText = () => {
+
+let stopReason = "length";
+
+const ChatText = ({ lastMessage, setLastMessage }: any) => {
   const [newMessage, setNewMessages] = useState('');
   const { messageArray, setMessageArray, setIsLoading, isLoading, setIsTyping } = useContext<any>(MessageContext);
+
+
 
   const messageRender = async () => {
 
     setMessageArray((prevState: [MessageType]) => [...prevState, { id: Date.now(), contentMessage: newMessage, variant: 'user', time: moment().format('LT') }])
 
     setIsLoading(true)
-    const response = await getMessageReponse(newMessage);
 
-    setMessageArray((prevState: [MessageType]) => [...prevState, { id: Date.now(), contentMessage: response?.data?.choices[0]?.text, variant: 'bot', time: moment().format('LT') }])
+    stopReason = await getMessageReponse(newMessage);
+    while (stopReason == "length") {
+      setLastMessage(finishedText)
+      stopReason = await getMessageReponse(finishedText);
+
+    }
+    setLastMessage(finishedText)
+    setMessageArray((prevState: any) => [...prevState, { id: Date.now(), contentMessage: finishedText, variant: 'bot', time: moment().format('LT') }])
+
+
     setIsLoading(false)
-
   }
   const handleLocal = () => {
     if (messageArray.length !== 0) {
@@ -46,7 +58,10 @@ const ChatText = () => {
         messageRender();
       }
       setNewMessages('')
+      refreshText()
+      setLastMessage("")
     }
+
   }
 
   const hanldeClick = async () => {
@@ -55,6 +70,8 @@ const ChatText = () => {
       messageRender();
     }
     setNewMessages('')
+    refreshText()
+    setLastMessage("")
   }
   useEffect(() => {
 
