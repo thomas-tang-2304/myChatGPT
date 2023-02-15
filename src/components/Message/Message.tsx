@@ -1,12 +1,15 @@
 import React from 'react';
 import clsx from 'clsx';
+import Markdown from '../Markdown';
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
+import remarkGfm from 'remark-gfm'
 
 type Message = {
   id?: number
   variant?: 'bot' | 'user';
   urlAvatar?: string;
   contentMessage?: string;
-  time?: any;
+  time?: string;
 };
 
 export const Message: React.FC<Message> = ({
@@ -14,8 +17,7 @@ export const Message: React.FC<Message> = ({
   urlAvatar = (variant === 'bot') ? 'images/ChatGPTLogo.png' : 'images/default-avatar.png',
   contentMessage,
   time,
-  children
-}) => {
+  children}) => {
   return (
     <div
       className={clsx(
@@ -30,7 +32,7 @@ export const Message: React.FC<Message> = ({
         )}
       >
         <div className="flex items-center justify-center w-10 h-10 rounded-ful">
-          <img className="object-cover w-full h-full rounded-full" src={urlAvatar} alt="" />
+          <img className="object-cover w-full h-full rounded-full" src={urlAvatar} alt="Avatar"/>
         </div>
         <div
           className={clsx(
@@ -47,7 +49,8 @@ export const Message: React.FC<Message> = ({
             )}
           >
             {children}
-            {contentMessage}
+            <Markdown content={contentMessage} />
+            {/* {contentMessage} */}
           </div>
           <span className={clsx(
             'flex text-xs text-gray-500 mt-1',

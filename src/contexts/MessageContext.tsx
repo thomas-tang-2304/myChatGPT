@@ -1,4 +1,4 @@
-import { createContext,useState } from 'react';
+import { createContext, useState } from 'react';
 
 type MessageProps = {
   children: React.ReactNode
@@ -7,7 +7,6 @@ type MessageProps = {
 const MessageContext = createContext([]);
 
 const MessageProvider: React.FC<MessageProps> = ({ children }): any => {
-
   const [isLoading, setIsLoading] = useState(false)
   const [messageArray, setMessageArray] = useState([]);
 

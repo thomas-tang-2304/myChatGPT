@@ -1,6 +1,7 @@
 import { MessageContext } from '@/contexts/MessageContext';
 import { getMessageReponse } from '@/pages/api/apiRequest';
 import Input from '@/utils/components/Input';
+import { MessageType } from '@/utils/interfaces';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react'
 import { useContext } from 'react';
@@ -12,15 +13,14 @@ const ChatText = () => {
 
   const messageRender = async()=>{
 
-    setMessageArray((prevState: any) => [...prevState, { id: Date.now(), contentMessage: newMessage, variant: 'user', time: moment().format('LT') }])
+    setMessageArray((prevState: [MessageType]) => [...prevState, { id: Date.now(), contentMessage: newMessage, variant: 'user', time: moment().format('LT') }])
 
     setIsLoading(true)
     const response = await getMessageReponse(newMessage);
 
-    setMessageArray((prevState: any) => [...prevState, { id: Date.now(), contentMessage: response?.data?.choices[0]?.text, variant: 'bot', time: moment().format('LT') }])
-    
+    setMessageArray((prevState: [MessageType]) => [...prevState, { id: Date.now(), contentMessage: response?.data?.choices[0]?.text, variant: 'bot', time: moment().format('LT') }])
     setIsLoading(false)
-  
+
   }
   const handleLocal =()=>{
     if(messageArray.length !==0){
@@ -40,7 +40,6 @@ const ChatText = () => {
     
   const hanldeKeyDown = async (evt: any) => {
     if (evt.key === 'Enter' && newMessage) {
-
       if (newMessage !== '') {
         messageRender();
       }
