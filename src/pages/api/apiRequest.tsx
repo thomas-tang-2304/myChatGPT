@@ -5,7 +5,7 @@ export const getMessageReponse = async (messagecontent: any): Promise<any> => {
     apiKey:'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',
     
   });
-  
+
 const openai = new OpenAIApi(configuration);
 
 const response = await openai.createCompletion({

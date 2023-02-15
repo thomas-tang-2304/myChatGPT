@@ -6,6 +6,9 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useContext } from 'react';
 import { FiSend } from "react-icons/fi";
 
+
+
+
 const ChatText = () => {
   const [newMessage, setNewMessages] = useState('');
   const { messageArray, setMessageArray, setIsLoading, isLoading, isReset, setIsReset } = useContext<any>(MessageContext);

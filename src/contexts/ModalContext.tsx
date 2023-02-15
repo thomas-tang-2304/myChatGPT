@@ -1,9 +1,5 @@
 import { createContext, useState } from 'react'
 
-// interface ModalProps {
-//     theme: string
-// }
-
 export const ModalContext = createContext([])
 
 const ModalProvider: React.FC = ({ children }) => {

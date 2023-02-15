@@ -3,12 +3,11 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import GoogleLoginButton from '@/utils/components/GoogleButton';
-
 import ChatGPTLogo from '@/public/images/ChatGPTLogo.png';
 
 export default function index() {
     const [isDisplayPassword, setDisplayPassword] = useState(false);
-    const handleChangeDisplayPassword = () => {
+    const handleChangeDisplayPassword = (): void => {
         setDisplayPassword((prev) => !prev);
     };
 
@@ -88,7 +87,8 @@ export default function index() {
                 <hr className={`mb-3 w-3/4 text-center gap-3 flex flex-col`} />
 
                 <div className={`w-3/4`}>
-                    <GoogleLoginButton />
+
+                        <GoogleLoginButton />
                 </div>
             </div>
         </ div>

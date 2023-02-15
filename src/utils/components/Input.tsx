@@ -1,19 +1,6 @@
 import React, { InputHTMLAttributes, useState } from 'react'
+import { InputProps } from '../interfaces';
 
-
-export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-    background: string
-    button: {
-        isContained: boolean;
-        element: JSX.Element | undefined;
-        background: string | undefined;
-    }
-    type: string,
-    value?:string,
-    onKeyDown?: any,
-    handleChange?:any,
-    placeholderText: string;
-}
 
 const Input = ({ background, button, placeholderText,type,handleChange,value,onKeyDown}: InputProps) => {
     return (

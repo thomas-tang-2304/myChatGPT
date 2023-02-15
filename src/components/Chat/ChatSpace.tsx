@@ -1,4 +1,3 @@
-import { StaticImageData } from 'next/image';
 import React, { useState, useEffect } from 'react'
 import { VscCircleLargeFilled } from 'react-icons/vsc'
 import Image from 'next/image'
@@ -8,23 +7,8 @@ import useWindowSize from '@/customHooks/useWindowSize';
 
 
 import { MessageProvider } from '@/contexts/MessageContext';
+import { ChatProps,UserInfo } from '@/utils/interfaces';
 
-export interface ChatProps {
-
-    info: UserInfo
-    theme: any;
-    setTheme: any;
-}
-
-export interface UserInfo {
-    image: {
-        width: number;
-        height: number;
-        url: StaticImageData;
-    },
-    fullName: string;
-    id: string
-}
 
 
 export default function ChatSpace({ info, theme, setTheme }: ChatProps) {
