@@ -14,14 +14,12 @@ export const getMessageReponse = async (messagecontent: any): Promise<any> => {
 
   const response = await openai.createCompletion({
     model: "text-davinci-003",
-    prompt: `Human: ${messagecontent}`,
+    prompt: `${messagecontent}`,
     temperature: 0.9,
-    max_tokens: 15,
+    max_tokens: 16,
     top_p: 1,
     frequency_penalty: 0,
     presence_penalty: 0.6,
-    stop: [" Human:", " AI:"],
-    n: 5
   });
 
 

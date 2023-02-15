@@ -12,21 +12,21 @@ const ChatContent = ({ lastMessage }: any) => {
   const messageEndRef = useRef<any>(null)
   const renderMessage = () => {
     return (<>
-      {messageArray?.map((message: any, index: number) => {
+      {messageArray?.map((message: any, index: number) =>
         <Message
           key={index}
           variant={message.variant}
           contentMessage={message.contentMessage}
           time={message.time}
         />
-      })}
+      )}
 
-      {isLoading && <Message
+      {isLoading && (lastMessage ? <Message
         key={messageArray.length + 1}
         variant={"bot"}
         contentMessage={lastMessage}
         time={new Date().getTime()}
-      />}
+      /> : <MessageSkeleton />)}
 
     </>
     )
@@ -39,7 +39,6 @@ const ChatContent = ({ lastMessage }: any) => {
   return (
     <div className="w-full h-full overflow-y-scroll">
       {renderMessage()}
-      {isLoading && <MessageSkeleton />}
       <div ref={messageEndRef} />
     </div>
 

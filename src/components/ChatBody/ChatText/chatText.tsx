@@ -23,9 +23,9 @@ const ChatText = ({ lastMessage, setLastMessage }: any) => {
 
     stopReason = await getMessageReponse(newMessage);
     while (stopReason == "length") {
-      stopReason = await getMessageReponse(newMessage);
-
       setLastMessage(finishedText)
+      stopReason = await getMessageReponse(finishedText);
+
     }
     setLastMessage(finishedText)
     setMessageArray((prevState: any) => [...prevState, { id: Date.now(), contentMessage: finishedText, variant: 'bot', time: moment().format('LT') }])
@@ -48,7 +48,9 @@ const ChatText = ({ lastMessage, setLastMessage }: any) => {
       }
       setNewMessages('')
       refreshText()
+      setLastMessage("")
     }
+
   }
 
   const hanldeClick = async () => {
@@ -56,6 +58,8 @@ const ChatText = ({ lastMessage, setLastMessage }: any) => {
       messageRender();
     }
     setNewMessages('')
+    refreshText()
+    setLastMessage("")
   }
 
   useEffect(() => {
