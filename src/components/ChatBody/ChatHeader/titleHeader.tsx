@@ -47,7 +47,7 @@ const TitleHeader = () => {
       ) : ''}
 
 
-      <h1 className='w-full text-color text-lg'>New Chat Box</h1>
+      <h1 className='w-full text-lg text-color'>New Chat Box</h1>
 
       {width && width < 640 ? (
         <div className='h-full flex justify-center items-center py-2 px-3 cursor-pointer hover:text-slate-200'>
