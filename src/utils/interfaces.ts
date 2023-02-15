@@ -1,6 +1,6 @@
 import { InputHTMLAttributes } from 'react';
 import { StaticImageData } from 'next/image';
-export interface User {
+interface User {
   email: string;
   email_verified: boolean;
   name: string;
@@ -8,14 +8,14 @@ export interface User {
   given_name: string;
   family_name: string;
 }
-export interface ChatProps {
+interface ChatProps {
 
   info: UserInfo
   theme: any;
   setTheme: any;
 }
 
-export interface UserInfo {
+interface UserInfo {
   image: {
       width: number;
       height: number;
@@ -25,7 +25,7 @@ export interface UserInfo {
   id: string
 }
 
-export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   background: string
   button: {
       isContained: boolean;
@@ -38,7 +38,16 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   handleChange?:any,
   placeholderText: string;
 }
-export interface WindowSize {
+interface WindowSize {
   width?: number
   height?: number
 }
+
+interface MessageType {
+  id: number
+  variant: "bot" | "user"
+  contentMessage: string
+  time: string
+}
+
+export type {User, ChatProps, UserInfo, InputProps, WindowSize, MessageType}
