@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import { TypeAnimation } from 'react-type-animation';
 
 type Message = {
   id?: number
@@ -31,7 +32,7 @@ export const Message: React.FC<Message> = ({
       >
 
         <div className="flex items-center justify-center w-10 h-10 rounded-ful">
-          <img className="object-cover w-full h-full rounded-full" src={urlAvatar} alt="Avatar"/>
+          <img className="object-cover w-full h-full rounded-full" src={urlAvatar} alt="Avatar" />
         </div>
         <div
           className={clsx(
@@ -48,7 +49,17 @@ export const Message: React.FC<Message> = ({
             )}
           >
             {children}
-            {contentMessage}
+            {variant === 'bot' ? (
+              <TypeAnimation
+                sequence={[
+                  `${contentMessage ? contentMessage : ''}`
+                ]}
+                wrapper="div"
+                repeat={0}
+                cursor={false}
+              />
+            ) : contentMessage}
+
           </div>
           <span className={clsx(
             'flex text-xs text-gray-500 mt-1',
