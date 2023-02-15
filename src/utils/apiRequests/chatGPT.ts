@@ -20,6 +20,7 @@ export const sendAPIChatGPT = async (message: string): Promise<any> => {
     frequency_penalty: 0,
     presence_penalty: 0.6,
     stop: [' Human:', ' AI:'],
+    n: 5
   });
 
   if (response?.data?.choices[0]?.finish_reason === 'stop')
