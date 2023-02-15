@@ -12,7 +12,7 @@ const cookies = new Cookies();
 
 
 
-export default function GoogleAuth() {
+export default function GoogleAuth({ setIsValid, isValid }: any) {
     const router = useRouter();
 
     const [userCredentials, setUserCredentials] = useState<any>(null);
@@ -22,12 +22,21 @@ export default function GoogleAuth() {
 
 
         const newToken = jwt.sign({ email, email_verified, name, picture, given_name, family_name }, "chatGPT - digiex")
-        cookies.set("cred-token", newToken)
-        setUserCredentials(newToken)
+        if (email.includes("@digiex.group")) {
+            cookies.set("cred-token", newToken)
+            setIsValid(true)
+            router.push("/")
+        }
+        else {
+            setIsValid(false);
+            setTimeout(() => {
+                setIsValid(null)
+            }, 4000)
+        }
     }
 
     useEffect(() => {
-        const isCookieSet = cookies.get("cred-token");
+        const isCookieSet = cookies.get("cred-token") ? true : false;
         console.log(isCookieSet);
 
         if (isCookieSet)
@@ -39,7 +48,6 @@ export default function GoogleAuth() {
     const CLI_ID: any = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
 
     return (
-
         <GoogleOAuthProvider clientId={CLI_ID}>
             <div className='flex justify-center w-full mx-auto'>
 
