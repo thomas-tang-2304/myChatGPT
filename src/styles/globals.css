@@ -23,6 +23,7 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+/* light template class name */
 .light {
   --text-color: black;
   --background: white;
@@ -31,37 +32,46 @@ body {
   --third: #aaa;
 }
 
-.loginBackground {
-  background-image: url('/images/background.png');
-}
-
+/* dark template class name */
 .dark {
+  
   --text-color: white;
   --background: rgb(55 65 81);
   --primary: rgb(17 24 39);
   --secondary: #ecec5e;
   --third: #aaa;
 }
+.loginBackground {
+  
+  background-image: url('/images/background.png');
+}
 
 .text-color {
+  transition: background-color 0.5s ease;
   color: var(--text-color);
 }
 
 .back-frame {
+  transition: background-color 0.5s ease;
   background-color: var(--background);
 }
 
 .back-primary {
+  transition: background-color 0.5s ease;
   background-color: var(--primary);
 }
 
 .back-secondary {
+  transition: background-color 0.5s ease;
   color: var(--secondary);
 }
 
 .back-third {
+  transition: background-color 0.5s ease;
   background: var(--third);
 }
+
+/* scrollbar cumstom */
 
 /* scroll bar custom */
 ::-webkit-scrollbar {
@@ -128,3 +138,4 @@ body {
     opacity: 1;
   }
 }
+/* ------------------ end scrollbar custom ------------------ */
