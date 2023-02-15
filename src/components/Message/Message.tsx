@@ -1,21 +1,30 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import clsx from 'clsx';
+import { TypeAnimation } from 'react-type-animation';
+import { MessageContext } from '@/contexts/MessageContext';
 
 type Message = {
+  isLastMessage?: boolean;
   id?: number
   variant?: 'bot' | 'user';
   urlAvatar?: string;
-  contentMessage?: string;
+  contentMessage?: any;
   time?: string;
 };
+
+
 
 export const Message: React.FC<Message> = ({
   variant,
   urlAvatar = (variant === 'bot') ? 'images/ChatGPTLogo.png' : 'images/default-avatar.png',
   contentMessage,
   time,
-  children
+  children,
+  isLastMessage = false
+
 }) => {
+
+
   return (
     <div
       className={clsx(
@@ -31,7 +40,7 @@ export const Message: React.FC<Message> = ({
       >
 
         <div className="flex items-center justify-center w-10 h-10 rounded-ful">
-          <img className="object-cover w-full h-full rounded-full" src={urlAvatar} alt="Avatar"/>
+          <img className="object-cover w-full h-full rounded-full" src={urlAvatar} alt="Avatar" />
         </div>
         <div
           className={clsx(
@@ -41,7 +50,7 @@ export const Message: React.FC<Message> = ({
         >
           <div
             className={clsx(
-              'relative text-sm bg-white py-2 px-4 shadow break-words',
+              'relative text-md message-color  py-2 px-4 shadow-lg text-color break-words',
               variant === 'bot'
                 ? 'bg-white rounded-r-lg rounded-bl-lg'
                 : 'bg-indigo-200 rounded-l-lg rounded-br-lg',
@@ -49,6 +58,9 @@ export const Message: React.FC<Message> = ({
           >
             {children}
             {contentMessage}
+
+
+
           </div>
           <span className={clsx(
             'flex text-xs text-gray-500 mt-1',

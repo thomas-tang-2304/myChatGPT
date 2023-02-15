@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import { StaticImageData } from 'next/image';
+import React, { useState, useEffect, useContext } from 'react'
 import { VscCircleLargeFilled } from 'react-icons/vsc'
 import Image from 'next/image'
 import Sidebar from '../Sidebar';
@@ -7,11 +8,11 @@ import useWindowSize from '@/customHooks/useWindowSize';
 
 
 import { MessageProvider } from '@/contexts/MessageContext';
-import { ChatProps,UserInfo } from '@/utils/interfaces';
+import { ChatProps, UserInfo } from '@/utils/interfaces';
 
 
 
-export default function ChatSpace({ info, theme, setTheme }: ChatProps) {
+export default function ChatSpace({ info }: ChatProps) {
 
     const size = useWindowSize();
     const width = size.width
@@ -21,7 +22,7 @@ export default function ChatSpace({ info, theme, setTheme }: ChatProps) {
         }>
 
             {width && width >= 640 ? (<div className={`w-80`}>
-                <Sidebar theme={theme} setTheme={setTheme} />
+                <Sidebar />
             </div>) : ''}
 
             <div className={`h-full w-full bg-secondary rounded-r-xl`}>

@@ -1,5 +1,6 @@
 import { InputHTMLAttributes } from 'react';
 import { StaticImageData } from 'next/image';
+
 interface User {
   email: string;
   email_verified: boolean;
