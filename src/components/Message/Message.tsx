@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import clsx from 'clsx';
 import { TypeAnimation } from 'react-type-animation';
+import { MessageContext } from '@/contexts/MessageContext';
 
 type Message = {
   id?: number
@@ -17,6 +18,8 @@ export const Message: React.FC<Message> = ({
   time,
   children
 }) => {
+  const { IsTyping } = useContext<any>(MessageContext);
+
   return (
     <div
       className={clsx(
@@ -49,7 +52,7 @@ export const Message: React.FC<Message> = ({
             )}
           >
             {children}
-            {variant === 'bot' ? (
+            {(variant === 'bot' ? (
               <TypeAnimation
                 sequence={[
                   `${contentMessage ? contentMessage : ''}`
@@ -58,7 +61,7 @@ export const Message: React.FC<Message> = ({
                 repeat={0}
                 cursor={false}
               />
-            ) : contentMessage}
+            ) : contentMessage)}
 
           </div>
           <span className={clsx(

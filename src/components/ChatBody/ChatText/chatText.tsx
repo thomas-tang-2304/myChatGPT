@@ -9,7 +9,7 @@ import { FiSend } from "react-icons/fi";
 
 const ChatText = () => {
   const [newMessage, setNewMessages] = useState('');
-  const { messageArray, setMessageArray, setIsLoading, isLoading } = useContext<any>(MessageContext);
+  const { messageArray, setMessageArray, setIsLoading, isLoading, setIsTyping } = useContext<any>(MessageContext);
 
   const messageRender = async () => {
 
@@ -42,6 +42,7 @@ const ChatText = () => {
     if (evt.key === 'Enter' && newMessage) {
 
       if (newMessage !== '') {
+        setIsTyping(true)
         messageRender();
       }
       setNewMessages('')
@@ -50,12 +51,14 @@ const ChatText = () => {
 
   const hanldeClick = async () => {
     if (newMessage !== '') {
+      setIsTyping(true)
       messageRender();
     }
     setNewMessages('')
   }
   useEffect(() => {
 
+    setIsTyping(false)
     const messData = localStorage.getItem('newMessage')
     if (messData !== null) {
       setMessageArray(JSON.parse(messData))

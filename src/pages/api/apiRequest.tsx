@@ -17,7 +17,7 @@ export const getMessageReponse = async (messagecontent: any): Promise<any> => {
     model: "text-davinci-003",
     prompt: `${messagecontent}`,
     temperature: 0.9,
-    max_tokens: 2048,
+    max_tokens: 100,
     top_p: 1,
     frequency_penalty: 0,
     presence_penalty: 0.6,
@@ -33,7 +33,6 @@ export const getMessageReponse = async (messagecontent: any): Promise<any> => {
     }
   }
 
-  // return finishedText
 
   return response
 };
