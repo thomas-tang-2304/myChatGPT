@@ -27,6 +27,7 @@ body {
 .light {
   --text-color: black;
   --background: white;
+  --message: rgb(252, 252, 252);
   --primary: #4da3ff;
   --secondary: #fff;
   --third: #aaa;
@@ -34,20 +35,22 @@ body {
 
 /* dark template class name */
 .dark {
-  
   --text-color: white;
+  --message: rgb(63, 78, 102);
   --background: rgb(55 65 81);
   --primary: rgb(17 24 39);
   --secondary: #ecec5e;
   --third: #aaa;
 }
 .loginBackground {
-  
   background-image: url('/images/background.png');
 }
-
+.message-color {
+  transition: background 0.5s ease;
+  background: var(--message);
+}
 .text-color {
-  transition: background-color 0.5s ease;
+  transition: color 0.5s ease;
   color: var(--text-color);
 }
 

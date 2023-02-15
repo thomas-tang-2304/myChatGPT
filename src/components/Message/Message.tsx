@@ -41,7 +41,7 @@ export const Message: React.FC<Message> = ({
         >
           <div
             className={clsx(
-              'relative text-md back-frame py-2 px-4 shadow-lg text-color break-words',
+              'relative text-md message-color  py-2 px-4 shadow-lg text-color break-words',
               variant === 'bot'
                 ? 'bg-white rounded-r-lg rounded-bl-lg'
                 : 'bg-indigo-200 rounded-l-lg rounded-br-lg',
