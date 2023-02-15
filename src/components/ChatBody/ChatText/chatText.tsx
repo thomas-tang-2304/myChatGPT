@@ -2,16 +2,13 @@ import { MessageContext } from '@/contexts/MessageContext';
 import { getMessageReponse } from '@/pages/api/apiRequest';
 import Input from '@/utils/components/Input';
 import moment from 'moment';
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useContext } from 'react';
 import { FiSend } from "react-icons/fi";
 
-
-
-
 const ChatText = () => {
   const [newMessage, setNewMessages] = useState('');
-  const { messageArray, setMessageArray, setIsLoading, isLoading, isReset, setIsReset } = useContext<any>(MessageContext);
+  const { messageArray, setMessageArray, setIsLoading, isLoading} = useContext<any>(MessageContext);
 
   const messageRender = async()=>{
 
@@ -66,7 +63,6 @@ const ChatText = () => {
   }, [])
 
   return (
-
     <Input
       background="bg-[#EBEBEB]"
       button={{
@@ -88,4 +84,5 @@ const ChatText = () => {
     />
   )
 }
+
 export default ChatText;

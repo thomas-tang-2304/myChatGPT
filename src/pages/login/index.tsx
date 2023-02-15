@@ -1,12 +1,9 @@
 import Login from "@/components/Login";
 // import BackgroundImg from '@/public/images/background.png'
-
 import Head from "next/head";
 import React from "react";
 
 const login = () => {
-
-
 
     return (
         <>

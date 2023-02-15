@@ -29,7 +29,6 @@ export const Message: React.FC<Message> = ({
           variant === 'bot' ? null : 'flex-row-reverse',
         )}
       >
-
         <div className="flex items-center justify-center w-10 h-10 rounded-ful">
           <img className="object-cover w-full h-full rounded-full" src={urlAvatar} alt="" />
         </div>

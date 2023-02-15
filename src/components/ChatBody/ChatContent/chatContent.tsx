@@ -1,8 +1,6 @@
 import { Message } from '@/components/Message/Message';
 import MessageSkeleton from '@/components/MessageSkeleton/MessageSkeleton';
 import { MessageContext } from '@/contexts/MessageContext';
-
-import moment from 'moment';
 import React, { useContext, useEffect, useRef } from 'react';
 
 type Props = {};
@@ -30,7 +28,6 @@ const ChatContent = (props: Props) => {
       {isLoading && <MessageSkeleton />}
       <div ref={messageEndRef} />
     </div>
-
   );
 };
 
