@@ -1,0 +1,18 @@
+.popupOpen {
+  position: absolute;
+  top: -100px;
+  animation: popup 4s;
+}
+
+@keyframes popup {
+  0% {
+    top: 0px;
+  }
+  10% {
+    top: 3rem;
+  }
+
+  100% {
+    top: 3rem;
+  }
+}
