@@ -60,9 +60,11 @@ export const Message: React.FC<Message> = ({
 
 
 
-            {contentMessage}
+            {/* {contentMessage} */}
 
-            {/* <ReactMarkdown>{contentMessage}</ReactMarkdown> */}
+            <ReactMarkdown remarkPlugins={[[remarkGfm, { singleTilde: false }]]}>
+              {contentMessage}
+            </ReactMarkdown>
 
           </div>
           <span className={clsx(

@@ -11,21 +11,30 @@ type Props = {};
 const ChatContent = ({ lastMessage }: any) => {
   const { messageArray, isLoading } = useContext<any>(MessageContext || "");
   const messageEndRef = useRef<HTMLDivElement>(null)
+  const resLastMessage = lastMessage.replace("\n\n", "")
   const renderMessage = () => {
     return (<>
-      {messageArray?.map((message: any, index: number) =>
-        <Message
-          key={index}
-          variant={message.variant}
-          contentMessage={<span style={{ whiteSpace: "pre-line" }}>{message.contentMessage.replace("\n\n", "")}</span>}
-          time={message.time}
-        />
+      {messageArray?.map((message: any, index: number) => {
+        const resMessage = message.contentMessage.replace("\n\n", "")
+        return (
+          <Message
+            key={index}
+            variant={message.variant}
+            contentMessage={message.contentMessage}
+            // contentMessage={<span style={{ whiteSpace: "pre-line" }}>{resMessage.startsWith("?") === true ? resMessage.replace('?', '') : resMessage}</span>}
+            time={message.time}
+          />
+        )
+      }
+
+
       )}
 
       {isLoading && (lastMessage ? <Message
         key={messageArray.length + 1}
         variant={"bot"}
-        contentMessage={<span style={{ whiteSpace: "pre-line" }}>{lastMessage.replace("\n\n", "")}</span>}
+        contentMessage={lastMessage}
+        // contentMessage={<span style={{ whiteSpace: "pre-line" }}>{resLastMessage.startsWith("?") === true ? resLastMessage.replace('?', '') : resLastMessage}</span>}
         time={lastMessage.time}
       /> : <MessageSkeleton />)}
 
