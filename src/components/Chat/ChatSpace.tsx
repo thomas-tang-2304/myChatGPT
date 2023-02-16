@@ -8,7 +8,7 @@ import useWindowSize from '@/customHooks/useWindowSize';
 
 
 import { MessageProvider } from '@/contexts/MessageContext';
-import { ChatProps,UserInfo } from '@/utils/interfaces';
+import { ChatProps, UserInfo } from '@/utils/interfaces';
 
 
 
@@ -22,7 +22,7 @@ export default function ChatSpace({ info }: ChatProps) {
         }>
 
             {width && width >= 640 ? (<div className={`w-80`}>
-                <Sidebar  />
+                <Sidebar />
             </div>) : ''}
 
             <div className={`h-full w-full bg-secondary rounded-r-xl`}>

@@ -2,9 +2,11 @@ import Head from 'next/head';
 import MyImg from '@/public/images/myImg.jpg'
 
 import ChatSpace from '@/components/Chat/ChatSpace';
-import React, { useContext } from 'react';
-import { MessageContext, MessageProvider } from '@/contexts/MessageContext';
+import { MessageProvider } from '@/contexts/MessageContext';
 import { UserInfo } from '@/utils/interfaces';
+import React, { useContext } from 'react';
+import { MessageContext } from '@/contexts/MessageContext';
+
 
 export default function Home() {
   const info: UserInfo = {
@@ -34,7 +36,7 @@ export default function Home() {
       </Head>
       <div className={` container p-3 h-[100vh] w-full mx-auto ${theme}`}>
 
-        <ChatSpace info={info} theme={undefined} setTheme={undefined}/>
+        <ChatSpace info={info} theme={undefined} setTheme={undefined} />
       </div>
     </MessageProvider>
   );

@@ -12,7 +12,7 @@ let stopReason = "length";
 
 const ChatText = ({ lastMessage, setLastMessage }: any) => {
   const [newMessage, setNewMessages] = useState('');
-  const { messageArray, setMessageArray, setIsLoading, isLoading} = useContext<any>(MessageContext);
+  const { messageArray, setMessageArray, setIsLoading, isLoading, setIsTyping } = useContext<any>(MessageContext);
 
 
 
@@ -34,26 +34,27 @@ const ChatText = ({ lastMessage, setLastMessage }: any) => {
 
     setIsLoading(false)
   }
-  const handleLocal =()=>{
-    if(messageArray.length !==0){
-      localStorage.setItem('newMessage',JSON.stringify(messageArray));
+  const handleLocal = () => {
+    if (messageArray.length !== 0) {
+      localStorage.setItem('newMessage', JSON.stringify(messageArray));
     }
   }
-    useEffect(()=>{
-      handleLocal()
-    },[messageArray])
+  useEffect(() => {
+    handleLocal()
+  }, [messageArray])
 
-    useEffect(()=>{
-      const messData = localStorage.getItem('newMessage')
-      if(messData !== null){
-        setMessageArray(JSON.parse(messData))
-      }
-    },[])
-    
+  useEffect(() => {
+    const messData = localStorage.getItem('newMessage')
+    if (messData !== null) {
+      setMessageArray(JSON.parse(messData))
+    }
+  }, [])
+
   const hanldeKeyDown = async (evt: any) => {
     if (evt.key === 'Enter' && newMessage) {
 
       if (newMessage !== '') {
+        setIsTyping(true)
         messageRender();
       }
       setNewMessages('')
@@ -65,6 +66,7 @@ const ChatText = ({ lastMessage, setLastMessage }: any) => {
 
   const hanldeClick = async () => {
     if (newMessage !== '') {
+      setIsTyping(true)
       messageRender();
     }
     setNewMessages('')
@@ -73,6 +75,7 @@ const ChatText = ({ lastMessage, setLastMessage }: any) => {
   }
   useEffect(() => {
 
+    setIsTyping(false)
     const messData = localStorage.getItem('newMessage')
     if (messData !== null) {
       setMessageArray(JSON.parse(messData))

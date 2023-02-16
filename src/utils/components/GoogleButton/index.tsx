@@ -36,8 +36,7 @@ export default function GoogleAuth({ setIsValid, isValid }: any) {
     }
 
     useEffect(() => {
-        const isCookieSet = cookies.get("cred-token") ? true : false;
-        console.log(isCookieSet);
+        const isCookieSet = cookies.get("cred-token");
 
         if (isCookieSet)
             router.push('/');
