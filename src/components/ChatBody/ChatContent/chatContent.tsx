@@ -1,10 +1,10 @@
 
 import React, { useContext, useEffect, useRef } from 'react';
 import { MessageContext } from '@/contexts/MessageContext';
-
 import { Message } from '@/components/Message/Message';
 import MessageSkeleton from '@/components/MessageSkeleton/MessageSkeleton';
 import { MessageType } from '@/utils/interfaces';
+import Markdown from '@/components/Markdown';
 
 type Props = {};
 
@@ -13,13 +13,17 @@ const ChatContent = ({ lastMessage }: any) => {
   const messageEndRef = useRef<HTMLDivElement>(null)
   const renderMessage = () => {
     return (<>
-      {messageArray?.map((message: any, index: number) =>
-        <Message
-          key={index}
-          variant={message.variant}
-          contentMessage={<span style={{ whiteSpace: "pre-line" }}>{message.contentMessage.replace("\n\n", "")}</span>}
-          time={message.time}
-        />
+      {messageArray?.map((message: any, index: number) => {
+        return (
+
+          <Message
+            key={index}
+            variant={message.variant}
+            contentMessage={message.contentMessage}
+            time={message.time}
+          />
+        )
+      }
       )}
 
       {isLoading && (lastMessage ? <Message
@@ -42,7 +46,6 @@ const ChatContent = ({ lastMessage }: any) => {
       {renderMessage()}
       <div ref={messageEndRef} />
     </div>
-
   );
 };
 

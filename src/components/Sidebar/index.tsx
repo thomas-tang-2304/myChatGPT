@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import ListIntent from './ListIntent/listIntent';
 import Button from './Button/button';
 import Modal from './Modal/modal';
@@ -117,7 +117,6 @@ export default function Sidebar({ theme, setTheme, text, setText }: any) {
           id={"chat-title-scroller"}
           ref={ChatTitles}
         >
-
           {Array.from(listIntent)?.map((item: any) =>
             <ListIntent item={item} onclick={() => handleRemoveChat(item.id)} styles={stylesNewChat} />
           )}

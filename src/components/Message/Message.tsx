@@ -1,7 +1,7 @@
 import clsx from 'clsx';
+import Markdown from '../Markdown';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import remarkGfm from 'remark-gfm'
-import rehypeRaw from 'rehype-raw'
 
 type Message = {
   isLastMessage?: boolean;
@@ -11,8 +11,6 @@ type Message = {
   contentMessage?: any;
   time?: string;
 };
-
-
 
 export const Message: React.FC<Message> = ({
   variant,
@@ -38,7 +36,6 @@ export const Message: React.FC<Message> = ({
           variant === 'bot' ? null : 'flex-row-reverse',
         )}
       >
-
         <div className="flex items-center justify-center w-10 h-10 rounded-ful">
           <img className="object-cover w-full h-full rounded-full" src={urlAvatar} alt="Avatar" />
         </div>
@@ -57,13 +54,9 @@ export const Message: React.FC<Message> = ({
             )}
           >
             {children}
-
-
-
-            {contentMessage}
-
-            {/* <ReactMarkdown>{contentMessage}</ReactMarkdown> */}
-
+            {/* <ReactMarkdown children={contentMessage || ''} remarkPlugins={[remarkGfm]}  /> */}
+            <Markdown content={contentMessage} />
+            {/* {contentMessage} */}
           </div>
           <span className={clsx(
             'flex text-xs text-gray-500 mt-1',

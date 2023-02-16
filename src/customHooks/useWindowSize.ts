@@ -31,7 +31,6 @@ function useWindowSize(): WindowSize {
     return windowSize;
 };
 
-
 export default useWindowSize
 
 
