@@ -57,6 +57,9 @@ export const Message: React.FC<Message> = ({
             )}
           >
             {children}
+
+
+
             {contentMessage}
 
 
