@@ -26,5 +26,6 @@ export const getMessageReponse = async (messagecontent: any): Promise<any> => {
   finishedText += response?.data?.choices[0]?.text;
   return response?.data?.choices[0]?.finish_reason
 
+
 };
 

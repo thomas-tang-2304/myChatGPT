@@ -36,9 +36,6 @@ const ChatContent = ({ lastMessage }: any) => {
     )
   }
 
-  useEffect(() => {
-
-  }, [])
 
   useEffect(() => {
     messageEndRef.current?.scrollIntoView({ behavior: 'smooth' })
