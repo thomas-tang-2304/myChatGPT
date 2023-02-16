@@ -44,6 +44,7 @@
     "react-loading": "^2.0.3",
     "react-markdown": "^8.0.5",
     "react-syntax-highlighter": "^15.5.0",
+    "react-type-animation": "^2.1.2",
     "remark-gfm": "^3.0.1",
     "sass": "^1.58.0",
     "scss": "^0.2.4",

@@ -34,7 +34,7 @@ const stylesNewChat = `
 
 const stylesButton = `
   text-white 
-  text-lg
+  text-[1.4rem]
   flex
   items-center
 
@@ -45,7 +45,7 @@ const stylesButton = `
   focus:ring-gray-300 
   font-medium rounded-lg 
   
-  py-2
+  p-2
   
   bg-gray-800 
   ark:bg-gray-800 
@@ -100,7 +100,7 @@ export default function Sidebar({ theme, setTheme}: any) {
           )}
         </div>
         <div className='flex  p-3 flex-col gap-2 border-t-[1px] border-indigo-500 mt-2 pt-2'>
-          <Button styles={stylesButton} theme={theme} setTheme={setTheme} setListIntent={setListIntent} />
+          <Button styles={stylesButton} setListIntent={setListIntent} />
         </div>
       </div>
     </>
