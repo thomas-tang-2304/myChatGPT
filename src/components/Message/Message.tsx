@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
 import clsx from 'clsx';
-import { TypeAnimation } from 'react-type-animation';
-import { MessageContext } from '@/contexts/MessageContext';
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
+import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
 
 type Message = {
   isLastMessage?: boolean;
@@ -62,7 +62,7 @@ export const Message: React.FC<Message> = ({
 
             {contentMessage}
 
-
+            {/* <ReactMarkdown>{contentMessage}</ReactMarkdown> */}
 
           </div>
           <span className={clsx(
