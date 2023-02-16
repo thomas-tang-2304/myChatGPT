@@ -18,7 +18,7 @@ export default function Home() {
     fullName: "Hong Tang",
     id: "1"
   }
-  const { theme, setTheme }: any = useContext(MessageContext)
+  const { theme } = useContext<any>(MessageContext)
 
   return (
     <MessageProvider>

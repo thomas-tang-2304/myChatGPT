@@ -3,7 +3,6 @@ import { MessageContext } from '@/contexts/MessageContext';
 
 import { Message } from '@/components/Message/Message';
 import MessageSkeleton from '@/components/MessageSkeleton/MessageSkeleton';
-import { MessageType } from '@/utils/interfaces';
 
 type Props = {};
 
