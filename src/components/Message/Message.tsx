@@ -60,11 +60,9 @@ export const Message: React.FC<Message> = ({
 
 
 
-            {/* {contentMessage} */}
+            {contentMessage}
 
-            <ReactMarkdown>{contentMessage}</ReactMarkdown>
-
-
+            {/* <ReactMarkdown>{contentMessage}</ReactMarkdown> */}
 
           </div>
           <span className={clsx(
