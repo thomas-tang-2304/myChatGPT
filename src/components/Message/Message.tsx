@@ -1,4 +1,3 @@
-import React, { useContext, useEffect, useState } from 'react';
 import clsx from 'clsx';
 import Markdown from '../Markdown';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';

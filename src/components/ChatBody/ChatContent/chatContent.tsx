@@ -1,3 +1,4 @@
+
 import React, { useContext, useEffect, useRef } from 'react';
 import { MessageContext } from '@/contexts/MessageContext';
 import { Message } from '@/components/Message/Message';
@@ -27,19 +28,14 @@ const ChatContent = ({ lastMessage }: any) => {
 
       {isLoading && (lastMessage ? <Message
         key={messageArray.length + 1}
-        isLastMessage={true}
         variant={"bot"}
-        contentMessage={lastMessage}
+        contentMessage={<span style={{ whiteSpace: "pre-line" }}>{lastMessage.replace("\n\n", "")}</span>}
         time={lastMessage.time}
       /> : <MessageSkeleton />)}
 
     </>
     )
   }
-
-  useEffect(() => {
-
-  }, [])
 
   useEffect(() => {
     messageEndRef.current?.scrollIntoView({ behavior: 'smooth' })

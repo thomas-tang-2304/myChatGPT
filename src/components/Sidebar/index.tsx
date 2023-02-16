@@ -33,7 +33,7 @@ const stylesNewChat = `
 `
 
 const stylesButton = `
-  text-white 
+  text-gray-200 
   text-[1.4rem]
   flex
   items-center
@@ -54,15 +54,34 @@ const stylesButton = `
   hover:bg-gray-900 
 `
 
-export default function Sidebar({ theme, setTheme}: any) {
+const stylesButtonDisabled = `
+  text-white 
+  text-[1.4rem]
+  flex
+  items-center
+
+  w-full
+  
+  focus:outline-none 
+  focus:ring-4 
+  focus:ring-gray-300 
+  font-medium rounded-lg 
+  
+  p-2
+  
+  bg-[#ccc] 
+  cursor-not-allowed
+`
+
+export default function Sidebar({ theme, setTheme, text, setText }: any) {
   const ChatTitles: any = useRef<HTMLElement>()
-  const router = useRouter()
+  // const router = useRouter()
 
   // hooks declaration
   const [isShowing, setIsShowing] = useState(false);
   const [listIntent, setListIntent] = useState<any>([]);
 
-  const { setIsLoading, setMessageArray } = useContext<any>(MessageContext)
+  const { setIsLoading, setMessageArray, isLoading } = useContext<any>(MessageContext)
 
   const handleRemoveChat = (id: any) => {
     const newList = listIntent.filter((item: any) => item.id !== id);
@@ -70,22 +89,25 @@ export default function Sidebar({ theme, setTheme}: any) {
     setListIntent(newList);
   };
 
-  const addNewChat = () => {
+  const addNewChat = (value: string) => {
 
     localStorage.clear()
     setIsLoading(false)
     setMessageArray([])
-    router.reload()
 
     setIsShowing(false)
   };
+
+  const newChatClick = () => {
+    setIsShowing(true)
+  }
 
   return (
     <>
       <div className={`back-primary flex flex-col justify-between font-white h-full text-white-900 rounded-l-xl items-stretch`}>
         <div className={`h-auto`}>
           <div className='p-2'>
-            <button onClick={() => { setIsShowing(true) }} type="button" className={`${stylesButton} justify-center mb-2 pl-2`}>
+            <button onClick={newChatClick} type="button" className={isLoading === false ? `${stylesButton} justify-center mb-2 pl-2` : `${stylesButtonDisabled} justify-center mb-2 pl-2`} disabled={isLoading === true ? true : false}>
               + New Chat</button>
             {isShowing && <Modal setIsShowing={setIsShowing} styles={stylesButton} addNewChat={addNewChat} setListIntent={setListIntent} />}
           </div>
@@ -99,7 +121,8 @@ export default function Sidebar({ theme, setTheme}: any) {
             <ListIntent item={item} onclick={() => handleRemoveChat(item.id)} styles={stylesNewChat} />
           )}
         </div>
-        <div className='flex  p-3 flex-col gap-2 border-t-[1px] border-indigo-500 mt-2 pt-2'>
+
+        <div className='flex  p-3 flex-col gap-2 border-t-[1px] border-indigo-500  mt-2 pt-2'>
           <Button styles={stylesButton} setListIntent={setListIntent} />
         </div>
       </div>
