@@ -3,11 +3,11 @@ import ListIntent from './ListIntent/listIntent';
 import Button from './Button/button';
 import Modal from './Modal/modal';
 import { MessageContext } from '@/contexts/MessageContext';
-import { useRouter } from 'next/router';
+import { GoPrimitiveDot } from 'react-icons/go';
 
 const stylesNewChat = `
   text-white 
-  text-xs
+  text-lg
 
   w-full
   
@@ -34,7 +34,7 @@ const stylesNewChat = `
 
 const stylesButton = `
   text-gray-200 
-  text-[1.4rem]
+  text-[1rem]
   flex
   items-center
 
@@ -43,7 +43,7 @@ const stylesButton = `
   focus:outline-none 
   focus:ring-4 
   focus:ring-gray-300 
-  font-medium rounded-lg 
+  font-medium rounded-xl 
   
   p-2
   
@@ -105,6 +105,12 @@ export default function Sidebar({ theme, setTheme, text, setText }: any) {
   return (
     <>
       <div className={`back-primary flex flex-col justify-between font-white h-full text-white-900 rounded-l-xl items-stretch`}>
+        <div className="w-full flex text-white p-2 ">
+          <div className="w-8 mr-1">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" />
+          </div>
+          <div className="flex items-end font-bold">DigiexBOT</div>
+        </div>
         <div className={`h-auto`}>
           <div className='p-2'>
             <button onClick={newChatClick} type="button" className={isLoading === false ? `${stylesButton} justify-center mb-2 pl-2` : `${stylesButtonDisabled} justify-center mb-2 pl-2`} disabled={isLoading === true ? true : false}>
@@ -123,8 +129,16 @@ export default function Sidebar({ theme, setTheme, text, setText }: any) {
           )}
         </div>
 
-        <div className='flex  p-3 flex-col gap-2 border-t-[1px] border-indigo-500  mt-2 pt-2'>
+        <div className='flex p-3 flex-col gap-2 mt-2 pt-2'>
           <Button styles={stylesButton} setListIntent={setListIntent} />
+          <div className='flex border-t border-sky-500 p-2'>
+            <div className="w-10 mr-2">
+              <img className='rounded-full' src="https://static.toiimg.com/thumb/resizemode-4,msid-76729750,imgsize-249247,width-720/76729750.jpg" alt="" />
+            </div>
+            <div>
+              <p className="font-bold leading-[15px]">Nguyễn Văn A <br/><span className='text-xs font-light flex'>Đang online <GoPrimitiveDot className='text-green-500'/></span></p>
+            </div>
+          </div>
         </div>
       </div>
     </>
