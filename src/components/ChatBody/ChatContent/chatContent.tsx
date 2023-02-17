@@ -20,6 +20,7 @@ const ChatContent = ({ lastMessage }: any) => {
             key={index}
             variant={message.variant}
             contentMessage={message.contentMessage}
+          // contentMessage={<span style={{ whiteSpace: "pre-line" }}>{message.contentMessage}</span>}
             time={message.time}
           />
         )
@@ -29,7 +30,8 @@ const ChatContent = ({ lastMessage }: any) => {
       {isLoading && (lastMessage ? <Message
         key={messageArray.length + 1}
         variant={"bot"}
-        contentMessage={<span style={{ whiteSpace: "pre-line" }}>{lastMessage.replace("\n\n", "")}</span>}
+        // contentMessage={<span style={{ whiteSpace: "pre-line" }}>{lastMessage.replace("\n\n", "")}</span>}
+        contentMessage={lastMessage}
         time={lastMessage.time}
       /> : <MessageSkeleton />)}
 
