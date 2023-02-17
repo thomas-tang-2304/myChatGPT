@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/router';
+
 // import styles from './googleButton.module.scss'
 import jwt_decode from 'jwt-decode'
 import jwt_encode from 'jwt-encode';
+
+import { User } from '@/utils/interfaces';
+
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import Cookies from 'universal-cookie';
-import { useRouter } from 'next/router';
-import { User } from '@/utils/interfaces';
 
 import Image from 'next/image';
 import GoogleLogo from "@/public/images/google_logo.png"
