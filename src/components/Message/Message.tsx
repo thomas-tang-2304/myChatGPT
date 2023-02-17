@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
 import clsx from 'clsx';
-import { TypeAnimation } from 'react-type-animation';
-import { MessageContext } from '@/contexts/MessageContext';
+import Markdown from '../Markdown';
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
+import remarkGfm from 'remark-gfm'
 
 type Message = {
   isLastMessage?: boolean;
@@ -12,8 +12,6 @@ type Message = {
   time?: string;
 };
 
-
-
 export const Message: React.FC<Message> = ({
   variant,
   urlAvatar = (variant === 'bot') ? 'images/ChatGPTLogo.png' : 'images/default-avatar.png',
@@ -23,6 +21,7 @@ export const Message: React.FC<Message> = ({
   isLastMessage = false
 
 }) => {
+
 
 
   return (
@@ -38,7 +37,6 @@ export const Message: React.FC<Message> = ({
           variant === 'bot' ? null : 'flex-row-reverse',
         )}
       >
-
         <div className="flex items-center justify-center w-10 h-10 rounded-ful">
           <img className="object-cover w-full h-full rounded-full" src={urlAvatar} alt="Avatar" />
         </div>
@@ -57,10 +55,10 @@ export const Message: React.FC<Message> = ({
             )}
           >
             {children}
+            {/* <ReactMarkdown children={contentMessage || ''} remarkPlugins={[remarkGfm]} /> */}
+
+            <Markdown content={contentMessage} />
             {contentMessage}
-
-
-
           </div>
           <span className={clsx(
             'flex text-xs text-gray-500 mt-1',

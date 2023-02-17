@@ -12,7 +12,7 @@ let stopReason = "length";
 
 const ChatText = ({ lastMessage, setLastMessage }: any) => {
   const [newMessage, setNewMessages] = useState('');
-  const { messageArray, setMessageArray, setIsLoading, isLoading, setIsTyping } = useContext<any>(MessageContext);
+  const { messageArray, setMessageArray, setIsLoading, isLoading, setIsTyping, theme } = useContext<any>(MessageContext);
 
 
 
@@ -52,7 +52,6 @@ const ChatText = ({ lastMessage, setLastMessage }: any) => {
 
   const hanldeKeyDown = async (evt: any) => {
     if (evt.key === 'Enter' && newMessage) {
-
       if (newMessage !== '') {
         setIsTyping(true)
         messageRender();
@@ -84,7 +83,7 @@ const ChatText = ({ lastMessage, setLastMessage }: any) => {
 
   return (
     <Input
-      background="bg-[#EBEBEB]"
+      background={`${theme === "dark" ? "bg-[#4b5563] text-white" : "bg-[#EBEBEB]"}`}
       button={{
         isContained: true,
         element: (
@@ -104,4 +103,5 @@ const ChatText = ({ lastMessage, setLastMessage }: any) => {
     />
   )
 }
+
 export default ChatText;

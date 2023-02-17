@@ -1,9 +1,10 @@
+
 import React, { useContext, useEffect, useRef } from 'react';
 import { MessageContext } from '@/contexts/MessageContext';
-
 import { Message } from '@/components/Message/Message';
 import MessageSkeleton from '@/components/MessageSkeleton/MessageSkeleton';
 import { MessageType } from '@/utils/interfaces';
+import Markdown from '@/components/Markdown';
 
 type Props = {};
 
@@ -14,10 +15,15 @@ const ChatContent = ({ lastMessage }: any) => {
     return (<>
       {messageArray?.map((message: any, index: number) => {
         return (
+
           <Message
             key={index}
             variant={message.variant}
-            contentMessage={message.contentMessage}
+            contentMessage={
+              <span style={{ whiteSpace: "pre-line" }}>
+                {message.contentMessage.replace("\n\n", "")}
+              </span>
+            }
             time={message.time}
           />
         )
@@ -26,19 +32,18 @@ const ChatContent = ({ lastMessage }: any) => {
 
       {isLoading && (lastMessage ? <Message
         key={messageArray.length + 1}
-        isLastMessage={true}
         variant={"bot"}
-        contentMessage={lastMessage}
+        contentMessage={
+          <span style={{ whiteSpace: "pre-line" }}>
+            {lastMessage.replace("\n\n", "")}
+          </span>
+        }
         time={lastMessage.time}
       /> : <MessageSkeleton />)}
 
     </>
     )
   }
-
-  useEffect(() => {
-
-  }, [])
 
   useEffect(() => {
     messageEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -49,7 +54,6 @@ const ChatContent = ({ lastMessage }: any) => {
       {renderMessage()}
       <div ref={messageEndRef} />
     </div>
-
   );
 };
 

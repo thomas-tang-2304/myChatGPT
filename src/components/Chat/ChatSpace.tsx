@@ -1,31 +1,23 @@
-import { StaticImageData } from 'next/image';
-import React, { useState, useEffect, useContext } from 'react'
-import { VscCircleLargeFilled } from 'react-icons/vsc'
-import Image from 'next/image'
+import React from 'react'
 import Sidebar from '../Sidebar';
 import ChatBody from '../ChatBody/ChatBody';
 import useWindowSize from '@/customHooks/useWindowSize';
+import { ChatProps } from '@/utils/interfaces';
 
-
-import { MessageProvider } from '@/contexts/MessageContext';
-import { ChatProps, UserInfo } from '@/utils/interfaces';
-
-
-
-export default function ChatSpace({ info }: ChatProps) {
+export default function ChatSpace({ theme, setTheme }: ChatProps) {
 
     const size = useWindowSize();
     const width = size.width
 
     return (
-        < div className={`h-full flex p-8 bg-white rounded-lg shadow-2xl`
-        }>
-
-            {width && width >= 640 ? (<div className={`w-80`}>
+        <div
+            className={`h-full flex bg-white shadow-2xl justify-center`}
+        >
+            {width && width >= 640 ? (<div className={`w-1/4 xl:w-1/6`}>
                 <Sidebar />
             </div>) : ''}
 
-            <div className={`h-full w-full bg-secondary rounded-r-xl`}>
+            <div className={`h-full bg-secondary w-3/4 xl:w-5/6`}>
                 <ChatBody />
             </div>
         </div >
