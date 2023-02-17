@@ -1,9 +1,10 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import ListIntent from './ListIntent/listIntent';
+import React, { useContext, useRef, useState } from 'react';
 import Button from './Button/button';
 import Modal from './Modal/modal';
 import { MessageContext } from '@/contexts/MessageContext';
 import { GoPrimitiveDot } from 'react-icons/go';
+import jwtDecode from 'jwt-decode';
+import Cookies from 'universal-cookie';
 
 const stylesNewChat = `
   text-white 
@@ -33,7 +34,7 @@ const stylesNewChat = `
 `
 
 const stylesButton = `
-  text-gray-200 
+  text-white 
   text-[1rem]
   flex
   items-center
@@ -43,20 +44,23 @@ const stylesButton = `
   focus:outline-none 
   focus:ring-4 
   focus:ring-gray-300 
-  font-medium rounded-xl 
+  font-medium rounded-lg 
   
   p-2
   
-  bg-gray-800 
+  shadow-md 
+  shadow-black
+  bg-blue-500
   ark:bg-gray-800 
   dark:hover:bg-gray-700 
   dark:focus:ring-gray-700
-  hover:bg-gray-900 
+  hover:bg-gray-900
+  hover:text-white 
 `
 
 const stylesButtonDisabled = `
   text-white 
-  text-[1.4rem]
+  text-[1rem]
   flex
   items-center
 
@@ -73,9 +77,14 @@ const stylesButtonDisabled = `
   cursor-not-allowed
 `
 
-export default function Sidebar({ theme, setTheme, text, setText }: any) {
-  const ChatTitles: any = useRef<HTMLElement>()
+export default function Sidebar() {
   // const router = useRouter()
+  const cookies = new Cookies();
+  const token = cookies.get('cred-token');
+  const ChatTitles: any = useRef<HTMLElement>()
+  
+  const [decoded, setDecoded] = useState<any>(jwtDecode(token));
+  console.log(decoded)
 
   // hooks declaration
   const [isShowing, setIsShowing] = useState(false);
@@ -96,6 +105,7 @@ export default function Sidebar({ theme, setTheme, text, setText }: any) {
     setMessageArray([])
 
     setIsShowing(false)
+    
   };
 
   const newChatClick = () => {
@@ -123,20 +133,30 @@ export default function Sidebar({ theme, setTheme, text, setText }: any) {
           id={"chat-title-scroller"}
           ref={ChatTitles}
         >
-
-          {Array.from(listIntent)?.map((item: any) =>
+          {/* {Array.from(listIntent)?.map((item: any) =>
             <ListIntent item={item} onclick={() => handleRemoveChat(item.id)} styles={stylesNewChat} />
-          )}
+          )} */}
+          
         </div>
 
         <div className='flex p-3 flex-col gap-2 mt-2 pt-2'>
           <Button styles={stylesButton} setListIntent={setListIntent} />
           <div className='flex border-t border-sky-500 p-2'>
-            <div className="w-10 mr-2">
-              <img className='rounded-full' src="https://static.toiimg.com/thumb/resizemode-4,msid-76729750,imgsize-249247,width-720/76729750.jpg" alt="" />
+            <div className="w-10 mr-2 relative">
+              <img className='rounded-full' src={decoded.picture} alt="" />
+              {
+                token === ""
+                ? <GoPrimitiveDot className='text-gray absolute right-[0.1px] top-[28px]'/>
+                : <GoPrimitiveDot className='text-[#16be48] absolute right-[0.1px] top-[28px]'/>
+              }
             </div>
-            <div>
-              <p className="font-bold leading-[15px]">Nguyễn Văn A <br/><span className='text-xs font-light flex'>Đang online <GoPrimitiveDot className='text-green-500'/></span></p>
+            <div className='flex items-center'>
+              <p className="font-bold leading-[15px]">{decoded.name} <br/>
+              {token === "" 
+                ? <span className='text-[13px] font-light flex text-gray-900'>offline</span>
+                : <span className='text-[13px] font-light flex text-green-900'>Đang online</span>
+              }
+              </p>
             </div>
           </div>
         </div>

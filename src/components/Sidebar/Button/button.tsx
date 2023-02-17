@@ -30,8 +30,6 @@ export default function Button({ setListIntent, styles }: any) {
 
   return (
     <>
-
-
       <button type="button" className={`${styles} dark:border-gray-700 flex leading-3`} onClick={toggleTheme} >
         <span className={`mx-3 back-secondary`}>
           {theme === "light" ? <BsFillLightbulbOffFill /> : <BsFillLightbulbFill />}
