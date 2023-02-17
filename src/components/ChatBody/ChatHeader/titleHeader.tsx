@@ -1,6 +1,5 @@
 import useWindowSize from '@/customHooks/useWindowSize';
 import { FaBars } from 'react-icons/fa'
-
 import React, { useContext, useState } from 'react'
 import { BsPlusLg } from 'react-icons/bs';
 import { RxCross1 } from 'react-icons/rx';
@@ -10,7 +9,6 @@ import { ModalContext } from '@/contexts/ModalContext';
 const TitleHeader = () => {
   const [onClickBar, setOnClickBar] = useState(false)
   const [theme, setTheme] = useContext(ModalContext)
- 
 
   const size = useWindowSize();
   const width = size.width
@@ -23,7 +21,6 @@ const TitleHeader = () => {
     <div className='py-5 px-4 text-xl font-bold flex-1 w-full text-center border-b-2 flex justify-between items-center '>
       {
         onClickBar ? (
-
           <>
             {width && width < 640 ? (
               <>
@@ -36,7 +33,6 @@ const TitleHeader = () => {
                 </div>
               </>
             ) : ''}
-
           </>
         ) : ""
       }
@@ -45,10 +41,7 @@ const TitleHeader = () => {
           <FaBars />
         </div>
       ) : ''}
-
-
       <h1 className='w-full text-lg text-color'>New Chat Box</h1>
-
       {width && width < 640 ? (
         <div className='h-full text-color flex justify-center items-center py-2 px-3 cursor-pointer hover:text-slate-200'>
           <BsPlusLg />

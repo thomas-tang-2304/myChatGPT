@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 // import styles from './googleButton.module.scss'
 import jwt_decode from 'jwt-decode'
-import jwt from 'jsonwebtoken';
-
+import jwt_encode from 'jwt-encode';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import Cookies from 'universal-cookie';
 import { useRouter } from 'next/router';
@@ -19,9 +18,7 @@ export default function GoogleAuth({ setIsValid, isValid }: any) {
 
     const onSuccess = (credentialResponse: any) => {
         const { email, email_verified, name, picture, given_name, family_name }: User = jwt_decode(credentialResponse.credential);
-
-
-        const newToken = jwt.sign({ email, email_verified, name, picture, given_name, family_name }, "chatGPT - digiex")
+        const newToken: any = jwt_encode({ email, email_verified, name, picture, given_name, family_name }, "chatGPT - digiex")
         if (email.includes("@digiex.group")) {
             cookies.set("cred-token", newToken)
             setIsValid(true)
@@ -36,21 +33,17 @@ export default function GoogleAuth({ setIsValid, isValid }: any) {
     }
 
     useEffect(() => {
-        const isCookieSet = cookies.get("cred-token") ? true : false;
-        console.log(isCookieSet);
+        const isCookieSet = cookies.get("cred-token");
 
         if (isCookieSet)
             router.push('/');
     }, [userCredentials])
-
-
 
     const CLI_ID: any = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
 
     return (
         <GoogleOAuthProvider clientId={CLI_ID}>
             <div className='flex justify-center w-full mx-auto'>
-
 
                 <GoogleLogin
                     onSuccess={onSuccess}

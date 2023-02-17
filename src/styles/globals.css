@@ -28,7 +28,7 @@ body {
   --text-color: black;
   --background: white;
   --message: rgb(252, 252, 252);
-  --primary: #4da3ff;
+  --primary: linear-gradient(to right, #3fa29d, #9EABE4);
   --secondary: #fff;
   --third: #aaa;
 }
@@ -46,31 +46,31 @@ body {
   background-image: url('/images/background.png');
 }
 .message-color {
-  transition: background 0.5s ease;
+  transition: background 0.5s ease-in-out;
   background: var(--message);
 }
 .text-color {
-  transition: color 0.5s ease;
+  transition: color 0.5s ease-in-out;
   color: var(--text-color);
 }
 
 .back-frame {
-  transition: background-color 0.5s ease;
+  transition: background-color 0.5s ease-in;
   background-color: var(--background);
 }
 
 .back-primary {
-  transition: background-color 0.5s ease;
-  background-color: var(--primary);
+  transition: background 0.5s ease-out;
+  background: var(--primary);
 }
 
 .back-secondary {
-  transition: background-color 0.5s ease;
+  transition: background-color 0.5s ease-in;
   color: var(--secondary);
 }
 
 .back-third {
-  transition: background-color 0.5s ease;
+  transition: background-color 0.5s ease-out;
   background: var(--third);
 }
 

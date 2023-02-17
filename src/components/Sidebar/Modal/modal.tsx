@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-// 
+
 const modalBackground = `
     fixed
     left-0
@@ -22,8 +22,7 @@ const stylesButton = `
     text-sm 
     px-5 py-2.5 mr-2 mb-2 
 `
-export default function modal({ setIsShowing, styles, addNewChat }: any) {
-    const [value, setValue] = useState('');
+export default function modal({ setIsShowing, addNewChat }: any) {
 
     return (
         <>

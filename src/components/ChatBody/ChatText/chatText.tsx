@@ -6,6 +6,7 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react'
 import { useContext } from 'react';
 import { FiSend } from "react-icons/fi";
+import { TypeAnimation } from 'react-type-animation';
 
 
 let stopReason = "length";
@@ -52,7 +53,6 @@ const ChatText = ({ lastMessage, setLastMessage }: any) => {
 
   const hanldeKeyDown = async (evt: any) => {
     if (evt.key === 'Enter' && newMessage) {
-
       if (newMessage !== '') {
         setIsTyping(true)
         messageRender();
@@ -104,4 +104,5 @@ const ChatText = ({ lastMessage, setLastMessage }: any) => {
     />
   )
 }
+
 export default ChatText;

@@ -2,8 +2,8 @@ import React, { useContext, useRef, useState } from 'react';
 import Button from './Button/button';
 import Modal from './Modal/modal';
 import { MessageContext } from '@/contexts/MessageContext';
-import { GoPrimitiveDot } from 'react-icons/go';
 import jwtDecode from 'jwt-decode';
+import { RiChatNewLine } from 'react-icons/ri'
 import Cookies from 'universal-cookie';
 
 const stylesNewChat = `
@@ -36,6 +36,7 @@ const stylesNewChat = `
 const stylesButton = `
   text-white 
   text-[1rem]
+  font-[600]
   flex
   items-center
 
@@ -44,13 +45,12 @@ const stylesButton = `
   focus:outline-none 
   focus:ring-4 
   focus:ring-gray-300 
-  font-medium rounded-lg 
+  font-medium
   
-  p-2
-  
-  shadow-md 
-  shadow-black
-  bg-blue-500
+  p-3
+  mt-1
+
+  bg-black/[.1]
   ark:bg-gray-800 
   dark:hover:bg-gray-700 
   dark:focus:ring-gray-700
@@ -114,22 +114,22 @@ export default function Sidebar() {
 
   return (
     <>
-      <div className={`back-primary flex flex-col justify-between font-white h-full text-white-900 rounded-l-xl items-stretch`}>
-        <div className="w-full flex text-white p-2 ">
-          <div className="w-8 mr-1">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" />
+      <div className={`back-primary flex flex-col justify-between font-white h-full text-white-900 items-stretch`}>
+        <div className="w-full flex text-white ">
+          <div className="w-40 ">
+            <img src="images/logoDigiex.png" />
           </div>
-          <div className="flex items-end font-bold">DigiexBOT</div>
+          {/* <div className="flex items-end font-bold">DigiexBOT</div> */}
         </div>
         <div className={`h-auto`}>
-          <div className='p-2'>
-            <button onClick={newChatClick} type="button" className={isLoading === false ? `${stylesButton} justify-center mb-2 pl-2` : `${stylesButtonDisabled} justify-center mb-2 pl-2`} disabled={isLoading === true ? true : false}>
-              + New Chat</button>
+          <div className='my-2'>
+            <button onClick={newChatClick} type="button" className={isLoading === false ? `${stylesButton} mb-2 pl-5` : `${stylesButtonDisabled} justify-center mb-2 pl-2`} disabled={isLoading === true ? true : false}>
+              <RiChatNewLine className='mr-3'/> New Chat</button>
             {isShowing && <Modal setIsShowing={setIsShowing} styles={stylesButton} addNewChat={addNewChat} setListIntent={setListIntent} />}
           </div>
         </div>
         <div
-          className={`grow .scrollbar .scrollbar-style-2 h-max`}
+          className={`grow scrollbar scrollbar-style-2 h-max`}
           id={"chat-title-scroller"}
           ref={ChatTitles}
         >
@@ -139,23 +139,15 @@ export default function Sidebar() {
           
         </div>
 
-        <div className='flex p-3 flex-col gap-2 mt-2 pt-2'>
+        <div className=''>
           <Button styles={stylesButton} setListIntent={setListIntent} />
-          <div className='flex border-t border-sky-500 p-2'>
+          <div className='flex border-t-2 border-sky-500 p-2'>
             <div className="w-10 mr-2 relative">
               <img className='rounded-full' src={decoded.picture} alt="" />
-              {
-                token === ""
-                ? <GoPrimitiveDot className='text-gray absolute right-[0.1px] top-[28px]'/>
-                : <GoPrimitiveDot className='text-[#16be48] absolute right-[0.1px] top-[28px]'/>
-              }
             </div>
             <div className='flex items-center'>
-              <p className="font-bold leading-[15px]">{decoded.name} <br/>
-              {token === "" 
-                ? <span className='text-[13px] font-light flex text-gray-900'>offline</span>
-                : <span className='text-[13px] font-light flex text-green-900'>Đang online</span>
-              }
+              <p className="font-bold text-gray-300 leading-[15px]">{decoded.name}
+                <span className='text-[13px] font-bold font-light flex text-gray-600'>{decoded.email}</span>
               </p>
             </div>
           </div>
