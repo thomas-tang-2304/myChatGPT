@@ -1,13 +1,14 @@
 import React, { useContext, useRef, useState } from 'react';
-import ListIntent from './ListIntent/listIntent';
 import Button from './Button/button';
 import Modal from './Modal/modal';
 import { MessageContext } from '@/contexts/MessageContext';
-import { useRouter } from 'next/router';
+import jwtDecode from 'jwt-decode';
+import { RiChatNewLine } from 'react-icons/ri'
+import Cookies from 'universal-cookie';
 
 const stylesNewChat = `
   text-white 
-  text-xs
+  text-lg
 
   w-full
   
@@ -33,8 +34,9 @@ const stylesNewChat = `
 `
 
 const stylesButton = `
-  text-gray-200 
-  text-[1.4rem]
+  text-white 
+  text-[1rem]
+  font-[600]
   flex
   items-center
 
@@ -43,20 +45,22 @@ const stylesButton = `
   focus:outline-none 
   focus:ring-4 
   focus:ring-gray-300 
-  font-medium rounded-lg 
+  font-medium
   
-  p-2
-  
-  bg-gray-800 
+  p-3
+  mt-1
+
+  bg-black/[.1]
   ark:bg-gray-800 
   dark:hover:bg-gray-700 
   dark:focus:ring-gray-700
-  hover:bg-gray-900 
+  hover:bg-gray-900
+  hover:text-white 
 `
 
 const stylesButtonDisabled = `
   text-white 
-  text-[1.4rem]
+  text-[1rem]
   flex
   items-center
 
@@ -73,9 +77,14 @@ const stylesButtonDisabled = `
   cursor-not-allowed
 `
 
-export default function Sidebar({ theme, setTheme, text, setText }: any) {
-  const ChatTitles: any = useRef<HTMLElement>()
+export default function Sidebar() {
   // const router = useRouter()
+  const cookies = new Cookies();
+  const token = cookies.get('cred-token');
+  const ChatTitles: any = useRef<HTMLElement>()
+  
+  const [decoded, setDecoded] = useState<any>(jwtDecode(token));
+  console.log(decoded)
 
   // hooks declaration
   const [isShowing, setIsShowing] = useState(false);
@@ -96,6 +105,7 @@ export default function Sidebar({ theme, setTheme, text, setText }: any) {
     setMessageArray([])
 
     setIsShowing(false)
+    
   };
 
   const newChatClick = () => {
@@ -105,10 +115,16 @@ export default function Sidebar({ theme, setTheme, text, setText }: any) {
   return (
     <>
       <div className={`back-primary flex flex-col justify-between font-white h-full text-white-900 items-stretch`}>
+        <div className="w-full flex text-white ">
+          <div className="w-40 ">
+            <img src="images/logoDigiex.png" />
+          </div>
+          {/* <div className="flex items-end font-bold">DigiexBOT</div> */}
+        </div>
         <div className={`h-auto`}>
-          <div className='p-2'>
-            <button onClick={newChatClick} type="button" className={isLoading === false ? `${stylesButton} justify-center mb-2 pl-2` : `${stylesButtonDisabled} justify-center mb-2 pl-2`} disabled={isLoading === true ? true : false}>
-              + New Chat</button>
+          <div className='my-2'>
+            <button onClick={newChatClick} type="button" className={isLoading === false ? `${stylesButton} mb-2 pl-5` : `${stylesButtonDisabled} justify-center mb-2 pl-2`} disabled={isLoading === true ? true : false}>
+              <RiChatNewLine className='mr-3'/> New Chat</button>
             {isShowing && <Modal setIsShowing={setIsShowing} styles={stylesButton} addNewChat={addNewChat} setListIntent={setListIntent} />}
           </div>
         </div>
@@ -117,13 +133,24 @@ export default function Sidebar({ theme, setTheme, text, setText }: any) {
           id={"chat-title-scroller"}
           ref={ChatTitles}
         >
-          {Array.from(listIntent)?.map((item: any) =>
+          {/* {Array.from(listIntent)?.map((item: any) =>
             <ListIntent item={item} onclick={() => handleRemoveChat(item.id)} styles={stylesNewChat} />
-          )}
+          )} */}
+          
         </div>
 
-        <div className='flex  p-3 flex-col gap-2 border-t-[1px] border-indigo-500  mt-2 pt-2'>
+        <div className=''>
           <Button styles={stylesButton} setListIntent={setListIntent} />
+          <div className='flex border-t-2 border-sky-500 p-2'>
+            <div className="w-10 mr-2 relative">
+              <img className='rounded-full' src={decoded.picture} alt="" />
+            </div>
+            <div className='flex items-center'>
+              <p className="font-bold text-gray-300 leading-[15px]">{decoded.name}
+                <span className='text-[13px] font-bold font-light flex text-gray-600'>{decoded.email}</span>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </>
