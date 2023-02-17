@@ -20,11 +20,13 @@ export default function index() {
         <>
             {isValid != null ? (isValid == false
                 ? <NotificationPopup
-                    icon={<ImCross />}
+                    popUpColorClassName={'bg-red-50'}
+                    icon={<ImCross className='text-red-500' />}
                     text={"Không thể truy cập!"}
                 />
                 : <NotificationPopup
-                    icon={<ImCheckmark />}
+                    popUpColorClassName={'bg-green-50'}
+                    icon={<ImCheckmark className='text-green-500' />}
                     text={"Đăng nhập thành công!"}
                 />) : null}
             <div className="flex flex-col justify-center h-[90%] gap-3 mx-auto border max-w-[400px] bg-secondary rounded-md">

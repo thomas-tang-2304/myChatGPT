@@ -35,6 +35,7 @@ export const Message: React.FC<Message> = ({
   // };
 
 
+
   return (
     <div
       className={clsx(
@@ -66,7 +67,8 @@ export const Message: React.FC<Message> = ({
             )}
           >
             {children}
-            {/* <ReactMarkdown children={contentMessage || ''} remarkPlugins={[remarkGfm]}  /> */}
+            {/* <ReactMarkdown children={contentMessage || ''} remarkPlugins={[remarkGfm]} /> */}
+
             <Markdown content={contentMessage} />
             {/* {contentMessage} */}
           </div>

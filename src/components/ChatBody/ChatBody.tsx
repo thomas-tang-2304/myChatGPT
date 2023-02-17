@@ -8,7 +8,7 @@ const ChatBody = () => {
   // console.log(data)
   const [lastMessage, setLastMessage] = useState('')
   return (
-    <div className="back-frame rounded-r-lg flex flex-col justify-between items-center h-full w-full">
+    <div className="flex flex-col items-center justify-between w-full h-full back-frame">
       <TitleHeader />
       <ChatContent lastMessage={lastMessage} />
       <ChatText lastMessage={lastMessage} setLastMessage={setLastMessage} />
