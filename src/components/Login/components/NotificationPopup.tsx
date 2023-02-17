@@ -6,7 +6,7 @@ export default function NotificationPopup({ icon, text, popUpColorClassName }: a
 
   return (
     <>
-      <div className={`absolute ${styles.popupOpen} ${popUpColorClassName} right-8 p-5 rounded-lg flex items-center gap-2`}>
+      <div className={`absolute ${styles.popupOpen} ${popUpColorClassName} right-8 px-5 py-3 rounded-lg flex items-center gap-2`}>
         {icon}
         <p>{text}</p>
       </div>

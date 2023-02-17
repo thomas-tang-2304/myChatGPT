@@ -7,6 +7,10 @@ import Cookies from 'universal-cookie';
 import { useRouter } from 'next/router';
 import { User } from '@/utils/interfaces';
 
+import Image from 'next/image';
+import GoogleLogo from "@/public/images/google_logo.png"
+import styles from './googleButton.module.scss'
+
 const cookies = new Cookies();
 
 
@@ -15,6 +19,13 @@ export default function GoogleAuth({ setIsValid, isValid }: any) {
     const router = useRouter();
 
     const [userCredentials, setUserCredentials] = useState<any>(null);
+    const logoSize = 80;
+
+    const [wasHover, setWasHover] = useState(false)
+
+    const handleHover = () => {
+        setWasHover((prev: boolean) => !prev);
+    }
 
     const onSuccess = (credentialResponse: any) => {
         const { email, email_verified, name, picture, given_name, family_name }: User = jwt_decode(credentialResponse.credential);
@@ -39,24 +50,46 @@ export default function GoogleAuth({ setIsValid, isValid }: any) {
             router.push('/');
     }, [userCredentials])
 
+    useEffect(() => {
+        setTimeout(() => {
+
+            setWasHover(true)
+        }, 2500)
+    }, [])
+
     const CLI_ID: any = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
 
     return (
-        <GoogleOAuthProvider clientId={CLI_ID}>
-            <div className='flex justify-center w-full mx-auto'>
+        <div className={`flex items-center justify-center gap-3 mb-5`}>
+            <div
+                onClick={handleHover}
 
-                <GoogleLogin
-                    onSuccess={onSuccess}
-                    onError={() => {
-                        console.log('Login Failed');
-                    }}
-                    logo_alignment={'center'}
-                    shape={"circle"}
-                    useOneTap
-                />
+                className={`border rounded-full p-3 ${styles.logo}`}
+                style={{ width: logoSize, height: logoSize }}
+            >
+
+                <Image src={GoogleLogo} alt="Google Login" />
             </div>
+            <div className={`${styles.transform} ${wasHover ? styles.loginToggle : styles.loginToggleClose}`}>
 
-        </GoogleOAuthProvider>
+                <GoogleOAuthProvider clientId={CLI_ID} >
+
+
+                    <GoogleLogin
+                        type={"standard"}
+                        size={'large'}
+                        onSuccess={onSuccess}
+                        onError={() => {
+                            console.log('Login Failed');
+                        }}
+                        logo_alignment={'center'}
+                        shape={"pill"}
+                        useOneTap
+                    />
+
+                </GoogleOAuthProvider>
+            </div>
+        </div>
 
     );
 }
