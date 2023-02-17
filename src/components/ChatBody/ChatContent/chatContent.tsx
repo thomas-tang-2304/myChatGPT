@@ -11,6 +11,7 @@ type Props = {};
 const ChatContent = ({ lastMessage }: any) => {
   const { messageArray, isLoading } = useContext<any>(MessageContext || "");
   const messageEndRef = useRef<HTMLDivElement>(null)
+  const resLastMessage = lastMessage.replace("\n\n", "")
   const renderMessage = () => {
     return (<>
       {messageArray?.map((message: any, index: number) => {
@@ -19,11 +20,8 @@ const ChatContent = ({ lastMessage }: any) => {
           <Message
             key={index}
             variant={message.variant}
-            contentMessage={
-              <span style={{ whiteSpace: "pre-line" }}>
-                {message.contentMessage.replace("\n\n", "")}
-              </span>
-            }
+            contentMessage={message.contentMessage}
+            // contentMessage={<span style={{ whiteSpace: "pre-line" }}>{message.contentMessage}</span>}
             time={message.time}
           />
         )
@@ -33,11 +31,8 @@ const ChatContent = ({ lastMessage }: any) => {
       {isLoading && (lastMessage ? <Message
         key={messageArray.length + 1}
         variant={"bot"}
-        contentMessage={
-          <span style={{ whiteSpace: "pre-line" }}>
-            {lastMessage.replace("\n\n", "")}
-          </span>
-        }
+        // contentMessage={<span style={{ whiteSpace: "pre-line" }}>{lastMessage.replace("\n\n", "")}</span>}
+        contentMessage={lastMessage}
         time={lastMessage.time}
       /> : <MessageSkeleton />)}
 

@@ -16,7 +16,6 @@ const Markdown: FunctionComponent<IProps> = ({content}) => {
     
             return (!inline && match) ? (
                 <SyntaxHighlighter style={materialLight} PreTag="div" language={match[1]} children={String(children).replace(/\n$/, '' )} {...props} />
-                // replace(/\n$/, '' )
             ) : (
                 <code className={className ? className : ""} {...props}>
                     {children}

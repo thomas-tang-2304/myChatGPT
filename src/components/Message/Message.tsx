@@ -22,6 +22,18 @@ export const Message: React.FC<Message> = ({
 
 }) => {
 
+  // const CodeBlock = () => {
+  //   return (
+  //     <SyntaxHighlighter language='javascript' style={vscDarkPlus}>
+  //       {contentMessage}
+  //     </SyntaxHighlighter>
+  //   );
+  // };
+
+  // const renderers = {
+  //   code: CodeBlock
+  // };
+
 
 
   return (
@@ -58,7 +70,7 @@ export const Message: React.FC<Message> = ({
             {/* <ReactMarkdown children={contentMessage || ''} remarkPlugins={[remarkGfm]} /> */}
 
             <Markdown content={contentMessage} />
-            {contentMessage}
+            {/* {contentMessage} */}
           </div>
           <span className={clsx(
             'flex text-xs text-gray-500 mt-1',
