@@ -1,45 +1,49 @@
-$white: #fff;
-$google-blue: #007AFF;
-$button-active-blue: #1669F2;
+$google-logo-during: 0.5s;
+$google-login-toggle: 0.4s;
+$toggle-delay: 0.3s;
 
-.google-btn {
-    height: 42px;
-    background-color: $google-blue;
-    border-radius: 2px;
-    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .25);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    .google-icon-wrapper {
-        position: relative;
-        margin-top: 1px;
-        margin-left: 1px;
-        width: 40px;
-        height: 40px;
-        border-radius: 2px;
-        background-color: $white;
-    }
-
-    .google-icon {
-        position: absolute;
-        margin-top: 11px;
-        margin-left: 11px;
-        width: 18px;
-        height: 18px;
-    }
-
-    
- 
-    
-    &:active {
-        background: $button-active-blue;
+.logo {
+    -webkit-transition: all $google-logo-during ease;
+        -moz-transition: all $google-logo-during ease;
+        -o-transition: all $google-logo-during ease;
+        -ms-transition: all $google-logo-during ease;
+        transition: all $google-logo-during ease;
+    &:hover {
+        cursor: pointer;
+        rotate: 360deg;
+        -webkit-transition: all $google-logo-during ease;
+            -moz-transition: all $google-logo-during ease;
+            -o-transition: all $google-logo-during ease;
+            -ms-transition: all $google-logo-during ease;
+            transition: all $google-logo-during ease;
     }
 }
-.btn-text {
-    color: $white;
-    font-size: 14px;
-    letter-spacing: 0.2px;
-    font-family: "Kanit", "sans-serif";
+
+
+.transform {
+    -webkit-transition: all $google-login-toggle ease;
+    -moz-transition: all $google-login-toggle ease;
+    -o-transition: all $google-login-toggle ease;
+    -ms-transition: all $google-login-toggle ease;
+    transition: all $google-login-toggle ease;
 }
+
+
+
+.loginToggleClose {
+    transition-property: opacity, width;
+    transition-delay: 0s, $toggle-delay;
+    width: 0;
+    opacity: 0;
+}
+
+.loginToggle {
+
+transition-delay: 1s, 250ms;
+    transition-property: width, opacity;
+    transition-delay: 0s, $toggle-delay;
+    width: 210px;
+    opacity: 1;
+}
+
+
