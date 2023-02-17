@@ -104,7 +104,7 @@ export default function Sidebar({ theme, setTheme, text, setText }: any) {
 
   return (
     <>
-      <div className={`back-primary flex flex-col justify-between font-white h-full text-white-900 rounded-l-xl items-stretch`}>
+      <div className={`back-primary flex flex-col justify-between font-white h-full text-white-900 items-stretch`}>
         <div className={`h-auto`}>
           <div className='p-2'>
             <button onClick={newChatClick} type="button" className={isLoading === false ? `${stylesButton} justify-center mb-2 pl-2` : `${stylesButtonDisabled} justify-center mb-2 pl-2`} disabled={isLoading === true ? true : false}>
@@ -113,7 +113,7 @@ export default function Sidebar({ theme, setTheme, text, setText }: any) {
           </div>
         </div>
         <div
-          className={`grow .scrollbar .scrollbar-style-2 h-max`}
+          className={`grow scrollbar scrollbar-style-2 h-max`}
           id={"chat-title-scroller"}
           ref={ChatTitles}
         >
