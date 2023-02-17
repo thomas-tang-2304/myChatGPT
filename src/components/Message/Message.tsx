@@ -22,6 +22,18 @@ export const Message: React.FC<Message> = ({
 
 }) => {
 
+  // const CodeBlock = () => {
+  //   return (
+  //     <SyntaxHighlighter language='javascript' style={vscDarkPlus}>
+  //       {contentMessage}
+  //     </SyntaxHighlighter>
+  //   );
+  // };
+
+  // const renderers = {
+  //   code: CodeBlock
+  // };
+
 
   return (
     <div
