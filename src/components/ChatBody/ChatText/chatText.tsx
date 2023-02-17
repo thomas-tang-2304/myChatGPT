@@ -53,7 +53,6 @@ const ChatText = ({ lastMessage, setLastMessage }: any) => {
 
   const hanldeKeyDown = async (evt: any) => {
     if (evt.key === 'Enter' && newMessage) {
-
       if (newMessage !== '') {
         setIsTyping(true)
         messageRender();
@@ -105,4 +104,5 @@ const ChatText = ({ lastMessage, setLastMessage }: any) => {
     />
   )
 }
+
 export default ChatText;

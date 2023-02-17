@@ -1,6 +1,7 @@
 import clsx from 'clsx';
+import Markdown from '../Markdown';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
-
+import remarkGfm from 'remark-gfm'
 
 type Message = {
   isLastMessage?: boolean;
@@ -10,8 +11,6 @@ type Message = {
   contentMessage?: any;
   time?: string;
 };
-
-
 
 export const Message: React.FC<Message> = ({
   variant,
@@ -49,7 +48,6 @@ export const Message: React.FC<Message> = ({
           variant === 'bot' ? null : 'flex-row-reverse',
         )}
       >
-
         <div className="flex items-center justify-center w-10 h-10 rounded-ful">
           <img className="object-cover w-full h-full rounded-full" src={urlAvatar} alt="Avatar" />
         </div>
@@ -68,34 +66,9 @@ export const Message: React.FC<Message> = ({
             )}
           >
             {children}
-
-
-
-            {contentMessage}
-            {/* <ReactMarkdown components={CodeBlock} children={contentMessage} /> */}
-
-            {/* <ReactMarkdown
-              children={contentMessage}
-              components={{
-                code({ node, inline, className, children, ...props }) {
-                  const match = /language-(\w+)/.exec(className || '')
-                  return !inline && match ? (
-                    <SyntaxHighlighter
-                      children={String(children).replace(/\n$/, '')}
-                      style={coy}
-                      language={match[1]}
-                      PreTag="div"
-                      {...props}
-                    />
-                  ) : (
-                    <code className={className} {...props}>
-                      {children}
-                    </code>
-                  )
-                }
-              }}
-            /> */}
-
+            {/* <ReactMarkdown children={contentMessage || ''} remarkPlugins={[remarkGfm]}  /> */}
+            <Markdown content={contentMessage} />
+            {/* {contentMessage} */}
           </div>
           <span className={clsx(
             'flex text-xs text-gray-500 mt-1',

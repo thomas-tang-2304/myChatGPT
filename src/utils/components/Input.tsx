@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes, useState } from 'react'
+import React from 'react'
 import { InputProps } from '../interfaces';
 
 
