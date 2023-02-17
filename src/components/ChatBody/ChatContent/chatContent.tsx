@@ -4,7 +4,7 @@ import { MessageContext } from '@/contexts/MessageContext';
 
 import { Message } from '@/components/Message/Message';
 import MessageSkeleton from '@/components/MessageSkeleton/MessageSkeleton';
-import { MessageType } from '@/utils/interfaces';
+import { TypeAnimation } from 'react-type-animation';
 
 type Props = {};
 
@@ -20,8 +20,12 @@ const ChatContent = ({ lastMessage }: any) => {
           <Message
             key={index}
             variant={message.variant}
-            contentMessage={message.contentMessage}
-            // contentMessage={<span style={{ whiteSpace: "pre-line" }}>{resMessage.startsWith("?") === true ? resMessage.replace('?', '') : resMessage}</span>}
+            // contentMessage={message.contentMessage}
+            contentMessage={<span style={{ whiteSpace: "pre-line" }}>
+              {
+                resMessage.startsWith("?") === true ? resMessage.replace('?', '') : resMessage
+              }
+            </span>}
             time={message.time}
           />
         )
@@ -33,8 +37,12 @@ const ChatContent = ({ lastMessage }: any) => {
       {isLoading && (lastMessage ? <Message
         key={messageArray.length + 1}
         variant={"bot"}
-        contentMessage={lastMessage}
-        // contentMessage={<span style={{ whiteSpace: "pre-line" }}>{resLastMessage.startsWith("?") === true ? resLastMessage.replace('?', '') : resLastMessage}</span>}
+        // contentMessage={lastMessage}
+        contentMessage={<span style={{ whiteSpace: "pre-line" }}>
+          {
+            resLastMessage.startsWith("?") === true ? resLastMessage.replace('?', '') : resLastMessage
+          }
+        </span>}
         time={lastMessage.time}
       /> : <MessageSkeleton />)}
 

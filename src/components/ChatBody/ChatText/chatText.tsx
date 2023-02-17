@@ -6,6 +6,7 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react'
 import { useContext } from 'react';
 import { FiSend } from "react-icons/fi";
+import { TypeAnimation } from 'react-type-animation';
 
 
 let stopReason = "length";

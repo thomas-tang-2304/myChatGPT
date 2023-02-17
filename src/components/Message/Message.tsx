@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
-import remarkGfm from 'remark-gfm'
-import rehypeRaw from 'rehype-raw'
+
 
 type Message = {
   isLastMessage?: boolean;
@@ -23,6 +22,18 @@ export const Message: React.FC<Message> = ({
   isLastMessage = false
 
 }) => {
+
+  // const CodeBlock = () => {
+  //   return (
+  //     <SyntaxHighlighter language='javascript' style={vscDarkPlus}>
+  //       {contentMessage}
+  //     </SyntaxHighlighter>
+  //   );
+  // };
+
+  // const renderers = {
+  //   code: CodeBlock
+  // };
 
 
   return (
@@ -60,11 +71,30 @@ export const Message: React.FC<Message> = ({
 
 
 
-            {/* {contentMessage} */}
+            {contentMessage}
+            {/* <ReactMarkdown components={CodeBlock} children={contentMessage} /> */}
 
-            <ReactMarkdown remarkPlugins={[[remarkGfm, { singleTilde: false }]]}>
-              {contentMessage}
-            </ReactMarkdown>
+            {/* <ReactMarkdown
+              children={contentMessage}
+              components={{
+                code({ node, inline, className, children, ...props }) {
+                  const match = /language-(\w+)/.exec(className || '')
+                  return !inline && match ? (
+                    <SyntaxHighlighter
+                      children={String(children).replace(/\n$/, '')}
+                      style={coy}
+                      language={match[1]}
+                      PreTag="div"
+                      {...props}
+                    />
+                  ) : (
+                    <code className={className} {...props}>
+                      {children}
+                    </code>
+                  )
+                }
+              }}
+            /> */}
 
           </div>
           <span className={clsx(
