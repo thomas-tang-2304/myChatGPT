@@ -1,4 +1,6 @@
 $google-logo-during: 0.5s;
+$google-login-toggle: 0.4s;
+$toggle-delay: 0.3s;
 
 .logo {
     -webkit-transition: all $google-logo-during ease;
@@ -19,19 +21,29 @@ $google-logo-during: 0.5s;
 
 
 .transform {
-    -webkit-transition: all 0.4s ease;
-    -moz-transition: all 0.4s ease;
-    -o-transition: all 0.4s ease;
-    -ms-transition: all 0.4s ease;
-    transition: all 0.4s ease;
+    -webkit-transition: all $google-login-toggle ease;
+    -moz-transition: all $google-login-toggle ease;
+    -o-transition: all $google-login-toggle ease;
+    -ms-transition: all $google-login-toggle ease;
+    transition: all $google-login-toggle ease;
 }
 
+
+
 .loginToggleClose {
-   width: 0;
-   opacity: 0;
+    transition-property: opacity, width;
+    transition-delay: 0s, $toggle-delay;
+    width: 0;
+    opacity: 0;
 }
 
 .loginToggle {
+
+transition-delay: 1s, 250ms;
+    transition-property: width, opacity;
+    transition-delay: 0s, $toggle-delay;
     width: 210px;
     opacity: 1;
 }
+
+

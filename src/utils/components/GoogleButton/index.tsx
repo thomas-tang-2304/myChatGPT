@@ -52,7 +52,6 @@ export default function GoogleAuth({ setIsValid, isValid }: any) {
 
     useEffect(() => {
         setTimeout(() => {
-
             setWasHover(true)
         }, 2500)
     }, [])
