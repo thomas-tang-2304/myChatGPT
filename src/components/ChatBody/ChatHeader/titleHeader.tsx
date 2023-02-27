@@ -26,7 +26,7 @@ const TitleHeader = () => {
               <>
                 <div className='fixed inset-0 z-10 bg-black fade-in' onClick={barClicked}></div>
                 <div className='fixed top-0 bottom-0 left-0 z-20 flex h-full fade-in-full'>
-                  <Sidebar />
+                  <Sidebar  />
                   <div className='flex items-center justify-center h-8 p-4 mt-2 ml-2 text-center text-white border-2' onClick={barClicked}>
                     <RxCross1 />
                   </div>
