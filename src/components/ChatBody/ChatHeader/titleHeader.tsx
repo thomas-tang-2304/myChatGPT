@@ -18,16 +18,16 @@ const TitleHeader = () => {
   }
 
   return (
-    <div className='py-5 px-4 text-xl font-bold flex-1 w-full text-center border-b-2 flex justify-between items-center '>
+    <div className='flex items-center justify-between flex-1 w-full px-4 py-5 text-xl font-bold text-center border-b-2 '>
       {
         onClickBar ? (
           <>
             {width && width < 640 ? (
               <>
-                <div className='fixed inset-0 bg-black z-10 fade-in' onClick={barClicked}></div>
-                <div className='fixed left-0 bottom-0 top-0 flex z-20 h-full fade-in-full'>
-                  <Sidebar theme={theme} setTheme={setTheme} containerClass='content-between grid p-3 bg-primary font-white h-full text-white-900 rounded-tr-xl rounded-br-lg' />
-                  <div className='ml-2 mt-2 p-4 border-2 h-8 text-center flex justify-center items-center text-white' onClick={barClicked}>
+                <div className='fixed inset-0 z-10 bg-black fade-in' onClick={barClicked}></div>
+                <div className='fixed top-0 bottom-0 left-0 z-20 flex h-full fade-in-full'>
+                  <Sidebar />
+                  <div className='flex items-center justify-center h-8 p-4 mt-2 ml-2 text-center text-white border-2' onClick={barClicked}>
                     <RxCross1 />
                   </div>
                 </div>
@@ -37,13 +37,13 @@ const TitleHeader = () => {
         ) : ""
       }
       {width && width < 640 ? (
-        <div className='h-full text-color flex justify-center items-center py-2 px-3 cursor-pointer hover:text-slate-200' onClick={barClicked}>
+        <div className='flex items-center justify-center h-full px-3 py-2 cursor-pointer text-color hover:text-slate-200' onClick={barClicked}>
           <FaBars />
         </div>
       ) : ''}
       <h1 className='w-full text-lg text-color'>New Chat Box</h1>
       {width && width < 640 ? (
-        <div className='h-full text-color flex justify-center items-center py-2 px-3 cursor-pointer hover:text-slate-200'>
+        <div className='flex items-center justify-center h-full px-3 py-2 cursor-pointer text-color hover:text-slate-200'>
           <BsPlusLg />
         </div>
       ) : ''}
