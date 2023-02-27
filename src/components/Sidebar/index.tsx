@@ -2,7 +2,7 @@ import React, { useContext, useRef, useState } from 'react';
 import Button from './Button/button';
 import Modal from './Modal/modal';
 import { MessageContext } from '@/contexts/MessageContext';
-import jwtDecode from 'jwt-decode';
+import jwt_decode from 'jwt-decode';
 import { RiChatNewLine } from 'react-icons/ri'
 import Cookies from 'universal-cookie';
 
@@ -82,9 +82,8 @@ export default function Sidebar() {
   const cookies = new Cookies();
   const token = cookies.get('cred-token');
   const ChatTitles: any = useRef<HTMLElement>()
-  
-  const [decoded, setDecoded] = useState<any>(jwtDecode(token));
-  console.log(decoded)
+
+  const [decoded, setDecoded] = useState<any>(token ? jwt_decode(token) : null);
 
   // hooks declaration
   const [isShowing, setIsShowing] = useState(false);
@@ -105,7 +104,7 @@ export default function Sidebar() {
     setMessageArray([])
 
     setIsShowing(false)
-    
+
   };
 
   const newChatClick = () => {
@@ -115,7 +114,7 @@ export default function Sidebar() {
   return (
     <>
       <div className={`back-primary flex flex-col justify-between font-white h-full text-white-900 items-stretch`}>
-        <div className="w-full flex text-white ">
+        <div className="flex w-full text-white ">
           <div className="w-40 ">
             <img src="images/logoDigiex.png" />
           </div>
@@ -124,7 +123,7 @@ export default function Sidebar() {
         <div className={`h-auto`}>
           <div className='my-2'>
             <button onClick={newChatClick} type="button" className={isLoading === false ? `${stylesButton} mb-2 pl-5` : `${stylesButtonDisabled} justify-center mb-2 pl-2`} disabled={isLoading === true ? true : false}>
-              <RiChatNewLine className='mr-3'/> New Chat</button>
+              <RiChatNewLine className='mr-3' /> New Chat</button>
             {isShowing && <Modal setIsShowing={setIsShowing} styles={stylesButton} addNewChat={addNewChat} setListIntent={setListIntent} />}
           </div>
         </div>
@@ -136,18 +135,18 @@ export default function Sidebar() {
           {/* {Array.from(listIntent)?.map((item: any) =>
             <ListIntent item={item} onclick={() => handleRemoveChat(item.id)} styles={stylesNewChat} />
           )} */}
-          
+
         </div>
 
         <div className=''>
           <Button styles={stylesButton} setListIntent={setListIntent} />
-          <div className='flex border-t-2 border-sky-500 p-2'>
-            <div className="w-10 mr-2 relative">
-              <img className='rounded-full' src={decoded.picture} alt="" />
+          <div className='flex p-2 border-t-2 border-sky-500'>
+            <div className="relative w-10 mr-2">
+              <img className='rounded-full' src={decoded?.picture} alt="" />
             </div>
             <div className='flex items-center'>
-              <p className="font-bold text-gray-300 leading-[15px]">{decoded.name}
-                <span className='text-[13px] font-bold font-light flex text-gray-600'>{decoded.email}</span>
+              <p className="font-bold text-gray-300 leading-[15px]">{decoded?.name}
+                <span className='text-[13px] font-bold font-light flex text-gray-600'>{decoded?.email}</span>
               </p>
             </div>
           </div>

@@ -4,11 +4,16 @@ import MyImg from '@/public/images/myImg.jpg'
 import ChatSpace from '@/components/Chat/ChatSpace';
 import { MessageProvider } from '@/contexts/MessageContext';
 import { UserInfo } from '@/utils/interfaces';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { MessageContext } from '@/contexts/MessageContext';
+import Cookies from 'universal-cookie';
+import { useRouter } from 'next/router';
 
 
 export default function Home() {
+
+  const cookies = new Cookies()
+  const router = useRouter();
   const info: UserInfo = {
     image: {
       width: 30,
@@ -19,6 +24,8 @@ export default function Home() {
     id: "1"
   }
   const { theme, setTheme } = useContext<any>(MessageContext)
+
+  
 
   return (
     <MessageProvider>
