@@ -18,7 +18,7 @@ export default function Home() {
     fullName: "Hong Tang",
     id: "1"
   }
-  const { theme } = useContext<any>(MessageContext)
+  const { theme, setTheme } = useContext<any>(MessageContext)
 
   return (
     <MessageProvider>
@@ -36,7 +36,7 @@ export default function Home() {
       </Head>
       <div className={`h-[100vh] w-full  mx-auto ${theme}`}>
 
-        <ChatSpace info={info} theme={undefined} setTheme={undefined} />
+        <ChatSpace info={info} theme={theme} setTheme={setTheme} />
       </div>
     </MessageProvider>
   );

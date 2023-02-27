@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { FiLogOut } from 'react-icons/fi';
-import { BsTrash, BsFillLightbulbOffFill, BsFillLightbulbFill } from 'react-icons/bs';
+import { BsFillLightbulbOffFill, BsFillLightbulbFill } from 'react-icons/bs';
 import Cookies from 'universal-cookie/cjs/Cookies';
 import { useRouter } from 'next/router';
 import { MessageContext } from '@/contexts/MessageContext';
@@ -13,7 +13,11 @@ export default function Button({ setListIntent, styles }: any) {
   const { theme, setTheme }: any = useContext(MessageContext)
 
   const toggleTheme = () => {
-    setTheme((prev: any) => prev === "dark" ? 'light' : 'dark');
+
+    setTheme((prev: any) => {
+      cookies.set("theme", prev === "dark" ? 'light' : 'dark')
+      return prev === "dark" ? 'light' : 'dark'
+    });
   };
 
   const handleLogout = () => {
@@ -21,12 +25,14 @@ export default function Button({ setListIntent, styles }: any) {
   }
 
   useEffect(() => {
+    setTheme(cookies.get("theme") ?? "light")
+
     if (hasLogout) {
       cookies.remove("cred-token")
       router.push('/login')
     }
     if (!cookies.get("cred-token")) router.push('/login')
-  }, [hasLogout, cookies.get("cred-token")])
+  }, [hasLogout, cookies.get("cred-token"), cookies.get("theme")])
 
   return (
     <>
