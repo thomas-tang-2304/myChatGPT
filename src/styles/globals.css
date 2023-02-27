@@ -28,7 +28,7 @@ body {
   --text-color: black;
   --background: white;
   --message: rgb(252, 252, 252);
-  --primary: #4da3ff;
+  --primary: linear-gradient(to right, #3fa29d, #9EABE4);
   --secondary: #fff;
   --third: #aaa;
 }
@@ -60,8 +60,8 @@ body {
 }
 
 .back-primary {
-  transition: background-color 0.5s ease-out;
-  background-color: var(--primary);
+  transition: background 0.5s ease-out;
+  background: var(--primary);
 }
 
 .back-secondary {

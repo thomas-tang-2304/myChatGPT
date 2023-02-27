@@ -16,11 +16,12 @@ export const getMessageReponse = async (messagecontent: any): Promise<any> => {
     model: "text-davinci-003",
     prompt: `${messagecontent}`,
     temperature: 0.7,
-    max_tokens: 16,
+    max_tokens: 2048,
     top_p: 0.6,
     frequency_penalty: 0.7,
     presence_penalty: 0.6,
   });
+
 
 
   finishedText += response?.data?.choices[0]?.text;
