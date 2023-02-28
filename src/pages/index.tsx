@@ -28,7 +28,7 @@ export default function Home() {
 
 
   return (
-    <MessageProvider>
+    <>
       <Head>
         <title>Chat GPT</title>
         <meta
@@ -41,10 +41,12 @@ export default function Home() {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={""} />
         <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&family=Orbitron:wght@500&family=Saira:ital,wght@1,500&display=swap" rel="stylesheet" />
       </Head>
-      <div className={`h-screen w-full  mx-auto ${theme}`}>
+      <MessageProvider>
+        <div className={`h-screen w-full  mx-auto ${theme}`}>
 
-        <ChatSpace info={info} theme={theme} setTheme={setTheme} />
-      </div>
-    </MessageProvider>
+          <ChatSpace info={info} theme={theme} setTheme={setTheme} />
+        </div>
+      </MessageProvider>
+    </>
   );
 }

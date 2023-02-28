@@ -17,7 +17,7 @@ export default function ChatSpace({ theme, setTheme }: ChatProps) {
                 <Sidebar />
             </div>) : ''}
 
-            <div className={`h-full bg-secondary md:w-3/4 xl:w-5/6`}>
+            <div className={`h-full bg-secondary w-full md:w-3/4 xl:w-5/6`}>
                 <ChatBody />
             </div>
         </div >
