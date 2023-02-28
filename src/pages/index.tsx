@@ -26,7 +26,9 @@ export default function Home() {
   const { theme, setTheme } = useContext<any>(MessageContext)
 
 
-
+  useEffect(() => {
+    if (!cookies.get("cred-token")) router.push('/login')
+  }, [cookies])
   return (
     <>
       <Head>

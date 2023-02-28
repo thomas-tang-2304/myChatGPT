@@ -15,15 +15,19 @@ const ChatText = ({ lastMessage, setLastMessage }: any) => {
   const [newMessage, setNewMessages] = useState('');
   const { messageArray, setMessageArray, setIsLoading, isLoading, setIsTyping, theme } = useContext<any>(MessageContext);
 
-
-
   const messageRender = async () => {
+
+    const oldMessages: string | null = localStorage.getItem('newMessage') ?? "[]"
+    const lastMessages: MessageType[] = JSON.parse(oldMessages)?.slice(Math.max(JSON.parse(oldMessages)?.length - 4, 0))
+    const stringToRequest: string = lastMessages.map((mess: MessageType) => mess.contentMessage).join("\n\n") + '\n\n' + newMessage + '\n\n'
 
     setMessageArray((prevState: [MessageType]) => [...prevState, { id: Date.now(), contentMessage: newMessage, variant: 'user', time: moment().format('LT') }])
 
     setIsLoading(true)
 
-    stopReason = await getMessageReponse(newMessage);
+
+
+    stopReason = await getMessageReponse(stringToRequest);
     while (stopReason == "length") {
       setLastMessage(finishedText)
       stopReason = await getMessageReponse(finishedText);
@@ -35,21 +39,13 @@ const ChatText = ({ lastMessage, setLastMessage }: any) => {
 
     setIsLoading(false)
   }
+
   const handleLocal = () => {
     if (messageArray.length !== 0) {
       localStorage.setItem('newMessage', JSON.stringify(messageArray));
     }
   }
-  useEffect(() => {
-    handleLocal()
-  }, [messageArray])
 
-  useEffect(() => {
-    const messData = localStorage.getItem('newMessage')
-    if (messData !== null) {
-      setMessageArray(JSON.parse(messData))
-    }
-  }, [])
 
   const hanldeKeyDown = async (evt: any) => {
     if (evt.key === 'Enter' && newMessage) {
@@ -73,9 +69,15 @@ const ChatText = ({ lastMessage, setLastMessage }: any) => {
     refreshText()
     setLastMessage("")
   }
+
+  useEffect(() => {
+    handleLocal()
+  }, [messageArray])
+
   useEffect(() => {
 
     setIsTyping(false)
+
     const messData = localStorage.getItem('newMessage')
     if (messData !== null) {
       setMessageArray(JSON.parse(messData))
@@ -88,7 +90,8 @@ const ChatText = ({ lastMessage, setLastMessage }: any) => {
       button={{
         isContained: true,
         element: (
-          <button className={`${isLoading === true ? 'bg-[#ccc]' : 'back-primary hover:bg-[#2474ca]'} text-white w-16 h-9 cursor-pointer flex justify-center items-center rounded-md leading-9`} onClick={hanldeClick}
+          <button className={`${isLoading === true ? 'bg-[#ccc]' : 'back-primary hover:bg-[#2474ca]'} text-white w-16 h-9 cursor-pointer flex justify-center items-center rounded-md leading-9`}
+            onClick={hanldeClick}
             disabled={isLoading === true ? true : false}
           >
             <FiSend />

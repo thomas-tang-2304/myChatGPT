@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 import Markdown from '../Markdown';
-import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
-import remarkGfm from 'remark-gfm'
+
 
 type Message = {
   isLastMessage?: boolean;

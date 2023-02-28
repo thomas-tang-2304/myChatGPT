@@ -12,20 +12,24 @@ export const getMessageReponse = async (messagecontent: any): Promise<any> => {
   });
   const openai = new OpenAIApi(configuration);
 
-  const response = await openai.createCompletion({
+  const data = await openai.createCompletion({
     model: "text-davinci-003",
     prompt: `${messagecontent}`,
-    temperature: 0.7,
+    temperature: 0.5,
     max_tokens: 2048,
-    top_p: 0.6,
+    top_p: 1,
     frequency_penalty: 0.7,
     presence_penalty: 0.6,
-  });
+  }).then((response) => {
+    finishedText += response?.data?.choices[0]?.text;
+    return response?.data?.choices[0]?.finish_reason
+  })
+    .catch(err => {
+      console.log(err.message);
+    })
 
+  return data
 
-
-  finishedText += response?.data?.choices[0]?.text;
-  return response?.data?.choices[0]?.finish_reason
 
 
 };
