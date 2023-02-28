@@ -2,7 +2,6 @@ import Head from 'next/head';
 import MyImg from '@/public/images/myImg.jpg'
 
 import ChatSpace from '@/components/Chat/ChatSpace';
-import { MessageProvider } from '@/contexts/MessageContext';
 import { UserInfo } from '@/utils/interfaces';
 import React, { useContext, useEffect } from 'react';
 import { MessageContext } from '@/contexts/MessageContext';
@@ -43,11 +42,9 @@ export default function Home() {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={""} />
         <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&family=Orbitron:wght@500&family=Saira:ital,wght@1,500&display=swap" rel="stylesheet" />
       </Head>
-      <MessageProvider>
-        <div className={`h-screen w-full mx-auto`}>
+      
           <ChatSpace info={info} theme={theme} setTheme={setTheme} />
-        </div>
-      </MessageProvider>
+
     </>
   );
 }
