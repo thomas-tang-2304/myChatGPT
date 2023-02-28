@@ -40,8 +40,8 @@ export const Message: React.FC<Message> = ({
         </div>
         <div
           className={clsx(
-            'max-w-[50%]',
-            variant === 'bot' ? 'ml-3' : 'mr-3',
+            'md:max-w-[50%] max-w-full mx-3',
+            variant === 'bot' ? 'md:ml-3' : 'md:mr-3',
           )}
         >
           <div
