@@ -13,16 +13,7 @@ export default function Home() {
 
   const cookies = new Cookies()
   const router = useRouter();
-  const info: UserInfo = {
-    image: {
-      width: 30,
-      height: 30,
-      url: MyImg
-    },
-    fullName: "Hong Tang",
-    id: "1"
-  }
-  const { theme, setTheme } = useContext<any>(MessageContext)
+ 
 
 
   useEffect(() => {
@@ -43,7 +34,7 @@ export default function Home() {
         <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&family=Orbitron:wght@500&family=Saira:ital,wght@1,500&display=swap" rel="stylesheet" />
       </Head>
       
-          <ChatSpace info={info} theme={theme} setTheme={setTheme} />
+          <ChatSpace />
 
     </>
   );

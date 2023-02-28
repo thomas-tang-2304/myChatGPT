@@ -3,13 +3,13 @@ import '@/styles/globals.css';
 import { MessageProvider } from '@/contexts/MessageContext';
 
 export default function App({ Component, pageProps }: AppProps) {
+
   return (
-    <div className='fixed w-full'>
-      <MessageProvider>
+    <MessageProvider>
 
-        <Component {...pageProps} />;
-      </MessageProvider>
+      <Component {...pageProps} />;
+    </MessageProvider>
 
-    </div>)
+  )
 }
 

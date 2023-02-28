@@ -4,11 +4,9 @@ import React, { useContext, useState } from 'react'
 import { BsPlusLg } from 'react-icons/bs';
 import { RxCross1 } from 'react-icons/rx';
 import Sidebar from '@/components/Sidebar';
-import { ModalContext } from '@/contexts/ModalContext';
 
 const TitleHeader = () => {
   const [onClickBar, setOnClickBar] = useState(false)
-  const [theme, setTheme] = useContext(ModalContext)
 
   const size = useWindowSize();
   const width = size.width

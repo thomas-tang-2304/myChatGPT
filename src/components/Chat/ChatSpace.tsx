@@ -4,7 +4,7 @@ import ChatBody from '../ChatBody/ChatBody';
 import useWindowSize from '@/customHooks/useWindowSize';
 import { ChatProps } from '@/utils/interfaces';
 
-export default function ChatSpace({ theme, setTheme }: ChatProps) {
+export default function ChatSpace() {
 
     const size = useWindowSize();
     const width = size.width
