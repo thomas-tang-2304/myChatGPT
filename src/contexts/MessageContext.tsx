@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useLayoutEffect, useState } from 'react';
 import Cookies from 'universal-cookie';
 
 
@@ -17,7 +17,7 @@ const MessageProvider: React.FC<MessageProps> = ({ children }): any => {
   const [messageArray, setMessageArray] = useState([]);
   const [isTyping, setIsTyping] = useState(false)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (cookies.get("theme")) setTheme(cookies.get("theme"));
     else setTheme("light");
   }, [cookies])

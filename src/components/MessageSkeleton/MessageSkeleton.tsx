@@ -1,12 +1,13 @@
-import React from 'react'
+import { MessageContext } from '@/contexts/MessageContext';
+import React, { useContext } from 'react'
 import ReactLoading from "react-loading";
 import { Message } from '../Message/Message'
 
-type Props = {}
 
-function MessageSkeleton({}: Props) {
+function MessageSkeleton({ }: Props) {
+  const { theme } = useContext(MessageContext)
   return (
-   <Message variant='bot' children={<ReactLoading type={'bubbles'} color="black" height='32px' width='32px'/>}/>
+    <Message variant='bot' children={<ReactLoading type={'bubbles'} color={`${theme == "light" ? "black" : "white"}`} height='32px' width='32px' />} />
   )
 }
 
