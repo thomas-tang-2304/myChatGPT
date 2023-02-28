@@ -42,7 +42,7 @@ export default function Home() {
         <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&family=Orbitron:wght@500&family=Saira:ital,wght@1,500&display=swap" rel="stylesheet" />
       </Head>
       <MessageProvider>
-        <div className={`fixed h-screen w-full  mx-auto ${theme}`}>
+        <div className={`h-screen w-full  mx-auto ${theme} container-fluid`}>
 
           <ChatSpace info={info} theme={theme} setTheme={setTheme} />
         </div>
