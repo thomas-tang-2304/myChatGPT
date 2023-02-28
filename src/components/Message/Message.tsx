@@ -22,20 +22,6 @@ export const Message: React.FC<Message> = ({
 
 }) => {
 
-  // const CodeBlock = () => {
-  //   return (
-  //     <SyntaxHighlighter language='javascript' style={vscDarkPlus}>
-  //       {contentMessage}
-  //     </SyntaxHighlighter>
-  //   );
-  // };
-
-  // const renderers = {
-  //   code: CodeBlock
-  // };
-
-
-
   return (
     <div
       className={clsx(
@@ -45,8 +31,8 @@ export const Message: React.FC<Message> = ({
     >
       <div
         className={clsx(
-          'flex flex-row items-start',
-          variant === 'bot' ? null : 'flex-row-reverse',
+          'flex flex-col md:flex-row gap-2',
+          variant === 'bot' ? 'items-start' : 'items-end md:flex-row-reverse',
         )}
       >
         <div className="flex items-center justify-center w-10 h-10 rounded-ful">
