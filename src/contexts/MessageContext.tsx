@@ -12,7 +12,7 @@ const cookies = new Cookies()
 
 const MessageProvider: React.FC<MessageProps> = ({ children }): any => {
 
-  const [theme, setTheme] = useState(cookies.get("theme"))
+  const [theme, setTheme] = useState<string>("light")
   const [isLoading, setIsLoading] = useState(false)
   const [messageArray, setMessageArray] = useState([]);
   const [isTyping, setIsTyping] = useState(false)
