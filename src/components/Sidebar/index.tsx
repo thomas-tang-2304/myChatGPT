@@ -146,7 +146,7 @@ export default function Sidebar() {
             </div>
             <div className='flex items-center'>
               <p className="font-bold text-gray-300 leading-[15px]">{decoded?.name}
-                <span className='text-[13px] font-bold font-light flex text-gray-600'>{decoded?.email}</span>
+                <span className='text-[13px] font-bold  flex text-gray-600'>{decoded?.email}</span>
               </p>
             </div>
           </div>

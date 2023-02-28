@@ -42,7 +42,7 @@ const ChatContent = ({ lastMessage }: any) => {
 
   useEffect(() => {
     messageEndRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }, [])
+  }, [messageArray])
 
   return (
     <div className="w-full h-full overflow-y-scroll">
