@@ -13,9 +13,9 @@ export default function ChatSpace() {
         <div
             className={`h-full flex bg-white shadow-2xl justify-center`}
         >
-            {width && width >= 640 ? (<div className={`w-1/4 xl:w-1/6`}>
+            {width && width >= 640 && (<div className={`w-1/4 xl:w-1/6`}>
                 <Sidebar />
-            </div>) : ''}
+            </div>)}
 
             <div className={`h-[100vh] bg-secondary w-full md:w-3/4 xl:w-5/6`}>
                 <ChatBody />

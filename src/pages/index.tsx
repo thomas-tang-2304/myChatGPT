@@ -13,14 +13,14 @@ export default function Home() {
 
   const cookies = new Cookies()
   const router = useRouter();
- 
+
 
 
   useEffect(() => {
     if (!cookies.get("cred-token")) router.push('/login')
   }, [cookies])
   return (
-    <>
+    <div className='nooooo'>
       <Head>
         <title>Chat GPT</title>
         <meta
@@ -33,9 +33,9 @@ export default function Home() {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={""} />
         <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&family=Orbitron:wght@500&family=Saira:ital,wght@1,500&display=swap" rel="stylesheet" />
       </Head>
-      
-          <ChatSpace />
 
-    </>
-  );
+      <ChatSpace />
+
+    </div>
+  )
 }

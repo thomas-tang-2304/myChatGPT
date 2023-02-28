@@ -132,10 +132,7 @@ export default function Sidebar() {
           id={"chat-title-scroller"}
           ref={ChatTitles}
         >
-          {/* {Array.from(listIntent)?.map((item: any) =>
-            <ListIntent item={item} onclick={() => handleRemoveChat(item.id)} styles={stylesNewChat} />
-          )} */}
-
+         
         </div>
 
         <div className=''>
