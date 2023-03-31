@@ -33,7 +33,7 @@ export default function GoogleAuth({ setIsValid, isValid }: any) {
     const onSuccess = (credentialResponse: any) => {
         const { email, email_verified, name, picture, given_name, family_name }: User = jwt_decode(credentialResponse.credential);
         const newToken: any = jwt_encode({ email, email_verified, name, picture, given_name, family_name }, "chatGPT - digiex")
-        if (email.includes("@digiex.group")) {
+        if (email) {
             cookies.set("cred-token", newToken)
             setIsValid(true)
             router.push("/")
